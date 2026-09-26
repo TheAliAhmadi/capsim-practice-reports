@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Digby · CP136222_1 · Practice Round 2 Review</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+:root{--ink:#1a2332;--muted:#5a6a7a;--card:#fff;--bg:#f4f6f9;--line:#d8e0ea;--blue:#2563eb;--green:#059669;--amber:#d97706;--red:#dc2626;--purple:#7c3aed;--teal:#0d9488}
+*{box-sizing:border-box}body{margin:0;font-family:"Segoe UI",system-ui,-apple-system,sans-serif;color:var(--ink);background:var(--bg);line-height:1.55}
+.wrap{max-width:1080px;margin:0 auto;padding:28px 20px 60px}
+header.hero{background:linear-gradient(135deg,#0f2744 0%,#1e4d7b 60%,#2563eb 100%);color:#fff;border-radius:16px;padding:28px 32px;margin-bottom:22px;box-shadow:0 8px 24px rgba(15,39,68,.25)}
+header.hero h1{margin:0 0 6px;font-size:1.65rem}header.hero .meta{opacity:.9;font-size:.95rem}
+header.hero .tag{display:inline-block;margin-top:12px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);padding:4px 12px;border-radius:999px;font-size:.8rem}
+.restart{background:#fef3c7;border:1px solid #f59e0b;color:#78350f;border-radius:12px;padding:14px 16px;margin-bottom:16px;font-size:.92rem}
+h2{font-size:1.2rem;margin:32px 0 12px;padding-bottom:8px;border-bottom:2px solid var(--line);color:#0f2744}
+h3{font-size:1.02rem;margin:0 0 8px;color:#0f2744}p,li{font-size:.95rem}.muted{color:var(--muted)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 20px;margin-bottom:14px;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:800px){.grid2{grid-template-columns:1fr}}
+.stat-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px}
+.stat{flex:1 1 120px;background:#f8fafc;border:1px solid var(--line);border-radius:10px;padding:10px 12px;text-align:center}
+.stat .lbl{font-size:.72rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}.stat .val{font-size:1.15rem;font-weight:700;margin-top:2px}
+.ok .val{color:var(--green)}.warn .val{color:var(--amber)}.bad .val{color:var(--red)}
+.badge{display:inline-block;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;padding:3px 8px;border-radius:6px}
+.badge-low{background:#fee2e2;color:#991b1b}.badge-avg{background:#fef3c7;color:#92400e}.badge-high{background:#d1fae5;color:#065f46}
+.badge-none{background:#e2e8f0;color:#475569}.badge-close{background:#d1fae5;color:#065f46}.badge-mid{background:#fef3c7;color:#92400e}.badge-far{background:#fee2e2;color:#991b1b}
+.seg-box{border-left:4px solid var(--blue)}.seg-box.absent{border-left-color:#94a3b8;background:#f8fafc}
+.seg-box.highend{border-left-color:var(--purple)}.seg-box.perf{border-left-color:var(--teal)}.seg-box.lowend{border-left-color:var(--amber)}.seg-box.size{border-left-color:#db2777}
+.why{margin:8px 0 0;font-size:.9rem}.why ol{margin:6px 0 0;padding-left:18px}.why li{margin-bottom:4px}
+.chart-box{position:relative;height:280px;margin-top:8px}.chart-box.tall{height:320px}
+.gap-table{width:100%;border-collapse:collapse;font-size:.88rem;margin:10px 0}
+.gap-table th,.gap-table td{text-align:left;padding:7px 8px;border-bottom:1px solid var(--line)}
+.gap-table th{color:var(--muted);font-weight:600;font-size:.75rem;text-transform:uppercase}
+.crit-row{display:grid;grid-template-columns:120px 1fr 70px;gap:8px;align-items:center;margin-bottom:7px;font-size:.85rem}
+.bar-track{background:#e2e8f0;border-radius:4px;height:14px;overflow:hidden;position:relative}
+.bar-fill{height:100%;border-radius:4px}
+.callout{background:#eff6ff;border:1px solid #bfdbfe;border-radius:10px;padding:12px 14px;font-size:.9rem;margin:10px 0}
+.callout.warn{background:#fffbeb;border-color:#fcd34d}.callout.good{background:#ecfdf5;border-color:#6ee7b7}.callout.bad{background:#fef2f2;border-color:#fecaca}
+.mistakes{background:#fef2f2;border:2px solid #f87171;border-radius:12px;padding:16px 18px;margin:14px 0}
+.mistakes h3{color:#991b1b;margin-top:0}.mistakes li{margin-bottom:8px}
+.priority{border-top:4px solid var(--blue)}.priority .num{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;background:var(--blue);color:#fff;font-weight:700;font-size:.85rem;margin-right:8px}
+.prio-grid{display:grid;grid-template-columns:1fr;gap:10px}.comp-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+footer.note{margin-top:36px;padding-top:16px;border-top:1px solid var(--line);font-size:.82rem;color:var(--muted)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="hero">
+  <h1>Digby — Practice Round 2 Review</h1>
+  <div class="meta">CP136222_1 · Section 4 · Practice Round 2 / Dec 31, 2028 · Group 004 - 4</div>
+  <span class="tag">Written by George · supervised by Ali · Practice review (restart ahead)</span>
+</header>
+<div class="restart">
+  <strong>Practice is ending — the simulation restarts from scratch.</strong>
+  Competition decisions start over; these practice results will not carry over. This report is a <em>Practice Round review</em>:
+  keep the lessons, leave the mistakes behind, and use the priority cards as restart habits for the real game —
+  not as “do this next practice round on the same plant.”
+</div>
+<div class='callout good'><strong>No hard-flag practice mistakes detected</strong> (no early segment wipeouts with write-off pattern, no same-round raise-and-retire debt, no giant emergency loan). Still review the segment and cost lessons below.</div>
+<p class='muted' style='font-size:.85rem'>Roster mapping note: industry roster lists <strong>Sage Pearl</strong> who are not in Student_Database.csv for this group — omitted from email To/CC.</p>
+<h2>1. Financial Health</h2>
+<div class="card">
+  <h3>Liquidity held — still treat cash as a planned decision</h3>
+  <p>No emergency loan. Cash ended at $3,924, profit ($615), inventory $6,154. Keep this discipline when the real game starts.</p>
+  <div class="stat-row">
+    <div class="stat ok"><div class="lbl">Emergency Loan</div><div class="val">$0</div></div>
+    <div class="stat warn"><div class="lbl">Ending Cash</div><div class="val">$3,924</div></div>
+    <div class="stat bad"><div class="lbl">Net Profit</div><div class="val">($615)</div></div>
+    <div class="stat ok"><div class="lbl">Ending Inventory</div><div class="val">$6,154</div></div>
+    <div class="stat"><div class="lbl">Sales / Rev share</div><div class="val">$130,874 · 13.1%</div></div>
+    <div class="stat"><div class="lbl">Stock Price</div><div class="val">$24.78</div></div>
+  </div>
+  <div class="callout good" style="margin-top:14px">
+    <strong>Restart framing:</strong> ROS -0.5%, CM 28.2%, leverage 2.01, cum. profit $4,929.
+    SG&amp;A $21,249 (16.2% of sales); interest $5,372.
+    When the real rounds begin, treat emergency loans as a planning failure to avoid.
+  </div>
+</div>
+<h2>2. Investment Profile</h2>
+<div class="card">
+  <h3>Round 2 spend — plant (CF), TQM, HR</h3>
+  <p>Net plant improvements (cash flow) <strong>($9,480)</strong>; TQM <strong>$1,400</strong>; HR <strong>$1,100</strong>.
+  Average next-round automation: <strong>3.8</strong>.</p>
+  <div class="chart-box"><canvas id="investChart"></canvas></div>
+  <p class="muted" style="margin-top:10px;font-size:.85rem">Bars = Round 2 $ thousands. Peers for context.</p>
+</div>
+<h2>3. Segment Performance — Why Share Is Where It Is</h2>
+<p class="muted">One box per Capsim segment. Diagnostic — not a market-share bar chart.</p>
+<div class="grid2"><div class="card seg-box ">
+  <h3>Traditional — Daze <span class="badge badge-avg">13.3% · Average</span></h3>
+  <p class="why">Primary-segment units sold <strong>1,565</strong> → about <strong>13.3%</strong> of Traditional industry volume (11,745 units). Buying criteria: Age 47% · Price 23% · Positioning 21% · MTBF 9%.</p>
+  <div class="why"><strong>Ranked causes:</strong><ol><li><strong>Age on Daze (primary):</strong> 3.4 vs ideal ~2.0 (47% importance).</li><li><strong>Positioning on Daze:</strong> 5.7/14.3 vs ideal 6.4/13.6 (distance 0.99).</li><li><strong>Awareness on Daze:</strong> 73%.</li><li><strong>Rival benchmark:</strong> Gaffe sold 2,032 at $26.50, age 2.0, pos 6.4/13.6, aware 97%, access 76%.</li></ol></div>
+</div>
+<div class="card seg-box lowend">
+  <h3>Low End — Dell <span class="badge badge-avg">11.2% · Average</span></h3>
+  <p class="why">Primary-segment units sold <strong>1,671</strong> → about <strong>11.2%</strong> of Low End industry volume (14,906 units). Buying criteria: Price 53% · Age 24% · Positioning 16% · MTBF 7%.</p>
+  <div class="why"><strong>Ranked causes:</strong><ol><li><strong>Price / cost on Dell (primary):</strong> Price $20.75 with CM 32.6% (mat $6.05 + labor $7.16, auto 5.2). Low End is won on a sustainable low price.</li><li><strong>Awareness on Dell:</strong> 72%.</li><li><strong>Excess inventory on Dell:</strong> 313 ending units.</li><li><strong>Rival benchmark:</strong> Gerbil sold 2,766 at $19.50, age 6.6, pos 3.0/17.0, aware 100%, access 76%.</li></ol></div>
+</div>
+<div class="card seg-box highend">
+  <h3>High End — Duck <span class="badge badge-avg">13.2% · Average</span></h3>
+  <p class="why">Primary-segment units sold <strong>608</strong> → about <strong>13.2%</strong> of High End industry volume (4,597 units). Buying criteria: Positioning 43% · Age 29% · MTBF 19% · Price 9%.</p>
+  <div class="why"><strong>Ranked causes:</strong><ol><li><strong>Positioning on Duck (primary):</strong> 10.1/9.4 vs ideal 10.7/9.3 (distance 0.61).</li><li><strong>Stockout on Duck:</strong> util 69%, inv 0.</li><li><strong>Rival benchmark:</strong> Cid sold 756 at $38.50, age 1.4, pos 9.9/10.4, aware 83%, access 67%.</li></ol></div>
+</div>
+<div class="card seg-box perf">
+  <h3>Performance — Dot <span class="badge badge-high">19.8% · High</span></h3>
+  <p class="why">Primary-segment units sold <strong>568</strong> → about <strong>19.8%</strong> of Performance industry volume (2,863 units). Buying criteria: MTBF 43% · Positioning 29% · Age / Price secondary.</p>
+  <div class="why"><strong>Ranked causes:</strong><ol><li><strong>Stockout on Dot:</strong> util 92%, inv 0.</li><li><strong>Rival benchmark:</strong> Foam sold 622 at $33.00, age 4.5, pos 9.4/15.5, aware 41%, access 24%.</li></ol></div>
+</div>
+<div class="card seg-box size">
+  <h3>Size — Dune <span class="badge badge-avg">14.8% · Average</span></h3>
+  <p class="why">Primary-segment units sold <strong>547</strong> → about <strong>14.8%</strong> of Size industry volume (3,701 units). Buying criteria: Positioning 43% · Age 29% · Price / MTBF secondary.</p>
+  <div class="why"><strong>Ranked causes:</strong><ol><li><strong>Awareness on Dune:</strong> 70%.</li><li><strong>Accessibility on Dune:</strong> 47%.</li><li><strong>Stockout on Dune:</strong> util 65%, inv 0.</li><li><strong>Rival benchmark:</strong> Cure sold 677 at $33.50, age 1.7, pos 5.1/9.2, aware 80%, access 62%.</li></ol></div>
+</div></div>
+<h2>4. Distance from What Wins <span class="muted" style="font-size:.85rem;font-weight:500">(segment-specific fit — not a Capstone Pfmn×Size map)</span></h2>
+<p>The Industry Report already shows the perceptual map. Below: fit gaps on the criteria that decide winners.</p>
+<div class="card" style="border-left:4px solid var(--blue)">
+  <h3>Daze · Traditional — Age 47% · Price 23% · Positioning 21% · MTBF 9%</h3>
+  <table class="gap-table"><thead><tr><th>Criterion</th><th>Ideal / floor</th><th>Daze</th><th>Best rival</th><th>Fit</th></tr></thead>
+  <tbody><tr><td>Age</td><td>~2 years</td><td>3.4</td><td>2.0</td><td><span class='badge badge-far'>Far</span></td></tr><tr><td>Price</td><td>$19–$29</td><td>$22.00</td><td>$26.50</td><td><span class='badge badge-close'>Close</span></td></tr><tr><td>Position</td><td>6.4/13.6</td><td>5.7/14.3</td><td>6.4/13.6</td><td><span class='badge badge-mid'>Mid</span></td></tr></tbody></table>
+  <div class="callout warn"><strong>Restart lesson:</strong> When the game restarts: schedule R&D so year-end age lands near ~2.</div>
+</div>
+<div class="card" style="border-left:4px solid var(--amber)">
+  <h3>Dell · Low End — Price 53% · Age 24% · Positioning 16% · MTBF 7%</h3>
+  <table class="gap-table"><thead><tr><th>Criterion</th><th>Ideal / floor</th><th>Dell</th><th>Best rival</th><th>Fit</th></tr></thead>
+  <tbody><tr><td>Price</td><td>$14–$24 (compete low)</td><td>$20.75</td><td>$19.50</td><td><span class='badge badge-mid'>Mid</span></td></tr><tr><td>Contribution margin</td><td>Healthy at low price</td><td>32.6%</td><td>35.1%</td><td><span class='badge badge-close'>Close</span></td></tr><tr><td>Automation / labor</td><td>High auto, low labor</td><td>Auto 5.2 · labor $7.16</td><td>Auto 7.0</td><td><span class='badge badge-far'>Far</span></td></tr><tr><td>Age</td><td>~7 years</td><td>6.6</td><td>6.6</td><td><span class='badge badge-mid'>Mid</span></td></tr><tr><td>Position</td><td>2.7/17.3</td><td>3.0/17.0</td><td>3.0/17.0</td><td><span class='badge badge-close'>Close</span></td></tr></tbody></table>
+  <div class="callout warn"><strong>Restart lesson:</strong> When the game restarts: build Low End cost first (automation + material discipline), then price down.</div>
+</div>
+<div class="card" style="border-left:4px solid var(--purple)">
+  <h3>Duck · High End — Positioning 43% · Age 29% · MTBF 19% · Price 9%</h3>
+  <table class="gap-table"><thead><tr><th>Criterion</th><th>Ideal / floor</th><th>Duck</th><th>Best rival</th><th>Fit</th></tr></thead>
+  <tbody><tr><td>Pfmn / Size</td><td>10.7/9.3</td><td>10.1/9.4</td><td>9.9/10.4</td><td><span class='badge badge-mid'>Mid</span></td></tr><tr><td>Age</td><td>prefer young</td><td>1.2</td><td>1.4</td><td><span class='badge badge-close'>Close</span></td></tr><tr><td>Price</td><td>$29–$39</td><td>$39.25</td><td>$38.50</td><td><span class='badge badge-close'>Close</span></td></tr></tbody></table>
+  <div class="callout warn"><strong>Restart lesson:</strong> When the game restarts: close the positioning gap (distance 0.61) and keep age young. Not a Capstone map reprint — your fit gap on what wins.</div>
+</div>
+<div class="card" style="border-left:4px solid var(--teal)">
+  <h3>Dot · Performance — MTBF 43% · Positioning 29% · Age / Price secondary</h3>
+  <table class="gap-table"><thead><tr><th>Criterion</th><th>Ideal / floor</th><th>Dot</th><th>Best rival</th><th>Fit</th></tr></thead>
+  <tbody><tr><td>MTBF</td><td>22–27k (prefer high)</td><td>25,450</td><td>25,000</td><td><span class='badge badge-mid'>Mid</span></td></tr><tr><td>Pfmn / Size</td><td>11.4/14.6</td><td>11.4/14.1</td><td>9.4/15.5</td><td><span class='badge badge-mid'>Mid</span></td></tr><tr><td>Age</td><td>~1 year</td><td>1.5</td><td>4.5</td><td><span class='badge badge-close'>Close</span></td></tr></tbody></table>
+  <div class="callout warn"><strong>Restart lesson:</strong> When the game restarts: max MTBF and sit on the ideal spot; then fund accessibility.</div>
+</div>
+<div class="card" style="border-left:4px solid #db2777">
+  <h3>Dune · Size — Positioning 43% · Age 29% · Price / MTBF secondary</h3>
+  <table class="gap-table"><thead><tr><th>Criterion</th><th>Ideal / floor</th><th>Dune</th><th>Best rival</th><th>Fit</th></tr></thead>
+  <tbody><tr><td>Pfmn / Size</td><td>5.4/8.6</td><td>5.4/8.1</td><td>5.1/9.2</td><td><span class='badge badge-mid'>Mid</span></td></tr><tr><td>Age</td><td>prefer young</td><td>1.5</td><td>1.7</td><td><span class='badge badge-close'>Close</span></td></tr><tr><td>Price</td><td>$24–$34</td><td>$34.00</td><td>$33.50</td><td><span class='badge badge-close'>Close</span></td></tr></tbody></table>
+  <div class="callout warn"><strong>Restart lesson:</strong> When the game restarts: close the positioning gap (distance 0.50) and keep age young. Not a Capstone map reprint — your fit gap on what wins.</div>
+</div>
+<h2>5. Customer Criteria Comparison</h2>
+<p class="muted">Compact fit indicators for products with the clearest performance problems.</p>
+<div class="grid2"><div class="card">
+  <h3>Daze (Traditional) — criteria snapshot</h3>
+  <p class='muted' style='font-size:.85rem'>Volume leader benchmark: <strong>Gaffe</strong> (2,032 units, $26.50, age 2.0, 6.4/13.6).</p>
+  <div class="crit-row"><div>Price fit</div><div class="bar-track"><div class="bar-fill" style="width:80%;background:#059669"></div></div><div>80</div></div>
+  <div class="crit-row"><div>Age (3.4)</div><div class="bar-track"><div class="bar-fill" style="width:65%;background:#d97706"></div></div><div>65</div></div>
+  <div class="crit-row"><div>MTBF (17,500)</div><div class="bar-track"><div class="bar-fill" style="width:70%;background:#7c3aed"></div></div><div>70</div></div>
+  <div class="crit-row"><div>Position (5.7/14.3)</div><div class="bar-track"><div class="bar-fill" style="width:60%;background:#2563eb"></div></div><div>60</div></div>
+  <div class="crit-row"><div>Awareness (73%)</div><div class="bar-track"><div class="bar-fill" style="width:73%;background:#0d9488"></div></div><div>73</div></div>
+  <div class="crit-row"><div>Accessibility (58%)</div><div class="bar-track"><div class="bar-fill" style="width:58%;background:#db2777"></div></div><div>58</div></div>
+  <p class="muted" style="font-size:.78rem;margin-top:8px">Bars are 0–100 fit/level indicators.</p>
+</div>
+<div class="card">
+  <h3>Dell (Low End) — criteria snapshot</h3>
+  <p class='muted' style='font-size:.85rem'>Volume leader benchmark: <strong>Gerbil</strong> (2,766 units, $19.50, age 6.6, 3.0/17.0).</p>
+  <div class="crit-row"><div>Price fit</div><div class="bar-track"><div class="bar-fill" style="width:32%;background:#059669"></div></div><div>32</div></div>
+  <div class="crit-row"><div>Age (6.6)</div><div class="bar-track"><div class="bar-fill" style="width:90%;background:#d97706"></div></div><div>90</div></div>
+  <div class="crit-row"><div>MTBF (12,900)</div><div class="bar-track"><div class="bar-fill" style="width:18%;background:#7c3aed"></div></div><div>18</div></div>
+  <div class="crit-row"><div>Position (3.0/17.0)</div><div class="bar-track"><div class="bar-fill" style="width:83%;background:#2563eb"></div></div><div>83</div></div>
+  <div class="crit-row"><div>Awareness (72%)</div><div class="bar-track"><div class="bar-fill" style="width:72%;background:#0d9488"></div></div><div>72</div></div>
+  <div class="crit-row"><div>Accessibility (58%)</div><div class="bar-track"><div class="bar-fill" style="width:58%;background:#db2777"></div></div><div>58</div></div>
+  <p class="muted" style="font-size:.78rem;margin-top:8px">Bars are 0–100 fit/level indicators.</p>
+</div>
+<div class="card">
+  <h3>Duck (High End) — criteria snapshot</h3>
+  <p class='muted' style='font-size:.85rem'>Volume leader benchmark: <strong>Cid</strong> (756 units, $38.50, age 1.4, 9.9/10.4).</p>
+  <div class="crit-row"><div>Price fit</div><div class="bar-track"><div class="bar-fill" style="width:48%;background:#059669"></div></div><div>48</div></div>
+  <div class="crit-row"><div>Age (1.2)</div><div class="bar-track"><div class="bar-fill" style="width:70%;background:#d97706"></div></div><div>70</div></div>
+  <div class="crit-row"><div>MTBF (23,000)</div><div class="bar-track"><div class="bar-fill" style="width:60%;background:#7c3aed"></div></div><div>60</div></div>
+  <div class="crit-row"><div>Position (10.1/9.4)</div><div class="bar-track"><div class="bar-fill" style="width:76%;background:#2563eb"></div></div><div>76</div></div>
+  <div class="crit-row"><div>Awareness (92%)</div><div class="bar-track"><div class="bar-fill" style="width:92%;background:#0d9488"></div></div><div>92</div></div>
+  <div class="crit-row"><div>Accessibility (72%)</div><div class="bar-track"><div class="bar-fill" style="width:72%;background:#db2777"></div></div><div>72</div></div>
+  <p class="muted" style="font-size:.78rem;margin-top:8px">Bars are 0–100 fit/level indicators.</p>
+</div></div>
+<h2>6. Production and Inventory</h2>
+<div class="card">
+  <h3>Units sold vs produced (approx) vs ending inventory</h3>
+  <p class="muted">Produced ≈ sold + ending inventory (beginning inventory not listed).</p>
+  <div class="chart-box tall"><canvas id="prodChart"></canvas></div>
+  <ul><li><strong>Daze</strong>: sold 1,565, inv 102, util 94%, cap next 2,100</li><li><strong>Dell</strong>: sold 1,671, inv 313, util 109%, cap next 1,600</li><li><strong>Duck</strong>: sold 608, inv 0, util 69%, cap next 900 — <em>stocked out</em></li><li><strong>Dot</strong>: sold 568, inv 0, util 92%, cap next 600 — <em>stocked out</em></li><li><strong>Dune</strong>: sold 547, inv 0, util 65%, cap next 600 — <em>stocked out</em></li></ul>
+</div>
+<h2>7. Competencies + Restart Priorities</h2>
+<div class="comp-grid">
+  <div class="card"><h3>R&amp;D cycle / repositioning</h3>
+    <p>Cumulative R&amp;D cycle-time impact: <strong>-0.4%</strong> (negative = faster).
+    TQM $1,400; HR $1,100. Avg automation 3.8.</p></div>
+  <div class="card"><h3>Variable cost position</h3>
+    <p>Company CM <strong>28.2%</strong>; SG&amp;A/Sales 16.2%.
+    TQM material 0.0%; labor 0.0%.</p></div>
+  <div class="card"><h3>HR / productivity</h3>
+    <p>Productivity <strong>100.0%</strong>; turnover <strong>11.0%</strong>.
+    Demand cumulative impact 1.1%.</p></div>
+  <div class="card"><h3>Plant headroom</h3>
+    <p>Net plant CF ($9,480). Restart lesson: buy capacity for sustained demand, not one stockout.</p></div>
+</div>
+<div class="card">
+  <h3>Automation, costs &amp; margins by product</h3>
+  <table class="gap-table"><thead><tr><th>Product</th><th>Segment</th><th>Auto</th><th>Material</th><th>Labor</th><th>CM</th><th>Cap next</th><th>Util</th></tr></thead>
+  <tbody><tr><td>Daze</td><td>Traditional</td><td>4.6</td><td>$9.99</td><td>$7.95</td><td>15.9%</td><td>2,100</td><td>94%</td></tr><tr><td>Dell</td><td>Low End</td><td>5.2</td><td>$6.05</td><td>$7.16</td><td>32.6%</td><td>1,600</td><td>109%</td></tr><tr><td>Duck</td><td>High End</td><td>3.0</td><td>$16.05</td><td>$9.49</td><td>36.3%</td><td>900</td><td>69%</td></tr><tr><td>Dot</td><td>Performance</td><td>3.0</td><td>$15.61</td><td>$9.49</td><td>27.6%</td><td>600</td><td>92%</td></tr><tr><td>Dune</td><td>Size</td><td>3.0</td><td>$13.85</td><td>$9.49</td><td>33.4%</td><td>600</td><td>65%</td></tr></tbody></table>
+  <div class="callout"><strong>What this means when the game restarts:</strong> Match automation to segment economics.
+  Build TQM/HR early. Margins below ~25% on volume products are a strategy risk.</div>
+</div>
+<h3 style="margin-top:28px">Practice mistakes callout</h3>
+<div class='callout good'><strong>No hard-flag practice mistakes detected</strong> (no early segment wipeouts with write-off pattern, no same-round raise-and-retire debt, no giant emergency loan). Still review the segment and cost lessons below.</div>
+<h3 style="margin-top:28px">What to focus on when the game restarts</h3>
+<p class="muted">Priority cards are restart lessons — not instructions that assume this plant carries over.</p>
+<div class="prio-grid"><div class='card priority'><h3><span class='num'>1</span>Clean restart mindset</h3><p>Practice is wiped. Keep the lessons (cash planning, segment coverage, cost before price on Low End, age discipline on Traditional, positioning on High End/Size) and leave the mistakes behind.</p></div><div class='card priority'><h3><span class='num'>2</span>Cash planning habit</h3><p>You ended with cash $3,924 and no emergency loan. Keep a round checklist: forecast → production → plant/TQM/HR → financing gap.</p></div><div class='card priority'><h3><span class='num'>3</span>Low End cost structure</h3><p>Dell CM 32.6% at auto 5.2 / labor $7.16. Restart lesson: automation and material discipline before matching the price floor.</p></div></div>
+<footer class="note">
+  Practice Round 2 review for <strong>Digby</strong> (CP136222_1, group 004 - 4).
+  Team (CSV): Alice Davril, Daniel Glover, Ben Menezes, Olivia Robinson, Mia Volpe, Bilal Zeineddine.
+  Sources: industry extract Round 2 / 2028, Student_Database.csv, visuals.md / workflow.md / PRACTICE_ROUND_REVIEW_RULES.md.
+  Written by George — Ali’s AI Capsim tutor (supervised by Ali). Real numbers only; no emails sent.
+</footer>
+</div>
+<script>
+new Chart(document.getElementById('investChart'), {
+  type: 'bar',
+  data: {
+    labels: ["Digby", "Andrews", "Baldwin", "Chester"],
+    datasets: [
+      {label: 'Plant |CF| ($k)', data: [9.5, 0.0, 17.5, 11.4], backgroundColor: '#2563eb'},
+      {label: 'TQM ($k)', data: [1.4, 3.3, 0.0, 5.0], backgroundColor: '#059669'},
+      {label: 'HR ($k)', data: [1.1, 0.9, 0.0, 6.0], backgroundColor: '#d97706'}
+    ]
+  },
+  options: {responsive:true, maintainAspectRatio:false, plugins:{legend:{position:'bottom'}},
+    scales:{y:{beginAtZero:true, title:{display:true, text:'$ thousands'}}}}
+});
+new Chart(document.getElementById('prodChart'), {
+  type: 'bar',
+  data: {
+    labels: ["Daze", "Dell", "Duck", "Dot", "Dune"],
+    datasets: [
+      {label: 'Units sold', data: [1565, 1671, 608, 568, 547], backgroundColor: '#2563eb'},
+      {label: 'Produced (sold+inv)', data: [1667, 1984, 608, 568, 547], backgroundColor: '#94a3b8'},
+      {label: 'Ending inventory', data: [102, 313, 0, 0, 0], backgroundColor: '#dc2626'}
+    ]
+  },
+  options: {responsive:true, maintainAspectRatio:false, plugins:{legend:{position:'bottom'}}, scales:{y:{beginAtZero:true}}}
+});
+</script>
+</body>
+</html>

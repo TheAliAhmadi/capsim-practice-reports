@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Baldwin · CP136222_1 · Practice Round 2 Review</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+:root{--ink:#1a2332;--muted:#5a6a7a;--card:#fff;--bg:#f4f6f9;--line:#d8e0ea;--blue:#2563eb;--green:#059669;--amber:#d97706;--red:#dc2626;--purple:#7c3aed;--teal:#0d9488}
+*{box-sizing:border-box}body{margin:0;font-family:"Segoe UI",system-ui,-apple-system,sans-serif;color:var(--ink);background:var(--bg);line-height:1.55}
+.wrap{max-width:1080px;margin:0 auto;padding:28px 20px 60px}
+header.hero{background:linear-gradient(135deg,#0f2744 0%,#1e4d7b 60%,#2563eb 100%);color:#fff;border-radius:16px;padding:28px 32px;margin-bottom:22px;box-shadow:0 8px 24px rgba(15,39,68,.25)}
+header.hero h1{margin:0 0 6px;font-size:1.65rem}header.hero .meta{opacity:.9;font-size:.95rem}
+header.hero .tag{display:inline-block;margin-top:12px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);padding:4px 12px;border-radius:999px;font-size:.8rem}
+.restart{background:#fef3c7;border:1px solid #f59e0b;color:#78350f;border-radius:12px;padding:14px 16px;margin-bottom:16px;font-size:.92rem}
+h2{font-size:1.2rem;margin:32px 0 12px;padding-bottom:8px;border-bottom:2px solid var(--line);color:#0f2744}
+h3{font-size:1.02rem;margin:0 0 8px;color:#0f2744}p,li{font-size:.95rem}.muted{color:var(--muted)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 20px;margin-bottom:14px;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:800px){.grid2{grid-template-columns:1fr}}
+.stat-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px}
+.stat{flex:1 1 120px;background:#f8fafc;border:1px solid var(--line);border-radius:10px;padding:10px 12px;text-align:center}
+.stat .lbl{font-size:.72rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}.stat .val{font-size:1.15rem;font-weight:700;margin-top:2px}
+.ok .val{color:var(--green)}.warn .val{color:var(--amber)}.bad .val{color:var(--red)}
+.badge{display:inline-block;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;padding:3px 8px;border-radius:6px}
+.badge-low{background:#fee2e2;color:#991b1b}.badge-avg{background:#fef3c7;color:#92400e}.badge-high{background:#d1fae5;color:#065f46}
+.badge-none{background:#e2e8f0;color:#475569}.badge-close{background:#d1fae5;color:#065f46}.badge-mid{background:#fef3c7;color:#92400e}.badge-far{background:#fee2e2;color:#991b1b}
+.seg-box{border-left:4px solid var(--blue)}.seg-box.absent{border-left-color:#94a3b8;background:#f8fafc}
+.seg-box.highend{border-left-color:var(--purple)}.seg-box.perf{border-left-color:var(--teal)}.seg-box.lowend{border-left-color:var(--amber)}.seg-box.size{border-left-color:#db2777}
+.why{margin:8px 0 0;font-size:.9rem}.why ol{margin:6px 0 0;padding-left:18px}.why li{margin-bottom:4px}
+.chart-box{position:relative;height:280px;margin-top:8px}.chart-box.tall{height:320px}
+.gap-table{width:100%;border-collapse:collapse;font-size:.88rem;margin:10px 0}
+.gap-table th,.gap-table td{text-align:left;padding:7px 8px;border-bottom:1px solid var(--line)}
+.gap-table th{color:var(--muted);font-weight:600;font-size:.75rem;text-transform:uppercase}
+.crit-row{display:grid;grid-template-columns:120px 1fr 70px;gap:8px;align-items:center;margin-bottom:7px;font-size:.85rem}
+.bar-track{background:#e2e8f0;border-radius:4px;height:14px;overflow:hidden;position:relative}
+.bar-fill{height:100%;border-radius:4px}
+.callout{background:#eff6ff;border:1px solid #bfdbfe;border-radius:10px;padding:12px 14px;font-size:.9rem;margin:10px 0}
+.callout.warn{background:#fffbeb;border-color:#fcd34d}.callout.good{background:#ecfdf5;border-color:#6ee7b7}.callout.bad{background:#fef2f2;border-color:#fecaca}
+.mistakes{background:#fef2f2;border:2px solid #f87171;border-radius:12px;padding:16px 18px;margin:14px 0}
+.mistakes h3{color:#991b1b;margin-top:0}.mistakes li{margin-bottom:8px}
+.priority{border-top:4px solid var(--blue)}.priority .num{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;background:var(--blue);color:#fff;font-weight:700;font-size:.85rem;margin-right:8px}
+.prio-grid{display:grid;grid-template-columns:1fr;gap:10px}.comp-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+footer.note{margin-top:36px;padding-top:16px;border-top:1px solid var(--line);font-size:.82rem;color:var(--muted)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="hero">
+  <h1>Baldwin — Practice Round 2 Review</h1>
+  <div class="meta">CP136222_1 · Section 4 · Practice Round 2 / Dec 31, 2028 · Group 004 - 2</div>
+  <span class="tag">Written by George · supervised by Ali · Practice review (restart ahead)</span>
+</header>
+<div class="restart">
+  <strong>Practice is ending — the simulation restarts from scratch.</strong>
+  Competition decisions start over; these practice results will not carry over. This report is a <em>Practice Round review</em>:
+  keep the lessons, leave the mistakes behind, and use the priority cards as restart habits for the real game —
+  not as “do this next practice round on the same plant.”
+</div>
+<div class='mistakes'><h3>Practice mistakes to leave behind</h3><ul><li><strong>Early product retirement / missing coverage:</strong> No active primary product in <em>Low End, Performance</em>. Retiring products this early in practice removes learning and leaves you uncovered when the real game starts. Cash-flow write-offs/extraordinary items were $2,470 this round — consistent with selling/retiring capacity.</li></ul><p class='muted' style='margin:8px 0 0'>Flags from Round 2 numbers only. Use them as restart lessons.</p></div>
+
+<h2>1. Financial Health</h2>
+<div class="card">
+  <h3>Liquidity held — still treat cash as a planned decision</h3>
+  <p>No emergency loan. Cash ended at $13,234, profit ($832), inventory $11,237. Keep this discipline when the real game starts.</p>
+  <div class="stat-row">
+    <div class="stat ok"><div class="lbl">Emergency Loan</div><div class="val">$0</div></div>
+    <div class="stat ok"><div class="lbl">Ending Cash</div><div class="val">$13,234</div></div>
+    <div class="stat bad"><div class="lbl">Net Profit</div><div class="val">($832)</div></div>
+    <div class="stat ok"><div class="lbl">Ending Inventory</div><div class="val">$11,237</div></div>
+    <div class="stat"><div class="lbl">Sales / Rev share</div><div class="val">$121,985 · 12.2%</div></div>
+    <div class="stat"><div class="lbl">Stock Price</div><div class="val">$29.16</div></div>
+  </div>
+  <div class="callout good" style="margin-top:14px">
+    <strong>Restart framing:</strong> ROS -0.7%, CM 29.0%, leverage 1.91, cum. profit $7,388.
+    SG&amp;A $21,864 (17.9% of sales); interest $5,507.
+    When the real rounds begin, treat emergency loans as a planning failure to avoid.
+  </div>
+</div>
+<h2>2. Investment Profile</h2>
+<div class="card">
+  <h3>Round 2 spend — plant (CF), TQM, HR</h3>
+  <p>Net plant improvements (cash flow) <strong>($17,455)</strong>; TQM <strong>$0</strong>; HR <strong>$0</strong>.
+  Average next-round automation: <strong>4.8</strong>.</p>
+  <div class="chart-box"><canvas id="investChart"></canvas></div>
+  <p class="muted" style="margin-top:10px;font-size:.85rem">Bars = Round 2 $ thousands. Peers for context.</p>
+</div>
+<h2>3. Segment Performance — Why Share Is Where It Is</h2>
+<p class="muted">One box per Capsim segment. Diagnostic — not a market-share bar chart.</p>
+<div class="grid2"><div class="card seg-box ">
+  <h3>Traditional — Baker, Bead <span class="badge badge-high">27.4% · High</span></h3>
+  <p class="why">Primary-segment units sold <strong>3,217</strong> → about <strong>27.4%</strong> of Traditional industry volume (11,745 units). Buying criteria: Age 47% · Price 23% · Positioning 21% · MTBF 9%.</p>
+  <div class="why"><strong>Ranked causes:</strong><ol><li><strong>Stockout on Baker:</strong> util 148%, inv 0.</li><li><strong>Positioning on Bead:</strong> 4.0/15.8 vs ideal 6.4/13.6 (distance 3.26).</li><li><strong>Excess inventory on Bead:</strong> 528 ending units.</li><li><strong>Rival benchmark:</strong> Gaffe sold 2,032 at $26.50, age 2.0, pos 6.4/13.6, aware 97%, access 76%.</li></ol></div>
+</div>
+<div class="card seg-box absent lowend">
+  <h3>Low End — <span class="badge badge-none">No product</span></h3>
+  <p class="why">You have <strong>no primary product</strong> in Low End (0% of ~14,906 units).
+  Strategic implication: you collect no segment learning and concede share to rivals like <strong>Gerbil</strong> (2,766 units).
+  When the game restarts, decide deliberately whether to enter Low End.</p>
+</div>
+<div class="card seg-box highend">
+  <h3>High End — Bid <span class="badge badge-high">16.2% · High</span></h3>
+  <p class="why">Primary-segment units sold <strong>745</strong> → about <strong>16.2%</strong> of High End industry volume (4,597 units). Buying criteria: Positioning 43% · Age 29% · MTBF 19% · Price 9%.</p>
+  <div class="why"><strong>Ranked causes:</strong><ol><li><strong>Positioning on Bid (primary):</strong> 9.8/10.2 vs ideal 10.7/9.3 (distance 1.27).</li><li><strong>Awareness on Bid:</strong> 75%.</li><li><strong>Stockout on Bid:</strong> util 112%, inv 0.</li><li><strong>Rival benchmark:</strong> Cid sold 756 at $38.50, age 1.4, pos 9.9/10.4, aware 83%, access 67%.</li></ol></div>
+</div>
+<div class="card seg-box absent perf">
+  <h3>Performance — <span class="badge badge-none">No product</span></h3>
+  <p class="why">You have <strong>no primary product</strong> in Performance (0% of ~2,863 units).
+  Strategic implication: you collect no segment learning and concede share to rivals like <strong>Foam</strong> (622 units).
+  When the game restarts, decide deliberately whether to enter Performance.</p>
+</div>
+<div class="card seg-box size">
+  <h3>Size — Buddy <span class="badge badge-avg">12.2% · Average</span></h3>
+  <p class="why">Primary-segment units sold <strong>452</strong> → about <strong>12.2%</strong> of Size industry volume (3,701 units). Buying criteria: Positioning 43% · Age 29% · Price / MTBF secondary.</p>
+  <div class="why"><strong>Ranked causes:</strong><ol><li><strong>Positioning on Buddy (primary):</strong> 5.0/9.2 vs ideal 5.4/8.6 (distance 0.72).</li><li><strong>Awareness on Buddy:</strong> 74%.</li><li><strong>Rival benchmark:</strong> Cure sold 677 at $33.50, age 1.7, pos 5.1/9.2, aware 80%, access 62%.</li></ol></div>
+</div></div>
+<h2>4. Distance from What Wins <span class="muted" style="font-size:.85rem;font-weight:500">(segment-specific fit — not a Capstone Pfmn×Size map)</span></h2>
+<p>The Industry Report already shows the perceptual map. Below: fit gaps on the criteria that decide winners.</p>
+<div class="card" style="border-left:4px solid var(--blue)">
+  <h3>Baker · Traditional — Age 47% · Price 23% · Positioning 21% · MTBF 9%</h3>
+  <table class="gap-table"><thead><tr><th>Criterion</th><th>Ideal / floor</th><th>Baker</th><th>Best rival</th><th>Fit</th></tr></thead>
+  <tbody><tr><td>Age</td><td>~2 years</td><td>1.8</td><td>2.0</td><td><span class='badge badge-close'>Close</span></td></tr><tr><td>Price</td><td>$19–$29</td><td>$28.00</td><td>$26.50</td><td><span class='badge badge-close'>Close</span></td></tr><tr><td>Position</td><td>6.4/13.6</td><td>6.9/13.1</td><td>6.4/13.6</td><td><span class='badge badge-mid'>Mid</span></td></tr></tbody></table>
+  <div class="callout warn"><strong>Restart lesson:</strong> When the game restarts: schedule R&D so year-end age lands near ~2.</div>
+</div>
+<div class="card" style="border-left:4px solid var(--blue)">
+  <h3>Bead · Traditional — Age 47% · Price 23% · Positioning 21% · MTBF 9%</h3>
+  <table class="gap-table"><thead><tr><th>Criterion</th><th>Ideal / floor</th><th>Bead</th><th>Best rival</th><th>Fit</th></tr></thead>
+  <tbody><tr><td>Age</td><td>~2 years</td><td>2.2</td><td>2.0</td><td><span class='badge badge-close'>Close</span></td></tr><tr><td>Price</td><td>$19–$29</td><td>$20.00</td><td>$26.50</td><td><span class='badge badge-close'>Close</span></td></tr><tr><td>Position</td><td>6.4/13.6</td><td>4.0/15.8</td><td>6.4/13.6</td><td><span class='badge badge-far'>Far</span></td></tr></tbody></table>
+  <div class="callout warn"><strong>Restart lesson:</strong> When the game restarts: schedule R&D so year-end age lands near ~2.</div>
+</div>
+<div class="card" style="border-left:4px solid var(--purple)">
+  <h3>Bid · High End — Positioning 43% · Age 29% · MTBF 19% · Price 9%</h3>
+  <table class="gap-table"><thead><tr><th>Criterion</th><th>Ideal / floor</th><th>Bid</th><th>Best rival</th><th>Fit</th></tr></thead>
+  <tbody><tr><td>Pfmn / Size</td><td>10.7/9.3</td><td>9.8/10.2</td><td>9.9/10.4</td><td><span class='badge badge-far'>Far</span></td></tr><tr><td>Age</td><td>prefer young</td><td>1.4</td><td>1.4</td><td><span class='badge badge-close'>Close</span></td></tr><tr><td>Price</td><td>$29–$39</td><td>$38.50</td><td>$38.50</td><td><span class='badge badge-close'>Close</span></td></tr></tbody></table>
+  <div class="callout warn"><strong>Restart lesson:</strong> When the game restarts: close the positioning gap (distance 1.27) and keep age young. Not a Capstone map reprint — your fit gap on what wins.</div>
+</div>
+<div class="card" style="border-left:4px solid #db2777">
+  <h3>Buddy · Size — Positioning 43% · Age 29% · Price / MTBF secondary</h3>
+  <table class="gap-table"><thead><tr><th>Criterion</th><th>Ideal / floor</th><th>Buddy</th><th>Best rival</th><th>Fit</th></tr></thead>
+  <tbody><tr><td>Pfmn / Size</td><td>5.4/8.6</td><td>5.0/9.2</td><td>5.1/9.2</td><td><span class='badge badge-mid'>Mid</span></td></tr><tr><td>Age</td><td>prefer young</td><td>1.7</td><td>1.7</td><td><span class='badge badge-close'>Close</span></td></tr><tr><td>Price</td><td>$24–$34</td><td>$33.50</td><td>$33.50</td><td><span class='badge badge-close'>Close</span></td></tr></tbody></table>
+  <div class="callout warn"><strong>Restart lesson:</strong> When the game restarts: close the positioning gap (distance 0.72) and keep age young. Not a Capstone map reprint — your fit gap on what wins.</div>
+</div>
+<h2>5. Customer Criteria Comparison</h2>
+<p class="muted">Compact fit indicators for products with the clearest performance problems.</p>
+<div class="grid2"><div class="card">
+  <h3>Bead (Traditional) — criteria snapshot</h3>
+  <p class='muted' style='font-size:.85rem'>Volume leader benchmark: <strong>Gaffe</strong> (2,032 units, $26.50, age 2.0, 6.4/13.6).</p>
+  <div class="crit-row"><div>Price fit</div><div class="bar-track"><div class="bar-fill" style="width:60%;background:#059669"></div></div><div>60</div></div>
+  <div class="crit-row"><div>Age (2.2)</div><div class="bar-track"><div class="bar-fill" style="width:95%;background:#d97706"></div></div><div>95</div></div>
+  <div class="crit-row"><div>MTBF (13,000)</div><div class="bar-track"><div class="bar-fill" style="width:0%;background:#7c3aed"></div></div><div>0</div></div>
+  <div class="crit-row"><div>Position (4.0/15.8)</div><div class="bar-track"><div class="bar-fill" style="width:0%;background:#2563eb"></div></div><div>0</div></div>
+  <div class="crit-row"><div>Awareness (90%)</div><div class="bar-track"><div class="bar-fill" style="width:90%;background:#0d9488"></div></div><div>90</div></div>
+  <div class="crit-row"><div>Accessibility (60%)</div><div class="bar-track"><div class="bar-fill" style="width:60%;background:#db2777"></div></div><div>60</div></div>
+  <p class="muted" style="font-size:.78rem;margin-top:8px">Bars are 0–100 fit/level indicators.</p>
+</div>
+<div class="card">
+  <h3>Buddy (Size) — criteria snapshot</h3>
+  <p class='muted' style='font-size:.85rem'>Volume leader benchmark: <strong>Cure</strong> (677 units, $33.50, age 1.7, 5.1/9.2).</p>
+  <div class="crit-row"><div>Price fit</div><div class="bar-track"><div class="bar-fill" style="width:55%;background:#059669"></div></div><div>55</div></div>
+  <div class="crit-row"><div>Age (1.7)</div><div class="bar-track"><div class="bar-fill" style="width:95%;background:#d97706"></div></div><div>95</div></div>
+  <div class="crit-row"><div>MTBF (19,000)</div><div class="bar-track"><div class="bar-fill" style="width:60%;background:#7c3aed"></div></div><div>60</div></div>
+  <div class="crit-row"><div>Position (5.0/9.2)</div><div class="bar-track"><div class="bar-fill" style="width:71%;background:#2563eb"></div></div><div>71</div></div>
+  <div class="crit-row"><div>Awareness (74%)</div><div class="bar-track"><div class="bar-fill" style="width:74%;background:#0d9488"></div></div><div>74</div></div>
+  <div class="crit-row"><div>Accessibility (56%)</div><div class="bar-track"><div class="bar-fill" style="width:56%;background:#db2777"></div></div><div>56</div></div>
+  <p class="muted" style="font-size:.78rem;margin-top:8px">Bars are 0–100 fit/level indicators.</p>
+</div>
+<div class="card">
+  <h3>Baker (Traditional) — criteria snapshot</h3>
+  <p class='muted' style='font-size:.85rem'>Volume leader benchmark: <strong>Gaffe</strong> (2,032 units, $26.50, age 2.0, 6.4/13.6).</p>
+  <div class="crit-row"><div>Price fit</div><div class="bar-track"><div class="bar-fill" style="width:60%;background:#059669"></div></div><div>60</div></div>
+  <div class="crit-row"><div>Age (1.8)</div><div class="bar-track"><div class="bar-fill" style="width:95%;background:#d97706"></div></div><div>95</div></div>
+  <div class="crit-row"><div>MTBF (17,500)</div><div class="bar-track"><div class="bar-fill" style="width:70%;background:#7c3aed"></div></div><div>70</div></div>
+  <div class="crit-row"><div>Position (6.9/13.1)</div><div class="bar-track"><div class="bar-fill" style="width:72%;background:#2563eb"></div></div><div>72</div></div>
+  <div class="crit-row"><div>Awareness (92%)</div><div class="bar-track"><div class="bar-fill" style="width:92%;background:#0d9488"></div></div><div>92</div></div>
+  <div class="crit-row"><div>Accessibility (56%)</div><div class="bar-track"><div class="bar-fill" style="width:56%;background:#db2777"></div></div><div>56</div></div>
+  <p class="muted" style="font-size:.78rem;margin-top:8px">Bars are 0–100 fit/level indicators.</p>
+</div></div>
+<h2>6. Production and Inventory</h2>
+<div class="card">
+  <h3>Units sold vs produced (approx) vs ending inventory</h3>
+  <p class="muted">Produced ≈ sold + ending inventory (beginning inventory not listed).</p>
+  <div class="chart-box tall"><canvas id="prodChart"></canvas></div>
+  <ul><li><strong>Baker</strong>: sold 1,731, inv 0, util 148%, cap next 1,300 — <em>stocked out</em></li><li><strong>Bead</strong>: sold 1,486, inv 528, util 144%, cap next 1,500</li><li><strong>Bid</strong>: sold 745, inv 0, util 112%, cap next 600 — <em>stocked out</em></li><li><strong>Buddy</strong>: sold 452, inv 160, util 157%, cap next 450</li></ul>
+</div>
+<h2>7. Competencies + Restart Priorities</h2>
+<div class="comp-grid">
+  <div class="card"><h3>R&amp;D cycle / repositioning</h3>
+    <p>Cumulative R&amp;D cycle-time impact: <strong>+5.0%</strong> (negative = faster).
+    TQM $0; HR $0. Avg automation 4.8.</p></div>
+  <div class="card"><h3>Variable cost position</h3>
+    <p>Company CM <strong>29.0%</strong>; SG&amp;A/Sales 17.9%.
+    TQM material 0.0%; labor 0.0%.</p></div>
+  <div class="card"><h3>HR / productivity</h3>
+    <p>Productivity <strong>100.0%</strong>; turnover <strong>12.0%</strong>.
+    Demand cumulative impact 0.0%.</p></div>
+  <div class="card"><h3>Plant headroom</h3>
+    <p>Net plant CF ($17,455). Restart lesson: buy capacity for sustained demand, not one stockout.</p></div>
+</div>
+<div class="card">
+  <h3>Automation, costs &amp; margins by product</h3>
+  <table class="gap-table"><thead><tr><th>Product</th><th>Segment</th><th>Auto</th><th>Material</th><th>Labor</th><th>CM</th><th>Cap next</th><th>Util</th></tr></thead>
+  <tbody><tr><td>Baker</td><td>Traditional</td><td>6.1</td><td>$11.13</td><td>$8.89</td><td>28.3%</td><td>1,300</td><td>148%</td></tr><tr><td>Bead</td><td>Traditional</td><td>7.0</td><td>$7.13</td><td>$6.78</td><td>26.8%</td><td>1,500</td><td>144%</td></tr><tr><td>Bid</td><td>High End</td><td>3.0</td><td>$15.54</td><td>$9.96</td><td>34.2%</td><td>600</td><td>112%</td></tr><tr><td>Buddy</td><td>Size</td><td>3.0</td><td>$13.07</td><td>$11.13</td><td>25.5%</td><td>450</td><td>157%</td></tr></tbody></table>
+  <div class="callout"><strong>What this means when the game restarts:</strong> Match automation to segment economics.
+  Build TQM/HR early. Margins below ~25% on volume products are a strategy risk.</div>
+</div>
+<h3 style="margin-top:28px">Practice mistakes callout</h3>
+<div class='mistakes'><h3>Practice mistakes to leave behind</h3><ul><li><strong>Early product retirement / missing coverage:</strong> No active primary product in <em>Low End, Performance</em>. Retiring products this early in practice removes learning and leaves you uncovered when the real game starts. Cash-flow write-offs/extraordinary items were $2,470 this round — consistent with selling/retiring capacity.</li></ul><p class='muted' style='margin:8px 0 0'>Flags from Round 2 numbers only. Use them as restart lessons.</p></div>
+<h3 style="margin-top:28px">What to focus on when the game restarts</h3>
+<p class="muted">Priority cards are restart lessons — not instructions that assume this plant carries over.</p>
+<div class="prio-grid"><div class='card priority'><h3><span class='num'>1</span>Clean restart mindset</h3><p>Practice is wiped. Keep the lessons (cash planning, segment coverage, cost before price on Low End, age discipline on Traditional, positioning on High End/Size) and leave the mistakes behind.</p></div><div class='card priority'><h3><span class='num'>2</span>Cash planning habit</h3><p>You ended with cash $13,234 and no emergency loan. Keep a round checklist: forecast → production → plant/TQM/HR → financing gap.</p></div><div class='card priority'><h3><span class='num'>3</span>Segment coverage decision</h3><p>You were absent from Low End, Performance. At restart, choose a focused or broad strategy on purpose — do not retire products early just to simplify.</p></div><div class='card priority'><h3><span class='num'>4</span>High End positioning</h3><p>Bid sits at 9.8/10.2 vs ideal 10.7/9.3. Restart lesson: R&amp;D toward the ideal spot on a clock that keeps age young.</p></div><div class='card priority'><h3><span class='num'>5</span>Capability building (TQM / HR)</h3><p>Round 2 TQM+HR spend was $0 while several rivals invested. Restart lesson: small early TQM/HR compounds into R&amp;D speed, cost, and demand.</p></div></div>
+<footer class="note">
+  Practice Round 2 review for <strong>Baldwin</strong> (CP136222_1, group 004 - 2).
+  Team (CSV): Maddy Boyd, Logan Cruickshank, Alexandra Currie, Ben Lewandowski, Hanna Stefik, Andy Wu.
+  Sources: industry extract Round 2 / 2028, Student_Database.csv, visuals.md / workflow.md / PRACTICE_ROUND_REVIEW_RULES.md.
+  Written by George — Ali’s AI Capsim tutor (supervised by Ali). Real numbers only; no emails sent.
+</footer>
+</div>
+<script>
+new Chart(document.getElementById('investChart'), {
+  type: 'bar',
+  data: {
+    labels: ["Baldwin", "Andrews", "Chester", "Digby"],
+    datasets: [
+      {label: 'Plant |CF| ($k)', data: [17.5, 0.0, 11.4, 9.5], backgroundColor: '#2563eb'},
+      {label: 'TQM ($k)', data: [0.0, 3.3, 5.0, 1.4], backgroundColor: '#059669'},
+      {label: 'HR ($k)', data: [0.0, 0.9, 6.0, 1.1], backgroundColor: '#d97706'}
+    ]
+  },
+  options: {responsive:true, maintainAspectRatio:false, plugins:{legend:{position:'bottom'}},
+    scales:{y:{beginAtZero:true, title:{display:true, text:'$ thousands'}}}}
+});
+new Chart(document.getElementById('prodChart'), {
+  type: 'bar',
+  data: {
+    labels: ["Baker", "Bead", "Bid", "Buddy"],
+    datasets: [
+      {label: 'Units sold', data: [1731, 1486, 745, 452], backgroundColor: '#2563eb'},
+      {label: 'Produced (sold+inv)', data: [1731, 2014, 745, 612], backgroundColor: '#94a3b8'},
+      {label: 'Ending inventory', data: [0, 528, 0, 160], backgroundColor: '#dc2626'}
+    ]
+  },
+  options: {responsive:true, maintainAspectRatio:false, plugins:{legend:{position:'bottom'}}, scales:{y:{beginAtZero:true}}}
+});
+</script>
+</body>
+</html>

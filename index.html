@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Capsim Practice Round 2 — Team Reports</title>
+  <style>
+    :root {
+      --navy: #0b1f3a;
+      --gold: #c4a35a;
+      --bg: #f6f7f9;
+      --card: #ffffff;
+      --text: #1a1a1a;
+      --muted: #5b6570;
+      --border: #e2e6eb;
+      --focus: #1e4d8c;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+    header {
+      background: var(--navy);
+      color: #fff;
+      padding: 1.75rem 1.25rem;
+      border-bottom: 4px solid var(--gold);
+    }
+    header .wrap, main.wrap, footer.wrap {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    h1 {
+      margin: 0 0 0.35rem;
+      font-size: 1.45rem;
+      font-weight: 650;
+      letter-spacing: 0.01em;
+    }
+    header p {
+      margin: 0;
+      color: rgba(255,255,255,0.82);
+      font-size: 0.95rem;
+    }
+    main { padding: 1.5rem 1.25rem 2.5rem; }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.25rem 1.25rem 1.4rem;
+      box-shadow: 0 1px 2px rgba(11,31,58,0.04);
+    }
+    .note {
+      margin: 0 0 1.25rem;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+    .steps { display: grid; gap: 1rem; }
+    label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      color: var(--navy);
+      margin-bottom: 0.4rem;
+    }
+    select {
+      width: 100%;
+      padding: 0.7rem 0.85rem;
+      font-size: 1rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: #fff;
+      color: var(--text);
+    }
+    select:focus {
+      outline: 2px solid var(--focus);
+      outline-offset: 1px;
+    }
+    select:disabled {
+      background: #f0f2f5;
+      color: #8a939c;
+    }
+    .actions {
+      margin-top: 1.35rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      align-items: center;
+    }
+    button#download {
+      appearance: none;
+      border: none;
+      background: var(--navy);
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 600;
+      padding: 0.8rem 1.25rem;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    button#download:disabled {
+      background: #9aa3ad;
+      cursor: not-allowed;
+    }
+    button#download:not(:disabled):hover {
+      background: #14325a;
+    }
+    .status {
+      font-size: 0.9rem;
+      color: var(--muted);
+      min-height: 1.25rem;
+    }
+    footer {
+      padding: 0 1.25rem 2rem;
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <h1>Capsim Practice Round 2 — Team Reports</h1>
+      <p>Download your team’s coaching review</p>
+    </div>
+  </header>
+  <main class="wrap">
+    <div class="card">
+      <p class="note">This is a practice-round review. The simulation is restarting, so these results will not carry into the graded game. Choose your section, industry, and team name.</p>
+      <div class="steps">
+        <div>
+          <label for="section">1. Section</label>
+          <select id="section"><option value="">Select section…</option></select>
+        </div>
+        <div>
+          <label for="industry">2. Industry</label>
+          <select id="industry" disabled><option value="">Select industry…</option></select>
+        </div>
+        <div>
+          <label for="team">3. Team</label>
+          <select id="team" disabled><option value="">Select team…</option></select>
+        </div>
+      </div>
+      <div class="actions">
+        <button id="download" type="button" disabled>Download report</button>
+        <span class="status" id="status"></span>
+      </div>
+    </div>
+  </main>
+  <footer class="wrap">
+    Queen’s University · Business and Corporate Strategy · Capsim coaching reports
+  </footer>
+  <script>
+    const sectionEl = document.getElementById("section");
+    const industryEl = document.getElementById("industry");
+    const teamEl = document.getElementById("team");
+    const downloadBtn = document.getElementById("download");
+    const statusEl = document.getElementById("status");
+    let data = null;
+
+    function resetSelect(el, placeholder) {
+      el.innerHTML = "";
+      const o = document.createElement("option");
+      o.value = "";
+      o.textContent = placeholder;
+      el.appendChild(o);
+    }
+
+    function updateDownload() {
+      const ready = sectionEl.value && industryEl.value && teamEl.value;
+      downloadBtn.disabled = !ready;
+      statusEl.textContent = ready
+        ? "Ready — click to download your HTML report."
+        : "";
+    }
+
+    function fillIndustries() {
+      resetSelect(industryEl, "Select industry…");
+      resetSelect(teamEl, "Select team…");
+      industryEl.disabled = true;
+      teamEl.disabled = true;
+      const sec = data.sections[sectionEl.value];
+      if (!sec) { updateDownload(); return; }
+      const industries = Object.values(sec.industries);
+      industries.forEach((ind) => {
+        const o = document.createElement("option");
+        o.value = ind.id;
+        o.textContent = ind.label + " (" + ind.code + ")";
+        industryEl.appendChild(o);
+      });
+      industryEl.disabled = false;
+      updateDownload();
+    }
+
+    function fillTeams() {
+      resetSelect(teamEl, "Select team…");
+      teamEl.disabled = true;
+      const sec = data.sections[sectionEl.value];
+      const ind = sec && sec.industries[industryEl.value];
+      if (!ind) { updateDownload(); return; }
+      ind.teams.forEach((t) => {
+        const o = document.createElement("option");
+        o.value = t.file;
+        o.textContent = t.name;
+        teamEl.appendChild(o);
+      });
+      teamEl.disabled = false;
+      updateDownload();
+    }
+
+    sectionEl.addEventListener("change", fillIndustries);
+    industryEl.addEventListener("change", fillTeams);
+    teamEl.addEventListener("change", updateDownload);
+
+    downloadBtn.addEventListener("click", () => {
+      const file = teamEl.value;
+      if (!file) return;
+      const a = document.createElement("a");
+      a.href = file;
+      a.download = file.split("/").pop();
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+    });
+
+    fetch("manifest.json")
+      .then((r) => {
+        if (!r.ok) throw new Error("Could not load manifest.json");
+        return r.json();
+      })
+      .then((manifest) => {
+        data = manifest;
+        const sections = Object.values(manifest.sections);
+        sections.forEach((sec) => {
+          const o = document.createElement("option");
+          o.value = sec.id;
+          o.textContent = sec.label;
+          sectionEl.appendChild(o);
+        });
+      })
+      .catch((err) => {
+        statusEl.textContent = "Could not load team list. Try refreshing the page.";
+        console.error(err);
+      });
+  </script>
+</body>
+</html>

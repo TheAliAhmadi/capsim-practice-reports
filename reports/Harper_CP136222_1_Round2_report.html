@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Harper · CP136222_1 · Practice Round 2 Review</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+:root{--ink:#1a2332;--muted:#5a6a7a;--card:#fff;--bg:#f4f6f9;--line:#d8e0ea;--blue:#2563eb;--green:#059669;--amber:#d97706;--red:#dc2626;--purple:#7c3aed;--teal:#0d9488}
+*{box-sizing:border-box}body{margin:0;font-family:"Segoe UI",system-ui,-apple-system,sans-serif;color:var(--ink);background:var(--bg);line-height:1.55}
+.wrap{max-width:1080px;margin:0 auto;padding:28px 20px 60px}
+header.hero{background:linear-gradient(135deg,#0f2744 0%,#1e4d7b 60%,#2563eb 100%);color:#fff;border-radius:16px;padding:28px 32px;margin-bottom:22px;box-shadow:0 8px 24px rgba(15,39,68,.25)}
+header.hero h1{margin:0 0 6px;font-size:1.65rem}header.hero .meta{opacity:.9;font-size:.95rem}
+header.hero .tag{display:inline-block;margin-top:12px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);padding:4px 12px;border-radius:999px;font-size:.8rem}
+.restart{background:#fef3c7;border:1px solid #f59e0b;color:#78350f;border-radius:12px;padding:14px 16px;margin-bottom:16px;font-size:.92rem}
+h2{font-size:1.2rem;margin:32px 0 12px;padding-bottom:8px;border-bottom:2px solid var(--line);color:#0f2744}
+h3{font-size:1.02rem;margin:0 0 8px;color:#0f2744}p,li{font-size:.95rem}.muted{color:var(--muted)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 20px;margin-bottom:14px;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:800px){.grid2{grid-template-columns:1fr}}
+.stat-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px}
+.stat{flex:1 1 120px;background:#f8fafc;border:1px solid var(--line);border-radius:10px;padding:10px 12px;text-align:center}
+.stat .lbl{font-size:.72rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}.stat .val{font-size:1.15rem;font-weight:700;margin-top:2px}
+.ok .val{color:var(--green)}.warn .val{color:var(--amber)}.bad .val{color:var(--red)}
+.badge{display:inline-block;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;padding:3px 8px;border-radius:6px}
+.badge-low{background:#fee2e2;color:#991b1b}.badge-avg{background:#fef3c7;color:#92400e}.badge-high{background:#d1fae5;color:#065f46}
+.badge-none{background:#e2e8f0;color:#475569}.badge-close{background:#d1fae5;color:#065f46}.badge-mid{background:#fef3c7;color:#92400e}.badge-far{background:#fee2e2;color:#991b1b}
+.seg-box{border-left:4px solid var(--blue)}.seg-box.absent{border-left-color:#94a3b8;background:#f8fafc}
+.seg-box.highend{border-left-color:var(--purple)}.seg-box.perf{border-left-color:var(--teal)}.seg-box.lowend{border-left-color:var(--amber)}.seg-box.size{border-left-color:#db2777}
+.why{margin:8px 0 0;font-size:.9rem}.why ol{margin:6px 0 0;padding-left:18px}.why li{margin-bottom:4px}
+.chart-box{position:relative;height:280px;margin-top:8px}.chart-box.tall{height:320px}
+.gap-table{width:100%;border-collapse:collapse;font-size:.88rem;margin:10px 0}
+.gap-table th,.gap-table td{text-align:left;padding:7px 8px;border-bottom:1px solid var(--line)}
+.gap-table th{color:var(--muted);font-weight:600;font-size:.75rem;text-transform:uppercase}
+.crit-row{display:grid;grid-template-columns:120px 1fr 70px;gap:8px;align-items:center;margin-bottom:7px;font-size:.85rem}
+.bar-track{background:#e2e8f0;border-radius:4px;height:14px;overflow:hidden;position:relative}
+.bar-fill{height:100%;border-radius:4px}
+.callout{background:#eff6ff;border:1px solid #bfdbfe;border-radius:10px;padding:12px 14px;font-size:.9rem;margin:10px 0}
+.callout.warn{background:#fffbeb;border-color:#fcd34d}.callout.good{background:#ecfdf5;border-color:#6ee7b7}.callout.bad{background:#fef2f2;border-color:#fecaca}
+.mistakes{background:#fef2f2;border:2px solid #f87171;border-radius:12px;padding:16px 18px;margin:14px 0}
+.mistakes h3{color:#991b1b;margin-top:0}.mistakes li{margin-bottom:8px}
+.priority{border-top:4px solid var(--blue)}.priority .num{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;background:var(--blue);color:#fff;font-weight:700;font-size:.85rem;margin-right:8px}
+.prio-grid{display:grid;grid-template-columns:1fr;gap:10px}.comp-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+footer.note{margin-top:36px;padding-top:16px;border-top:1px solid var(--line);font-size:.82rem;color:var(--muted)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="hero">
+  <h1>Harper — Practice Round 2 Review</h1>
+  <div class="meta">CP136222_1 · Section 4 · Practice Round 2 / Dec 31, 2028 · Group 004 - 8</div>
+  <span class="tag">Written by George · supervised by Ali · Practice review (restart ahead)</span>
+</header>
+<div class="restart">
+  <strong>Practice is ending — the simulation restarts from scratch.</strong>
+  Competition decisions start over; these practice results will not carry over. This report is a <em>Practice Round review</em>:
+  keep the lessons, leave the mistakes behind, and use the priority cards as restart habits for the real game —
+  not as “do this next practice round on the same plant.”
+</div>
+<div class='mistakes'><h3>Practice mistakes to leave behind</h3><ul><li><strong>Early product retirement / missing coverage:</strong> No active primary product in <em>Performance</em>. Retiring products this early in practice removes learning and leaves you uncovered when the real game starts. Cash-flow write-offs/extraordinary items were ($540) this round — consistent with selling/retiring capacity.</li></ul><p class='muted' style='margin:8px 0 0'>Flags from Round 2 numbers only. Use them as restart lessons.</p></div>
+
+<h2>1. Financial Health</h2>
+<div class="card">
+  <h3>Liquidity held — still treat cash as a planned decision</h3>
+  <p>No emergency loan. Cash ended at $9,432, profit ($2,779), inventory $3,958. Keep this discipline when the real game starts.</p>
+  <div class="stat-row">
+    <div class="stat ok"><div class="lbl">Emergency Loan</div><div class="val">$0</div></div>
+    <div class="stat ok"><div class="lbl">Ending Cash</div><div class="val">$9,432</div></div>
+    <div class="stat bad"><div class="lbl">Net Profit</div><div class="val">($2,779)</div></div>
+    <div class="stat ok"><div class="lbl">Ending Inventory</div><div class="val">$3,958</div></div>
+    <div class="stat"><div class="lbl">Sales / Rev share</div><div class="val">$108,524 · 10.9%</div></div>
+    <div class="stat"><div class="lbl">Stock Price</div><div class="val">$20.05</div></div>
+  </div>
+  <div class="callout good" style="margin-top:14px">
+    <strong>Restart framing:</strong> ROS -2.6%, CM 35.0%, leverage 2.46, cum. profit $2,497.
+    SG&amp;A $17,048 (15.7% of sales); interest $7,741.
+    When the real rounds begin, treat emergency loans as a planning failure to avoid.
+  </div>
+</div>
+<h2>2. Investment Profile</h2>
+<div class="card">
+  <h3>Round 2 spend — plant (CF), TQM, HR</h3>
+  <p>Net plant improvements (cash flow) <strong>($17,480)</strong>; TQM <strong>$6,000</strong>; HR <strong>$2,000</strong>.
+  Average next-round automation: <strong>4.4</strong>.</p>
+  <div class="chart-box"><canvas id="investChart"></canvas></div>
+  <p class="muted" style="margin-top:10px;font-size:.85rem">Bars = Round 2 $ thousands. Peers for context.</p>
+</div>
+<h2>3. Segment Performance — Why Share Is Where It Is</h2>
+<p class="muted">One box per Capsim segment. Diagnostic — not a market-share bar chart.</p>
+<div class="grid2"><div class="card seg-box ">
+  <h3>Traditional — Heft <span class="badge badge-avg">10.9% · Average</span></h3>
+  <p class="why">Primary-segment units sold <strong>1,284</strong> → about <strong>10.9%</strong> of Traditional industry volume (11,745 units). Buying criteria: Age 47% · Price 23% · Positioning 21% · MTBF 9%.</p>
+  <div class="why"><strong>Ranked causes:</strong><ol><li><strong>Accessibility on Heft:</strong> 44%.</li><li><strong>Stockout on Heft:</strong> util 72%, inv 0.</li><li><strong>Rival benchmark:</strong> Gaffe sold 2,032 at $26.50, age 2.0, pos 6.4/13.6, aware 97%, access 76%.</li></ol></div>
+</div>
+<div class="card seg-box lowend">
+  <h3>Low End — Hue <span class="badge badge-avg">12.5% · Average</span></h3>
+  <p class="why">Primary-segment units sold <strong>1,866</strong> → about <strong>12.5%</strong> of Low End industry volume (14,906 units). Buying criteria: Price 53% · Age 24% · Positioning 16% · MTBF 7%.</p>
+  <div class="why"><strong>Ranked causes:</strong><ol><li><strong>Price / cost on Hue (primary):</strong> Price $19.25 with CM 34.0% (mat $5.49 + labor $6.56, auto 7.0). Low End is won on a sustainable low price.</li><li><strong>Age on Hue:</strong> 3.6 vs preferred ~7.0 years.</li><li><strong>Excess inventory on Hue:</strong> 314 ending units.</li><li><strong>Rival benchmark:</strong> Gerbil sold 2,766 at $19.50, age 6.6, pos 3.0/17.0, aware 100%, access 76%.</li></ol></div>
+</div>
+<div class="card seg-box highend">
+  <h3>High End — Hoary <span class="badge badge-avg">12.9% · Average</span></h3>
+  <p class="why">Primary-segment units sold <strong>593</strong> → about <strong>12.9%</strong> of High End industry volume (4,597 units). Buying criteria: Positioning 43% · Age 29% · MTBF 19% · Price 9%.</p>
+  <div class="why"><strong>Ranked causes:</strong><ol><li><strong>Positioning on Hoary (primary):</strong> 10.2/10.8 vs ideal 10.7/9.3 (distance 1.58).</li><li><strong>Awareness on Hoary:</strong> 79%.</li><li><strong>Stockout on Hoary:</strong> util 67%, inv 0.</li><li><strong>Rival benchmark:</strong> Cid sold 756 at $38.50, age 1.4, pos 9.9/10.4, aware 83%, access 67%.</li></ol></div>
+</div>
+<div class="card seg-box absent perf">
+  <h3>Performance — <span class="badge badge-none">No product</span></h3>
+  <p class="why">You have <strong>no primary product</strong> in Performance (0% of ~2,863 units).
+  Strategic implication: you collect no segment learning and concede share to rivals like <strong>Foam</strong> (622 units).
+  When the game restarts, decide deliberately whether to enter Performance.</p>
+</div>
+<div class="card seg-box size">
+  <h3>Size — Hamper <span class="badge badge-avg">13.3% · Average</span></h3>
+  <p class="why">Primary-segment units sold <strong>491</strong> → about <strong>13.3%</strong> of Size industry volume (3,701 units). Buying criteria: Positioning 43% · Age 29% · Price / MTBF secondary.</p>
+  <div class="why"><strong>Ranked causes:</strong><ol><li><strong>Awareness on Hamper:</strong> 71%.</li><li><strong>Accessibility on Hamper:</strong> 44%.</li><li><strong>Rival benchmark:</strong> Cure sold 677 at $33.50, age 1.7, pos 5.1/9.2, aware 80%, access 62%.</li></ol></div>
+</div></div>
+<h2>4. Distance from What Wins <span class="muted" style="font-size:.85rem;font-weight:500">(segment-specific fit — not a Capstone Pfmn×Size map)</span></h2>
+<p>The Industry Report already shows the perceptual map. Below: fit gaps on the criteria that decide winners.</p>
+<div class="card" style="border-left:4px solid var(--blue)">
+  <h3>Heft · Traditional — Age 47% · Price 23% · Positioning 21% · MTBF 9%</h3>
+  <table class="gap-table"><thead><tr><th>Criterion</th><th>Ideal / floor</th><th>Heft</th><th>Best rival</th><th>Fit</th></tr></thead>
+  <tbody><tr><td>Age</td><td>~2 years</td><td>1.7</td><td>2.0</td><td><span class='badge badge-close'>Close</span></td></tr><tr><td>Price</td><td>$19–$29</td><td>$26.00</td><td>$26.50</td><td><span class='badge badge-close'>Close</span></td></tr><tr><td>Position</td><td>6.4/13.6</td><td>6.4/13.0</td><td>6.4/13.6</td><td><span class='badge badge-mid'>Mid</span></td></tr></tbody></table>
+  <div class="callout warn"><strong>Restart lesson:</strong> When the game restarts: schedule R&D so year-end age lands near ~2.</div>
+</div>
+<div class="card" style="border-left:4px solid var(--amber)">
+  <h3>Hue · Low End — Price 53% · Age 24% · Positioning 16% · MTBF 7%</h3>
+  <table class="gap-table"><thead><tr><th>Criterion</th><th>Ideal / floor</th><th>Hue</th><th>Best rival</th><th>Fit</th></tr></thead>
+  <tbody><tr><td>Price</td><td>$14–$24 (compete low)</td><td>$19.25</td><td>$19.50</td><td><span class='badge badge-mid'>Mid</span></td></tr><tr><td>Contribution margin</td><td>Healthy at low price</td><td>34.0%</td><td>35.1%</td><td><span class='badge badge-close'>Close</span></td></tr><tr><td>Automation / labor</td><td>High auto, low labor</td><td>Auto 7.0 · labor $6.56</td><td>Auto 7.0</td><td><span class='badge badge-mid'>Mid</span></td></tr><tr><td>Age</td><td>~7 years</td><td>3.6</td><td>6.6</td><td><span class='badge badge-far'>Far</span></td></tr><tr><td>Position</td><td>2.7/17.3</td><td>2.7/17.3</td><td>3.0/17.0</td><td><span class='badge badge-close'>Close</span></td></tr></tbody></table>
+  <div class="callout warn"><strong>Restart lesson:</strong> When the game restarts: build Low End cost first (automation + material discipline), then price down.</div>
+</div>
+<div class="card" style="border-left:4px solid var(--purple)">
+  <h3>Hoary · High End — Positioning 43% · Age 29% · MTBF 19% · Price 9%</h3>
+  <table class="gap-table"><thead><tr><th>Criterion</th><th>Ideal / floor</th><th>Hoary</th><th>Best rival</th><th>Fit</th></tr></thead>
+  <tbody><tr><td>Pfmn / Size</td><td>10.7/9.3</td><td>10.2/10.8</td><td>9.9/10.4</td><td><span class='badge badge-far'>Far</span></td></tr><tr><td>Age</td><td>prefer young</td><td>1.3</td><td>1.4</td><td><span class='badge badge-close'>Close</span></td></tr><tr><td>Price</td><td>$29–$39</td><td>$38.00</td><td>$38.50</td><td><span class='badge badge-close'>Close</span></td></tr></tbody></table>
+  <div class="callout warn"><strong>Restart lesson:</strong> When the game restarts: close the positioning gap (distance 1.58) and keep age young. Not a Capstone map reprint — your fit gap on what wins.</div>
+</div>
+<div class="card" style="border-left:4px solid #db2777">
+  <h3>Hamper · Size — Positioning 43% · Age 29% · Price / MTBF secondary</h3>
+  <table class="gap-table"><thead><tr><th>Criterion</th><th>Ideal / floor</th><th>Hamper</th><th>Best rival</th><th>Fit</th></tr></thead>
+  <tbody><tr><td>Pfmn / Size</td><td>5.4/8.6</td><td>5.4/8.6</td><td>5.1/9.2</td><td><span class='badge badge-close'>Close</span></td></tr><tr><td>Age</td><td>prefer young</td><td>1.5</td><td>1.7</td><td><span class='badge badge-close'>Close</span></td></tr><tr><td>Price</td><td>$24–$34</td><td>$34.00</td><td>$33.50</td><td><span class='badge badge-close'>Close</span></td></tr></tbody></table>
+  <div class="callout warn"><strong>Restart lesson:</strong> When the game restarts: close the positioning gap (distance 0.00) and keep age young. Not a Capstone map reprint — your fit gap on what wins.</div>
+</div>
+<h2>5. Customer Criteria Comparison</h2>
+<p class="muted">Compact fit indicators for products with the clearest performance problems.</p>
+<div class="grid2"><div class="card">
+  <h3>Hoary (High End) — criteria snapshot</h3>
+  <p class='muted' style='font-size:.85rem'>Volume leader benchmark: <strong>Cid</strong> (756 units, $38.50, age 1.4, 9.9/10.4).</p>
+  <div class="crit-row"><div>Price fit</div><div class="bar-track"><div class="bar-fill" style="width:60%;background:#059669"></div></div><div>60</div></div>
+  <div class="crit-row"><div>Age (1.3)</div><div class="bar-track"><div class="bar-fill" style="width:68%;background:#d97706"></div></div><div>68</div></div>
+  <div class="crit-row"><div>MTBF (23,000)</div><div class="bar-track"><div class="bar-fill" style="width:60%;background:#7c3aed"></div></div><div>60</div></div>
+  <div class="crit-row"><div>Position (10.2/10.8)</div><div class="bar-track"><div class="bar-fill" style="width:37%;background:#2563eb"></div></div><div>37</div></div>
+  <div class="crit-row"><div>Awareness (79%)</div><div class="bar-track"><div class="bar-fill" style="width:79%;background:#0d9488"></div></div><div>79</div></div>
+  <div class="crit-row"><div>Accessibility (51%)</div><div class="bar-track"><div class="bar-fill" style="width:51%;background:#db2777"></div></div><div>51</div></div>
+  <p class="muted" style="font-size:.78rem;margin-top:8px">Bars are 0–100 fit/level indicators.</p>
+</div>
+<div class="card">
+  <h3>Hue (Low End) — criteria snapshot</h3>
+  <p class='muted' style='font-size:.85rem'>Volume leader benchmark: <strong>Gerbil</strong> (2,766 units, $19.50, age 6.6, 3.0/17.0).</p>
+  <div class="crit-row"><div>Price fit</div><div class="bar-track"><div class="bar-fill" style="width:48%;background:#059669"></div></div><div>48</div></div>
+  <div class="crit-row"><div>Age (3.6)</div><div class="bar-track"><div class="bar-fill" style="width:15%;background:#d97706"></div></div><div>15</div></div>
+  <div class="crit-row"><div>MTBF (12,200)</div><div class="bar-track"><div class="bar-fill" style="width:4%;background:#7c3aed"></div></div><div>4</div></div>
+  <div class="crit-row"><div>Position (2.7/17.3)</div><div class="bar-track"><div class="bar-fill" style="width:100%;background:#2563eb"></div></div><div>100</div></div>
+  <div class="crit-row"><div>Awareness (89%)</div><div class="bar-track"><div class="bar-fill" style="width:89%;background:#0d9488"></div></div><div>89</div></div>
+  <div class="crit-row"><div>Accessibility (52%)</div><div class="bar-track"><div class="bar-fill" style="width:52%;background:#db2777"></div></div><div>52</div></div>
+  <p class="muted" style="font-size:.78rem;margin-top:8px">Bars are 0–100 fit/level indicators.</p>
+</div>
+<div class="card">
+  <h3>Heft (Traditional) — criteria snapshot</h3>
+  <p class='muted' style='font-size:.85rem'>Volume leader benchmark: <strong>Gaffe</strong> (2,032 units, $26.50, age 2.0, 6.4/13.6).</p>
+  <div class="crit-row"><div>Price fit</div><div class="bar-track"><div class="bar-fill" style="width:80%;background:#059669"></div></div><div>80</div></div>
+  <div class="crit-row"><div>Age (1.7)</div><div class="bar-track"><div class="bar-fill" style="width:92%;background:#d97706"></div></div><div>92</div></div>
+  <div class="crit-row"><div>MTBF (14,000)</div><div class="bar-track"><div class="bar-fill" style="width:0%;background:#7c3aed"></div></div><div>0</div></div>
+  <div class="crit-row"><div>Position (6.4/13.0)</div><div class="bar-track"><div class="bar-fill" style="width:76%;background:#2563eb"></div></div><div>76</div></div>
+  <div class="crit-row"><div>Awareness (85%)</div><div class="bar-track"><div class="bar-fill" style="width:85%;background:#0d9488"></div></div><div>85</div></div>
+  <div class="crit-row"><div>Accessibility (44%)</div><div class="bar-track"><div class="bar-fill" style="width:44%;background:#db2777"></div></div><div>44</div></div>
+  <p class="muted" style="font-size:.78rem;margin-top:8px">Bars are 0–100 fit/level indicators.</p>
+</div></div>
+<h2>6. Production and Inventory</h2>
+<div class="card">
+  <h3>Units sold vs produced (approx) vs ending inventory</h3>
+  <p class="muted">Produced ≈ sold + ending inventory (beginning inventory not listed).</p>
+  <div class="chart-box tall"><canvas id="prodChart"></canvas></div>
+  <ul><li><strong>Heft</strong>: sold 1,284, inv 0, util 72%, cap next 1,800 — <em>stocked out</em></li><li><strong>Hue</strong>: sold 1,866, inv 314, util 154%, cap next 1,850</li><li><strong>Hoary</strong>: sold 593, inv 0, util 67%, cap next 900 — <em>stocked out</em></li><li><strong>Hamper</strong>: sold 491, inv 2, util 83%, cap next 600</li></ul>
+</div>
+<h2>7. Competencies + Restart Priorities</h2>
+<div class="comp-grid">
+  <div class="card"><h3>R&amp;D cycle / repositioning</h3>
+    <p>Cumulative R&amp;D cycle-time impact: <strong>-1.0%</strong> (negative = faster).
+    TQM $6,000; HR $2,000. Avg automation 4.4.</p></div>
+  <div class="card"><h3>Variable cost position</h3>
+    <p>Company CM <strong>35.0%</strong>; SG&amp;A/Sales 15.7%.
+    TQM material -1.3%; labor -2.1%.</p></div>
+  <div class="card"><h3>HR / productivity</h3>
+    <p>Productivity <strong>102.5%</strong>; turnover <strong>10.5%</strong>.
+    Demand cumulative impact 1.3%.</p></div>
+  <div class="card"><h3>Plant headroom</h3>
+    <p>Net plant CF ($17,480). Restart lesson: buy capacity for sustained demand, not one stockout.</p></div>
+</div>
+<div class="card">
+  <h3>Automation, costs &amp; margins by product</h3>
+  <table class="gap-table"><thead><tr><th>Product</th><th>Segment</th><th>Auto</th><th>Material</th><th>Labor</th><th>CM</th><th>Cap next</th><th>Util</th></tr></thead>
+  <tbody><tr><td>Heft</td><td>Traditional</td><td>4.5</td><td>$9.77</td><td>$7.87</td><td>33.9%</td><td>1,800</td><td>72%</td></tr><tr><td>Hue</td><td>Low End</td><td>7.0</td><td>$5.49</td><td>$6.56</td><td>34.0%</td><td>1,850</td><td>154%</td></tr><tr><td>Hoary</td><td>High End</td><td>3.0</td><td>$15.25</td><td>$8.99</td><td>37.5%</td><td>900</td><td>67%</td></tr><tr><td>Hamper</td><td>Size</td><td>3.0</td><td>$12.51</td><td>$8.99</td><td>35.8%</td><td>600</td><td>83%</td></tr></tbody></table>
+  <div class="callout"><strong>What this means when the game restarts:</strong> Match automation to segment economics.
+  Build TQM/HR early. Margins below ~25% on volume products are a strategy risk.</div>
+</div>
+<h3 style="margin-top:28px">Practice mistakes callout</h3>
+<div class='mistakes'><h3>Practice mistakes to leave behind</h3><ul><li><strong>Early product retirement / missing coverage:</strong> No active primary product in <em>Performance</em>. Retiring products this early in practice removes learning and leaves you uncovered when the real game starts. Cash-flow write-offs/extraordinary items were ($540) this round — consistent with selling/retiring capacity.</li></ul><p class='muted' style='margin:8px 0 0'>Flags from Round 2 numbers only. Use them as restart lessons.</p></div>
+<h3 style="margin-top:28px">What to focus on when the game restarts</h3>
+<p class="muted">Priority cards are restart lessons — not instructions that assume this plant carries over.</p>
+<div class="prio-grid"><div class='card priority'><h3><span class='num'>1</span>Clean restart mindset</h3><p>Practice is wiped. Keep the lessons (cash planning, segment coverage, cost before price on Low End, age discipline on Traditional, positioning on High End/Size) and leave the mistakes behind.</p></div><div class='card priority'><h3><span class='num'>2</span>Cash planning habit</h3><p>You ended with cash $9,432 and no emergency loan. Keep a round checklist: forecast → production → plant/TQM/HR → financing gap.</p></div><div class='card priority'><h3><span class='num'>3</span>Segment coverage decision</h3><p>You were absent from Performance. At restart, choose a focused or broad strategy on purpose — do not retire products early just to simplify.</p></div><div class='card priority'><h3><span class='num'>4</span>High End positioning</h3><p>Hoary sits at 10.2/10.8 vs ideal 10.7/9.3. Restart lesson: R&amp;D toward the ideal spot on a clock that keeps age young.</p></div></div>
+<footer class="note">
+  Practice Round 2 review for <strong>Harper</strong> (CP136222_1, group 004 - 8).
+  Team (CSV): Ari Altow, Taylor Eastwood, Riya Pathak, Hayden Rogers, Zoya Salass, Zachary Stevenson.
+  Sources: industry extract Round 2 / 2028, Student_Database.csv, visuals.md / workflow.md / PRACTICE_ROUND_REVIEW_RULES.md.
+  Written by George — Ali’s AI Capsim tutor (supervised by Ali). Real numbers only; no emails sent.
+</footer>
+</div>
+<script>
+new Chart(document.getElementById('investChart'), {
+  type: 'bar',
+  data: {
+    labels: ["Harper", "Andrews", "Baldwin", "Chester"],
+    datasets: [
+      {label: 'Plant |CF| ($k)', data: [17.5, 0.0, 17.5, 11.4], backgroundColor: '#2563eb'},
+      {label: 'TQM ($k)', data: [6.0, 3.3, 0.0, 5.0], backgroundColor: '#059669'},
+      {label: 'HR ($k)', data: [2.0, 0.9, 0.0, 6.0], backgroundColor: '#d97706'}
+    ]
+  },
+  options: {responsive:true, maintainAspectRatio:false, plugins:{legend:{position:'bottom'}},
+    scales:{y:{beginAtZero:true, title:{display:true, text:'$ thousands'}}}}
+});
+new Chart(document.getElementById('prodChart'), {
+  type: 'bar',
+  data: {
+    labels: ["Heft", "Hue", "Hoary", "Hamper"],
+    datasets: [
+      {label: 'Units sold', data: [1284, 1866, 593, 491], backgroundColor: '#2563eb'},
+      {label: 'Produced (sold+inv)', data: [1284, 2180, 593, 493], backgroundColor: '#94a3b8'},
+      {label: 'Ending inventory', data: [0, 314, 0, 2], backgroundColor: '#dc2626'}
+    ]
+  },
+  options: {responsive:true, maintainAspectRatio:false, plugins:{legend:{position:'bottom'}}, scales:{y:{beginAtZero:true}}}
+});
+</script>
+</body>
+</html>

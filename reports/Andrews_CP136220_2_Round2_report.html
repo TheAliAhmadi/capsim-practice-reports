@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Andrews | CP136220_2 | Practice Round 2 (2028) Review</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+  :root {
+    --ink: #1a2332;
+    --muted: #5a6a7a;
+    --card: #ffffff;
+    --bg: #f4f6f9;
+    --line: #d8e0ea;
+    --blue: #2563eb;
+    --green: #059669;
+    --amber: #d97706;
+    --red: #dc2626;
+    --purple: #7c3aed;
+    --teal: #0d9488;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 0;
+    font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+    color: var(--ink); background: var(--bg); line-height: 1.55;
+  }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 28px 20px 60px; }
+  header.hero {
+    background: linear-gradient(135deg, #0f2744 0%, #1e4d7b 60%, #2563eb 100%);
+    color: #fff; border-radius: 16px; padding: 28px 32px; margin-bottom: 22px;
+    box-shadow: 0 8px 24px rgba(15,39,68,.25);
+  }
+  header.hero h1 { margin: 0 0 6px; font-size: 1.65rem; font-weight: 700; }
+  header.hero .meta { opacity: .9; font-size: .95rem; }
+  header.hero .tag {
+    display: inline-block; margin-top: 12px; background: rgba(255,255,255,.15);
+    border: 1px solid rgba(255,255,255,.25); padding: 4px 12px; border-radius: 999px;
+    font-size: .8rem; letter-spacing: .02em;
+  }
+  h2 {
+    font-size: 1.2rem; margin: 32px 0 12px; padding-bottom: 8px;
+    border-bottom: 2px solid var(--line); color: #0f2744;
+  }
+  h3 { font-size: 1.02rem; margin: 0 0 8px; color: #0f2744; }
+  p, li { font-size: .95rem; }
+  .muted { color: var(--muted); }
+  .card {
+    background: var(--card); border: 1px solid var(--line); border-radius: 12px;
+    padding: 18px 20px; margin-bottom: 14px;
+    box-shadow: 0 1px 3px rgba(0,0,0,.04);
+  }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .grid5 { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 12px; }
+  @media (max-width: 800px) {
+    .grid2, .grid3 { grid-template-columns: 1fr; }
+  }
+  .stat-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; }
+  .stat {
+    flex: 1 1 120px; background: #f8fafc; border: 1px solid var(--line);
+    border-radius: 10px; padding: 10px 12px; text-align: center;
+  }
+  .stat .lbl { font-size: .72rem; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); }
+  .stat .val { font-size: 1.25rem; font-weight: 700; margin-top: 2px; }
+  .ok .val { color: var(--green); }
+  .warn .val { color: var(--amber); }
+  .bad .val { color: var(--red); }
+  .badge {
+    display: inline-block; font-size: .72rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: .04em; padding: 3px 8px; border-radius: 6px; vertical-align: middle;
+  }
+  .badge-low { background: #fee2e2; color: #991b1b; }
+  .badge-avg { background: #fef3c7; color: #92400e; }
+  .badge-high { background: #d1fae5; color: #065f46; }
+  .badge-none { background: #e2e8f0; color: #475569; }
+  .badge-close { background: #d1fae5; color: #065f46; }
+  .badge-mid { background: #fef3c7; color: #92400e; }
+  .badge-far { background: #fee2e2; color: #991b1b; }
+  .seg-box { border-left: 4px solid var(--blue); }
+  .seg-box.absent { border-left-color: #94a3b8; background: #f8fafc; }
+  .seg-box.highend { border-left-color: var(--purple); }
+  .seg-box.perf { border-left-color: var(--teal); }
+  .why { margin: 8px 0 0; font-size: .9rem; }
+  .why ol { margin: 6px 0 0; padding-left: 18px; }
+  .why li { margin-bottom: 4px; }
+  .chart-box { position: relative; height: 280px; margin-top: 8px; }
+  .chart-box.tall { height: 320px; }
+  .gap-table { width: 100%; border-collapse: collapse; font-size: .88rem; margin: 10px 0; }
+  .gap-table th, .gap-table td {
+    text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--line);
+  }
+  .gap-table th { color: var(--muted); font-weight: 600; font-size: .75rem; text-transform: uppercase; }
+  .fix-row {
+    display: grid; grid-template-columns: 110px 1fr 70px; gap: 8px; align-items: center;
+    margin-bottom: 7px; font-size: .85rem;
+  }
+  .bar-track { background: #e2e8f0; border-radius: 4px; height: 14px; overflow: hidden; position: relative; }
+  .bar-fill { height: 100%; border-radius: 4px; }
+  .bar-ideal {
+    position: absolute; top: 0; bottom: 0; width: 2px; background: #0f2744; opacity: .7;
+  }
+  .fix-legend { font-size: .78rem; color: var(--muted); margin-top: 6px; }
+  .priority {
+    border-top: 4px solid var(--blue); counter-increment: prio;
+  }
+  .priority .num {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 26px; height: 26px; border-radius: 50%; background: var(--blue); color: #fff;
+    font-weight: 700; font-size: .85rem; margin-right: 8px;
+  }
+  .prio-grid { display: grid; grid-template-columns: 1fr; gap: 10px; counter-reset: prio; }
+  .callout {
+    background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 10px;
+    padding: 12px 14px; font-size: .9rem; margin: 10px 0;
+  }
+  .callout.warn { background: #fffbeb; border-color: #fcd34d; }
+  .callout.good { background: #ecfdf5; border-color: #6ee7b7; }
+  footer.note {
+    margin-top: 36px; padding-top: 16px; border-top: 1px solid var(--line);
+    font-size: .82rem; color: var(--muted);
+  }
+  .comp-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
+  code.k { background: #eef2ff; padding: 1px 5px; border-radius: 4px; font-size: .85em; }
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="hero">
+  <h1>Andrews - Practice Round 2 Review</h1>
+  <div class="meta">CP136220_2 | Section 2 Industry 2 | Practice Round 2 / Dec 31, 2028 | Group 002-8</div>
+  <span class="tag">Practice review | game restarts | written by George | supervised by Ali</span>
+</header>
+
+<div class="callout" style="background:#eef2ff;border-color:#a5b4fc;margin-bottom:18px">
+  <strong>Practice Round review - the simulation restarts from scratch.</strong>
+  This is the last practice round. Competition decisions start over; practice results will not carry over.
+  Use this report as lessons for the real game, not as a continuing to-do list on this plant.
+</div>
+
+<h2>1. Financial Health</h2>
+<div class="card">
+  <h3>No emergency loan - but the round lost money</h3>
+  <p>Andrews avoided an emergency loan (cash <strong>$19,859</strong>) but posted net profit <strong>($13,143)</strong> on sales <strong>$109,480</strong> (12.1% revenue share). Inventory ended at <strong>$11,375</strong>. Stock price <strong>$5</strong>; cumulative profit <strong>($6,627)</strong>.</p>
+  <div class="stat-row">
+    <div class="stat ok"><div class="lbl">Emergency Loan</div><div class="val">$0</div></div>
+    <div class="stat ok"><div class="lbl">Ending Cash</div><div class="val">$19,859</div></div>
+    <div class="stat bad"><div class="lbl">Net Profit</div><div class="val">($13,143)</div></div>
+    <div class="stat warn"><div class="lbl">Ending Inventory</div><div class="val">$11,375</div></div>
+    <div class="stat warn"><div class="lbl">Sales / Rev Share</div><div class="val">$109,480 | 12.1%</div></div>
+    <div class="stat"><div class="lbl">Stock Price</div><div class="val">$5</div></div>
+  </div>
+  <div class='callout warn' style='margin-top:14px'><strong>Practice mistakes to leave behind</strong><ul style='margin:8px 0 0;padding-left:18px'><li style='margin-bottom:6px'><strong>Stockouts on some products while holding piles elsewhere:</strong> Stocked out: Able, Acre, Aft, Agape. Large ending inventory: Adam (477 u).</li><li style='margin-bottom:6px'><strong>Very high SG&A on weak sales:</strong> SG&A/Sales 21.0% with net loss ($13,143).</li></ul><p style='margin:8px 0 0'>Practice results are wiped when the game restarts. Carry the lesson, not the plant state.</p></div>
+</div>
+
+<h2>2. Investment Profile</h2>
+<div class="card">
+  <h3>Where Round 2 cash went (plant | TQM | HR)</h3>
+  <p>Round 2 Net Plant Improvements (cash outflow) <strong>$20,400</strong>, TQM <strong>$2,900</strong>, HR <strong>$1,000</strong>. Average automation across active products: <strong>4.4</strong>.</p>
+  <div class="chart-box"><canvas id="investChart"></canvas></div>
+  <p class="muted" style="margin-top:10px;font-size:.85rem">Grouped bars compare every company in CP136220_2. Plant = absolute Net Plant Improvements from the Cash Flow statement.</p>
+  <div class="callout"><strong>Strategy fit:</strong> Ask whether plant/TQM/HR spending matched the segments you tried to win.
+  Heavy plant with weak sell-through creates inventory; zero capability spend conserves cash but builds no compounding advantage.</div>
+</div>
+
+<h2>3. Segment Performance - Why Share Is Where It Is</h2>
+<p class="muted">One box per Capsim segment. Labels are relative to a competitive presence.</p>
+<div class="grid2"><div class='card seg-box '><h3>Traditional - Able <span class='badge badge-avg'>12.8% / Average</span></h3><p class='why'> Sold <strong>1,355</strong> of ~10,277 segment units and <em>stocked out</em>. CM 17.6% | Auto 5.0 | Util 81%.</p><div class='why'><strong>Ranked causes:</strong><ol><li><strong>Marketing reach:</strong> Awareness 88%, Accessibility 56% vs Daze 100% / 81%.</li><li><strong>Stockout:</strong> Sold 1,355; potential ~1747.</li><li><strong>Positioning:</strong> Pfmn 6.1 / Size 14.4 vs ideal 6.4 / 13.6 (distance ~0.85); rival Daze at 6.4 / 13.6.</li><li><strong>Age:</strong> 1.6 yrs vs preferred ~2.0 (rival Daze: 1.8).</li></ol></div></div><div class='card seg-box '><h3>Low End - Acre <span class='badge badge-avg'>16.0% / Average</span></h3><p class='why'> Sold <strong>2,084</strong> of ~13,043 segment units and <em>stocked out</em>. CM 14.2% | Auto 7.5 | Util 151%.</p><div class='why'><strong>Ranked causes:</strong><ol><li><strong>Age:</strong> 2.3 yrs vs preferred ~7.0 (rival Dell: 3.6).</li><li><strong>Marketing reach:</strong> Awareness 84%, Accessibility 50% vs Dell 99% / 70%.</li><li><strong>Stockout:</strong> Sold 2,084; potential ~3422.</li><li><strong>Positioning:</strong> Pfmn 2.2 / Size 17.7 vs ideal 2.7 / 17.3 (distance ~0.64); rival Dell at 2.7 / 17.3.</li></ol></div></div><div class='card seg-box highend'><h3>High End - Adam <span class='badge badge-low'>10.5% / Low</span></h3><p class='why'> Sold <strong>424</strong> of ~4,023 segment units. CM 30.7% | Auto 3.5 | Util 63%.</p><div class='why'><strong>Ranked causes:</strong><ol><li><strong>Marketing reach:</strong> Awareness 57%, Accessibility 29% vs Duck 84% / 64%.</li><li><strong>Age:</strong> 2.0 yrs vs preferred ~0.0 (rival Duck: 2.0).</li><li><strong>Positioning:</strong> Pfmn 9.8 / Size 10.2 vs ideal 10.7 / 9.3 (distance ~1.27); rival Duck at 9.8 / 10.2.</li><li><strong>Excess inventory:</strong> 477 units left unsold.</li></ol></div></div><div class='card seg-box perf'><h3>Performance - Aft <span class='badge badge-avg'>13.8% / Average</span></h3><p class='why'> Sold <strong>435</strong> of ~3,207 segment units and <em>stocked out</em>. CM 23.2% | Auto 3.0 | Util 73%.</p><div class='why'><strong>Ranked causes:</strong><ol><li><strong>Stockout:</strong> Sold 435; potential ~1002.</li><li><strong>Age:</strong> 2.9 yrs vs preferred ~1.0 (rival Dot: 2.9).</li><li><strong>Positioning:</strong> Pfmn 10.4 / Size 15.3 vs ideal 11.4 / 14.6 (distance ~1.22); rival Dot at 10.4 / 15.3.</li><li><strong>MTBF:</strong> 27,000 hrs (band 22,000-27,000).</li></ol></div></div><div class='card seg-box '><h3>Size - Agape <span class='badge badge-avg'>16.0% / Average</span></h3><p class='why'> Sold <strong>501</strong> of ~3,239 segment units and <em>stocked out</em>. CM 35.2% | Auto 3.0 | Util 33%.</p><div class='why'><strong>Ranked causes:</strong><ol><li><strong>Stockout:</strong> Sold 501; potential ~781.</li><li><strong>MTBF:</strong> 18,000 hrs (band 16,000-21,000).</li><li><strong>Positioning:</strong> Pfmn 5.5 / Size 8.6 vs ideal 5.4 / 8.6 (distance ~0.10); rival Dune at 4.7 / 9.6.</li><li><strong>Age:</strong> 1.5 yrs vs preferred ~1.5 (rival Dune: 2.8).</li></ol></div></div></div>
+
+<h2>4. Distance from What Wins <span class="muted" style="font-size:.85rem;font-weight:500">(segment-specific fit - not a Capstone Pfmn x Size map)</span></h2>
+<p>The Industry Report already shows the perceptual map. Below: on the criteria that decide winners in each segment, how far is Andrews from the winning profile?</p>
+<div class="card" style="border-left:4px solid #2563eb"><h3>Able | Traditional - winning criteria: Age 47% | Price 23% | Positioning 21% | MTBF 9%</h3><p class="muted" style="margin-top:0">Best rival benchmark: <strong>Daze</strong>. Overall fit: <span class="badge badge-mid">Mid</span>.</p><table class="gap-table"><thead><tr><th>Criterion</th><th>Ideal / band</th><th>Able</th><th>Best rival</th><th>Gap</th><th>Fit</th></tr></thead><tbody><tr><td>Performance</td><td>6.4</td><td>6.1</td><td>6.4</td><td>-0.3</td><td><span class='badge badge-mid'>Mid</span></td></tr><tr><td>Size</td><td>13.6</td><td>14.4</td><td>13.6</td><td>+0.8</td><td><span class='badge badge-far'>Far</span></td></tr><tr><td>Position distance*</td><td>0</td><td>~0.85</td><td>~0.00</td><td>vs ideal</td><td><span class='badge badge-mid'>Mid</span></td></tr><tr><td>Age</td><td>~2.0</td><td>1.6</td><td>1.8</td><td>-0.4</td><td><span class='badge badge-close'>Close</span></td></tr><tr><td>MTBF</td><td>14,000-19,000</td><td>18,000</td><td>19,000</td><td>Band</td><td><span class='badge badge-close'>Close</span></td></tr><tr><td>Price</td><td>$19-$29</td><td>$22.00</td><td>$26.00</td><td>Band</td><td><span class='badge badge-close'>Close</span></td></tr><tr><td>Accessibility</td><td>Compete with leaders</td><td>56%</td><td>81%</td><td>-25 pts</td><td><span class='badge badge-far'>Far</span></td></tr></tbody></table><p class="muted" style="font-size:.82rem">*Rough Euclidean gap vs segment ideal - teaching distance, not Capsim scoring.</p><div class="callout warn"><strong>Restart lesson:</strong> Keep age near 2.0 and stay inside the fine cut; price inside the band.</div></div><div class="card" style="border-left:4px solid #d97706"><h3>Acre | Low End - winning criteria: Price 53% | Age 24% | Positioning 16% | MTBF 7%</h3><p class="muted" style="margin-top:0">Best rival benchmark: <strong>Dell</strong>. Overall fit: <span class="badge badge-close">Close</span>.</p><table class="gap-table"><thead><tr><th>Criterion</th><th>Ideal / band</th><th>Acre</th><th>Best rival</th><th>Gap</th><th>Fit</th></tr></thead><tbody><tr><td>Price (primary)</td><td>$14-$24</td><td>$15.50</td><td>$20.00</td><td>At/under rival</td><td><span class='badge badge-close'>Close</span></td></tr><tr><td>Automation / labor</td><td>High auto, low labor</td><td>Auto 7.5 | Labor $7.90</td><td>-</td><td>Cost structure</td><td><span class='badge badge-close'>Close</span></td></tr><tr><td>Material / CM</td><td>Support low price</td><td>Mat $5.15 | CM 14.2%</td><td>-</td><td>CM 14.2%</td><td><span class='badge badge-far'>Far</span></td></tr><tr><td>Positioning (secondary)</td><td>2.7 / 17.3</td><td>2.2 / 17.7</td><td>2.7 / 17.3</td><td>Dist ~0.64</td><td><span class='badge badge-close'>Close</span></td></tr></tbody></table><p class="muted" style="font-size:.82rem">*Rough Euclidean gap vs segment ideal - teaching distance, not Capsim scoring.</p><div class="callout warn"><strong>Restart lesson:</strong> Win on price/cost: automation and material/labor must support a low price with healthy CM.</div></div><div class="card" style="border-left:4px solid #7c3aed"><h3>Adam | High End - winning criteria: Positioning 43% | Age 29% | MTBF 19% | Price 9%</h3><p class="muted" style="margin-top:0">Best rival benchmark: <strong>Duck</strong>. Overall fit: <span class="badge badge-far">Far</span>.</p><table class="gap-table"><thead><tr><th>Criterion</th><th>Ideal / band</th><th>Adam</th><th>Best rival</th><th>Gap</th><th>Fit</th></tr></thead><tbody><tr><td>Performance</td><td>10.7</td><td>9.8</td><td>9.8</td><td>-0.9</td><td><span class='badge badge-far'>Far</span></td></tr><tr><td>Size</td><td>9.3</td><td>10.2</td><td>10.2</td><td>+0.9</td><td><span class='badge badge-far'>Far</span></td></tr><tr><td>Position distance*</td><td>0</td><td>~1.27</td><td>~1.27</td><td>vs ideal</td><td><span class='badge badge-far'>Far</span></td></tr><tr><td>Age</td><td>~0.0</td><td>2.0</td><td>2.0</td><td>+2.0</td><td><span class='badge badge-far'>Far</span></td></tr><tr><td>MTBF</td><td>20,000-25,000</td><td>21,000</td><td>25,000</td><td>Band</td><td><span class='badge badge-close'>Close</span></td></tr><tr><td>Price</td><td>$29-$39</td><td>$39.00</td><td>$39.00</td><td>Band</td><td><span class='badge badge-close'>Close</span></td></tr><tr><td>Accessibility</td><td>Compete with leaders</td><td>29%</td><td>64%</td><td>-35 pts</td><td><span class='badge badge-far'>Far</span></td></tr></tbody></table><p class="muted" style="font-size:.82rem">*Rough Euclidean gap vs segment ideal - teaching distance, not Capsim scoring.</p><div class="callout warn"><strong>Restart lesson:</strong> Chase the moving ideal (higher Pfmn, smaller Size) and revise so year-end age is younger.</div></div><div class="card" style="border-left:4px solid #0d9488"><h3>Aft | Performance - winning criteria: MTBF 43% | Positioning 29% | Price 19% | Age 9%</h3><p class="muted" style="margin-top:0">Best rival benchmark: <strong>Dot</strong>. Overall fit: <span class="badge badge-far">Far</span>.</p><table class="gap-table"><thead><tr><th>Criterion</th><th>Ideal / band</th><th>Aft</th><th>Best rival</th><th>Gap</th><th>Fit</th></tr></thead><tbody><tr><td>Performance</td><td>11.4</td><td>10.4</td><td>10.4</td><td>-1.0</td><td><span class='badge badge-far'>Far</span></td></tr><tr><td>Size</td><td>14.6</td><td>15.3</td><td>15.3</td><td>+0.7</td><td><span class='badge badge-mid'>Mid</span></td></tr><tr><td>Position distance*</td><td>0</td><td>~1.22</td><td>~1.22</td><td>vs ideal</td><td><span class='badge badge-far'>Far</span></td></tr><tr><td>Age</td><td>~1.0</td><td>2.9</td><td>2.9</td><td>+1.9</td><td><span class='badge badge-far'>Far</span></td></tr><tr><td>MTBF</td><td>22,000-27,000</td><td>27,000</td><td>27,000</td><td>Band</td><td><span class='badge badge-close'>Close</span></td></tr><tr><td>Price</td><td>$24-$34</td><td>$31.75</td><td>$33.00</td><td>Band</td><td><span class='badge badge-close'>Close</span></td></tr><tr><td>Accessibility</td><td>Compete with leaders</td><td>47%</td><td>44%</td><td>+3 pts</td><td><span class='badge badge-close'>Close</span></td></tr></tbody></table><p class="muted" style="font-size:.82rem">*Rough Euclidean gap vs segment ideal - teaching distance, not Capsim scoring.</p><div class="callout warn"><strong>Restart lesson:</strong> Lock MTBF near the top of the valued band, sit on the ideal spot, then close accessibility gaps.</div></div><div class="card" style="border-left:4px solid #0f766e"><h3>Agape | Size - winning criteria: Positioning 43% | Age 29% | Price 19% | MTBF 9%</h3><p class="muted" style="margin-top:0">Best rival benchmark: <strong>Dune</strong>. Overall fit: <span class="badge badge-close">Close</span>.</p><table class="gap-table"><thead><tr><th>Criterion</th><th>Ideal / band</th><th>Agape</th><th>Best rival</th><th>Gap</th><th>Fit</th></tr></thead><tbody><tr><td>Performance</td><td>5.4</td><td>5.5</td><td>4.7</td><td>+0.1</td><td><span class='badge badge-close'>Close</span></td></tr><tr><td>Size</td><td>8.6</td><td>8.6</td><td>9.6</td><td>+0.0</td><td><span class='badge badge-close'>Close</span></td></tr><tr><td>Position distance*</td><td>0</td><td>~0.10</td><td>~1.22</td><td>vs ideal</td><td><span class='badge badge-close'>Close</span></td></tr><tr><td>Age</td><td>~1.5</td><td>1.5</td><td>2.8</td><td>+0.0</td><td><span class='badge badge-close'>Close</span></td></tr><tr><td>MTBF</td><td>16,000-21,000</td><td>18,000</td><td>21,000</td><td>Band</td><td><span class='badge badge-close'>Close</span></td></tr><tr><td>Price</td><td>$24-$34</td><td>$34.00</td><td>$34.00</td><td>Band</td><td><span class='badge badge-close'>Close</span></td></tr><tr><td>Accessibility</td><td>Compete with leaders</td><td>49%</td><td>53%</td><td>-4 pts</td><td><span class='badge badge-close'>Close</span></td></tr></tbody></table><p class="muted" style="font-size:.82rem">*Rough Euclidean gap vs segment ideal - teaching distance, not Capsim scoring.</p><div class="callout warn"><strong>Restart lesson:</strong> Drive Size down toward the ideal and keep age near ~1.5. Positioning dominates.</div></div>
+
+<h2>5. Customer Criteria Comparison</h2>
+<p class="muted">Compact view for products with the clearest performance problems. Horizontal bars - not radar charts.</p>
+<div class="grid2"><div class="card"><h3>Able vs segment expectations | rival Daze</h3><div class="crit-row"><div>Price</div><div class="bar-track"><div class="bar-fill" style="width:30%;background:#2563eb"></div></div><div>$22.00</div></div><div class="crit-row"><div>Age</div><div class="bar-track"><div class="bar-fill" style="width:20%;background:#7c3aed"></div></div><div>1.6</div></div><div class="crit-row"><div>MTBF</div><div class="bar-track"><div class="bar-fill" style="width:67%;background:#0d9488"></div></div><div>18,000</div></div><div class="crit-row"><div>Pos. gap</div><div class="bar-track"><div class="bar-fill" style="width:28%;background:#d97706"></div></div><div>0.85</div></div><div class="crit-row"><div>Awareness</div><div class="bar-track"><div class="bar-fill" style="width:88%;background:#059669"></div></div><div>88%</div></div><div class="crit-row"><div>Accessibility</div><div class="bar-track"><div class="bar-fill" style="width:56%;background:#2563eb"></div></div><div>56%</div></div><p class='crit-legend'>Bars = Able. Rival Daze: price $26.00, age 1.8, MTBF 19,000, aware 100.0%, access 81.0%.</p></div><div class="card"><h3>Acre vs segment expectations | rival Dell</h3><div class="crit-row"><div>Price</div><div class="bar-track"><div class="bar-fill" style="width:15%;background:#2563eb"></div></div><div>$15.50</div></div><div class="crit-row"><div>Age</div><div class="bar-track"><div class="bar-fill" style="width:29%;background:#7c3aed"></div></div><div>2.3</div></div><div class="crit-row"><div>MTBF</div><div class="bar-track"><div class="bar-fill" style="width:46%;background:#0d9488"></div></div><div>12,500</div></div><div class="crit-row"><div>Pos. gap</div><div class="bar-track"><div class="bar-fill" style="width:21%;background:#d97706"></div></div><div>0.64</div></div><div class="crit-row"><div>Awareness</div><div class="bar-track"><div class="bar-fill" style="width:84%;background:#059669"></div></div><div>84%</div></div><div class="crit-row"><div>Accessibility</div><div class="bar-track"><div class="bar-fill" style="width:50%;background:#2563eb"></div></div><div>50%</div></div><p class='crit-legend'>Bars = Acre. Rival Dell: price $20.00, age 3.6, MTBF 17,000, aware 99.0%, access 70.0%.</p></div><div class="card"><h3>Adam vs segment expectations | rival Duck</h3><div class="crit-row"><div>Price</div><div class="bar-track"><div class="bar-fill" style="width:100%;background:#2563eb"></div></div><div>$39.00</div></div><div class="crit-row"><div>Age</div><div class="bar-track"><div class="bar-fill" style="width:25%;background:#7c3aed"></div></div><div>2.0</div></div><div class="crit-row"><div>MTBF</div><div class="bar-track"><div class="bar-fill" style="width:78%;background:#0d9488"></div></div><div>21,000</div></div><div class="crit-row"><div>Pos. gap</div><div class="bar-track"><div class="bar-fill" style="width:42%;background:#d97706"></div></div><div>1.27</div></div><div class="crit-row"><div>Awareness</div><div class="bar-track"><div class="bar-fill" style="width:57%;background:#059669"></div></div><div>57%</div></div><div class="crit-row"><div>Accessibility</div><div class="bar-track"><div class="bar-fill" style="width:29%;background:#2563eb"></div></div><div>29%</div></div><p class='crit-legend'>Bars = Adam. Rival Duck: price $39.00, age 2.0, MTBF 25,000, aware 84.0%, access 64.0%.</p></div><div class="card"><h3>Aft vs segment expectations | rival Dot</h3><div class="crit-row"><div>Price</div><div class="bar-track"><div class="bar-fill" style="width:77%;background:#2563eb"></div></div><div>$31.75</div></div><div class="crit-row"><div>Age</div><div class="bar-track"><div class="bar-fill" style="width:36%;background:#7c3aed"></div></div><div>2.9</div></div><div class="crit-row"><div>MTBF</div><div class="bar-track"><div class="bar-fill" style="width:100%;background:#0d9488"></div></div><div>27,000</div></div><div class="crit-row"><div>Pos. gap</div><div class="bar-track"><div class="bar-fill" style="width:41%;background:#d97706"></div></div><div>1.22</div></div><div class="crit-row"><div>Awareness</div><div class="bar-track"><div class="bar-fill" style="width:73%;background:#059669"></div></div><div>73%</div></div><div class="crit-row"><div>Accessibility</div><div class="bar-track"><div class="bar-fill" style="width:47%;background:#2563eb"></div></div><div>47%</div></div><p class='crit-legend'>Bars = Aft. Rival Dot: price $33.00, age 2.9, MTBF 27,000, aware 59.0%, access 44.0%.</p></div></div>
+
+<h2>6. Production and Inventory</h2>
+<div class="card">
+  <h3>Units sold vs produced vs ending inventory</h3>
+  <p>Stockouts: Able, Acre, Aft, Agape.</p>
+  <div class="chart-box tall"><canvas id="prodChart"></canvas></div>
+  <table class="gap-table" style="margin-top:12px">
+    <thead><tr><th>Product</th><th>Segment</th><th>Sold</th><th>Prod~</th><th>End Inv</th><th>Stockout</th><th>Util</th><th>Next Cap</th></tr></thead>
+    <tbody><tr><td>Able</td><td>Traditional</td><td>1,355</td><td>1,355</td><td>0</td><td>Yes</td><td>81%</td><td>1,150</td></tr><tr><td>Acre</td><td>Low End</td><td>2,084</td><td>2,084</td><td>0</td><td>Yes</td><td>151%</td><td>1,400</td></tr><tr><td>Adam</td><td>High End</td><td>424</td><td>901</td><td>477</td><td>No</td><td>63%</td><td>900</td></tr><tr><td>Aft</td><td>Performance</td><td>435</td><td>435</td><td>0</td><td>Yes</td><td>73%</td><td>600</td></tr><tr><td>Agape</td><td>Size</td><td>501</td><td>501</td><td>0</td><td>Yes</td><td>33%</td><td>600</td></tr></tbody>
+  </table>
+  <p class="muted" style="font-size:.82rem">Production ~ sold + ending inventory (beginning inventory not itemized in the extract).</p>
+</div>
+
+<h2>7. Competencies</h2>
+<div class="comp-grid"><div class="card"><h3>R&amp;D cycle time / repositioning</h3><p>Cumulative R&amp;D cycle-time impact <strong>+5.0%</strong> (TQM R&amp;D +0.0%, HR R&amp;D +5.0%). Automation (Able 5.0, Acre 7.5, Adam 3.5, Aft 3.0, Agape 3.0) also affects repositioning speed.</p></div><div class="card"><h3>Variable cost position</h3><p>Able: mat $10.15, labor $7.96; Acre: mat $5.15, labor $7.90; Adam: mat $14.73, labor $9.09; Aft: mat $14.93, labor $9.09; Agape: mat $13.09, labor $9.09. Cumulative TQM material -1.4%, labor -1.1%.</p></div><div class="card"><h3>Automation fit</h3><p>Able 5.0, Acre 7.5, Adam 3.5, Aft 3.0, Agape 3.0. High automation helps Low End cost; very high automation slows R&amp;D for High End / Performance / Size.</p></div><div class="card"><h3>Contribution margins</h3><p>Able 17.6%, Acre 14.2%, Adam 30.7%, Aft 23.2%, Agape 35.2%. Company CM 22.0%. SG&amp;A/Sales 21.0%.</p></div><div class="card"><h3>TQM / HR / capacity</h3><p>TQM spend $2,900, HR spend $1,000. HR productivity +2.5%, turnover +15.0%, accessibility +0.0%. Next-round capacity 4,650 units.</p></div><div class="card"><h3>What this means on restart</h3><p>Practice capabilities reset. Carry the <em>logic</em>: cost must match price strategy; TQM/HR compound; automation trades off with R&amp;D speed.</p></div></div>
+
+<h2>What to Focus on When the Game Restarts</h2>
+<p class="muted">Priorities framed as restart lessons, not "keep tweaking this plant."</p>
+<div class="prio-grid"><div class='card priority'><h3><span class='num'>1</span> Practice mistakes to leave behind</h3><p>When the real game starts, do not repeat: stockouts on some products while holding piles elsewhere; very high sg&a on weak sales. Practice is wiped - treat these as lessons, not continuing plant state.</p></div><div class='card priority'><h3><span class='num'>2</span> Low End cost structure</h3><p>Acre CM only 14.2% at auto 7.5 and price $15.50. Do not price like a Low End leader until automation/material support it.</p></div><div class='card priority'><h3><span class='num'>3</span> Production vs demand</h3><p>Stockouts on Able, Acre, Aft, Agape. When a product is winning, schedule enough production.</p></div><div class='card priority'><h3><span class='num'>4</span> Forecast honesty</h3><p>Large piles on Adam (477 u). Match production to realistic demand.</p></div><div class='card priority'><h3><span class='num'>5</span> Competitor to study: Digby</h3><p>Digby led industry revenue at $199,553. Reverse-engineer their presence, automation, and pricing.</p></div></div>
+
+<footer class="note">
+  Practice Round 2 review for Andrews (CP136220_2, Group 002 - 8). Figures from the Industry Report extract for Round 2 / Dec 31, 2028.
+  Written by George - Ali's AI Capsim tutor (supervised and guided by Ali). Practice is forgotten when the simulation restarts.
+</footer>
+</div>
+<script>
+new Chart(document.getElementById('investChart'), {
+  type: 'bar',
+  data: {
+    labels: ["Andrews", "Baldwin", "Chester", "Digby", "Erie", "Ferris", "Garrett"],
+    datasets: [
+      { label: 'Plant $', data: [20400.0, 0, 28600.0, 0, 0, 22920.0, 13088.0], backgroundColor: '#2563eb' },
+      { label: 'TQM $', data: [2900.0, 5000.0, 3400.0, 0, 0, 300.0, 0], backgroundColor: '#7c3aed' },
+      { label: 'HR $', data: [1000.0, 1200.0, 2300.0, 2000.0, 0, 1900.0, 0], backgroundColor: '#0d9488' }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { position: 'bottom' } },
+    scales: { y: { beginAtZero: true } }
+  }
+});
+new Chart(document.getElementById('prodChart'), {
+  type: 'bar',
+  data: {
+    labels: ["Able", "Acre", "Adam", "Aft", "Agape"],
+    datasets: [
+      { label: 'Units sold', data: [1355, 2084, 424, 435, 501], backgroundColor: '#2563eb' },
+      { label: 'Units produced~', data: [1355, 2084, 901, 435, 501], backgroundColor: '#94a3b8' },
+      { label: 'Ending inventory', data: [0, 0, 477, 0, 0], backgroundColor: '#d97706' }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { position: 'bottom' } },
+    scales: { y: { beginAtZero: true } }
+  }
+});
+</script>
+</body>
+</html>

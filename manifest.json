@@ -1,0 +1,241 @@
+{
+  "round": "Practice Round 2",
+  "sections": {
+    "2": {
+      "id": "2",
+      "label": "Section 2",
+      "industries": {
+        "CP136220_1": {
+          "id": "CP136220_1",
+          "label": "Industry 1",
+          "code": "CP136220_1",
+          "teams": [
+            {
+              "name": "Andrews",
+              "file": "reports/Andrews_CP136220_1_Round2_report.html"
+            },
+            {
+              "name": "Baldwin",
+              "file": "reports/Baldwin_CP136220_1_Round2_report.html"
+            },
+            {
+              "name": "Chester",
+              "file": "reports/Chester_CP136220_1_Round2_report.html"
+            },
+            {
+              "name": "Digby",
+              "file": "reports/Digby_CP136220_1_Round2_report.html"
+            },
+            {
+              "name": "Erie",
+              "file": "reports/Erie_CP136220_1_Round2_report.html"
+            },
+            {
+              "name": "Ferris",
+              "file": "reports/Ferris_CP136220_1_Round2_report.html"
+            },
+            {
+              "name": "Garrett",
+              "file": "reports/Garrett_CP136220_1_Round2_report.html"
+            }
+          ]
+        },
+        "CP136220_2": {
+          "id": "CP136220_2",
+          "label": "Industry 2",
+          "code": "CP136220_2",
+          "teams": [
+            {
+              "name": "Andrews",
+              "file": "reports/Andrews_CP136220_2_Round2_report.html"
+            },
+            {
+              "name": "Baldwin",
+              "file": "reports/Baldwin_CP136220_2_Round2_report.html"
+            },
+            {
+              "name": "Chester",
+              "file": "reports/Chester_CP136220_2_Round2_report.html"
+            },
+            {
+              "name": "Digby",
+              "file": "reports/Digby_CP136220_2_Round2_report.html"
+            },
+            {
+              "name": "Erie",
+              "file": "reports/Erie_CP136220_2_Round2_report.html"
+            },
+            {
+              "name": "Ferris",
+              "file": "reports/Ferris_CP136220_2_Round2_report.html"
+            },
+            {
+              "name": "Garrett",
+              "file": "reports/Garrett_CP136220_2_Round2_report.html"
+            }
+          ]
+        }
+      }
+    },
+    "3": {
+      "id": "3",
+      "label": "Section 3",
+      "industries": {
+        "CP136221_1": {
+          "id": "CP136221_1",
+          "label": "Industry 1",
+          "code": "CP136221_1",
+          "teams": [
+            {
+              "name": "Andrews",
+              "file": "reports/Andrews_CP136221_1_Round2_report.html"
+            },
+            {
+              "name": "Baldwin",
+              "file": "reports/Baldwin_CP136221_1_Round2_report.html"
+            },
+            {
+              "name": "Chester",
+              "file": "reports/Chester_CP136221_1_Round2_report.html"
+            },
+            {
+              "name": "Digby",
+              "file": "reports/Digby_CP136221_1_Round2_report.html"
+            },
+            {
+              "name": "Erie",
+              "file": "reports/Erie_CP136221_1_Round2_report.html"
+            },
+            {
+              "name": "Ferris",
+              "file": "reports/Ferris_CP136221_1_Round2_report.html"
+            },
+            {
+              "name": "Garrett",
+              "file": "reports/Garrett_CP136221_1_Round2_report.html"
+            },
+            {
+              "name": "Harper",
+              "file": "reports/Harper_CP136221_1_Round2_report.html"
+            }
+          ]
+        },
+        "CP136221_2": {
+          "id": "CP136221_2",
+          "label": "Industry 2",
+          "code": "CP136221_2",
+          "teams": [
+            {
+              "name": "Andrews",
+              "file": "reports/Andrews_CP136221_2_Round2_report.html"
+            },
+            {
+              "name": "Baldwin",
+              "file": "reports/Baldwin_CP136221_2_Round2_report.html"
+            },
+            {
+              "name": "Chester",
+              "file": "reports/Chester_CP136221_2_Round2_report.html"
+            },
+            {
+              "name": "Digby",
+              "file": "reports/Digby_CP136221_2_Round2_report.html"
+            },
+            {
+              "name": "Erie",
+              "file": "reports/Erie_CP136221_2_Round2_report.html"
+            },
+            {
+              "name": "Ferris",
+              "file": "reports/Ferris_CP136221_2_Round2_report.html"
+            },
+            {
+              "name": "Garrett",
+              "file": "reports/Garrett_CP136221_2_Round2_report.html"
+            }
+          ]
+        }
+      }
+    },
+    "4": {
+      "id": "4",
+      "label": "Section 4",
+      "industries": {
+        "CP136222_1": {
+          "id": "CP136222_1",
+          "label": "Industry 1",
+          "code": "CP136222_1",
+          "teams": [
+            {
+              "name": "Andrews",
+              "file": "reports/Andrews_CP136222_1_Round2_report.html"
+            },
+            {
+              "name": "Baldwin",
+              "file": "reports/Baldwin_CP136222_1_Round2_report.html"
+            },
+            {
+              "name": "Chester",
+              "file": "reports/Chester_CP136222_1_Round2_report.html"
+            },
+            {
+              "name": "Digby",
+              "file": "reports/Digby_CP136222_1_Round2_report.html"
+            },
+            {
+              "name": "Erie",
+              "file": "reports/Erie_CP136222_1_Round2_report.html"
+            },
+            {
+              "name": "Ferris",
+              "file": "reports/Ferris_CP136222_1_Round2_report.html"
+            },
+            {
+              "name": "Garrett",
+              "file": "reports/Garrett_CP136222_1_Round2_report.html"
+            },
+            {
+              "name": "Harper",
+              "file": "reports/Harper_CP136222_1_Round2_report.html"
+            }
+          ]
+        },
+        "CP136222_2": {
+          "id": "CP136222_2",
+          "label": "Industry 2",
+          "code": "CP136222_2",
+          "teams": [
+            {
+              "name": "Andrews",
+              "file": "reports/Andrews_CP136222_2_Round2_report.html"
+            },
+            {
+              "name": "Baldwin",
+              "file": "reports/Baldwin_CP136222_2_Round2_report.html"
+            },
+            {
+              "name": "Chester",
+              "file": "reports/Chester_CP136222_2_Round2_report.html"
+            },
+            {
+              "name": "Digby",
+              "file": "reports/Digby_CP136222_2_Round2_report.html"
+            },
+            {
+              "name": "Erie",
+              "file": "reports/Erie_CP136222_2_Round2_report.html"
+            },
+            {
+              "name": "Ferris",
+              "file": "reports/Ferris_CP136222_2_Round2_report.html"
+            },
+            {
+              "name": "Garrett",
+              "file": "reports/Garrett_CP136222_2_Round2_report.html"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

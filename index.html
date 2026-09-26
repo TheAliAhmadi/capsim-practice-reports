@@ -57,25 +57,40 @@
       font-weight: 700;
       margin-bottom: 0.5rem;
     }
-    h1 { margin: 0 0 0.4rem; font-size: clamp(1.6rem, 3.2vw, 2.1rem); font-weight: 750; letter-spacing: -0.02em; }
-    .subtitle { margin: 0; color: rgba(255,255,255,0.8); max-width: 42rem; line-height: 1.5; }
+    h1 {
+      margin: 0 0 0.4rem;
+      font-size: clamp(1.6rem, 3.2vw, 2.1rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+    .subtitle {
+      margin: 0;
+      color: rgba(255,255,255,0.8);
+      max-width: 42rem;
+      line-height: 1.5;
+    }
 
     .layout {
       display: grid;
-      grid-template-columns: 1fr;
       gap: 1.1rem;
       margin-top: 1.15rem;
+      grid-template-columns: 1fr;
+      grid-template-areas:
+        "access"
+        "content";
     }
-    /* Unlock first on phones; content first column on desktop */
-    .access-panel { order: -1; }
-    .stack { order: 0; }
+    .access-panel { grid-area: access; }
+    .stack { grid-area: content; display: grid; gap: 1.1rem; }
     @media (min-width: 821px) {
       .layout {
-        grid-template-columns: 1.15fr 0.85fr;
+        grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
+        grid-template-areas: "content access";
         align-items: start;
       }
-      .stack { order: 0; grid-column: 1; }
-      .access-panel { order: 0; grid-column: 2; }
+      .access-panel {
+        position: sticky;
+        top: 1rem;
+      }
     }
 
     .panel {
@@ -90,13 +105,15 @@
       font-size: 1.05rem;
       color: var(--navy);
     }
-    .panel p { margin: 0 0 0.75rem; color: var(--muted); line-height: 1.5; font-size: 0.95rem; }
+    .panel p {
+      margin: 0 0 0.75rem;
+      color: var(--muted);
+      line-height: 1.55;
+      font-size: 0.95rem;
+    }
     .panel p:last-child { margin-bottom: 0; }
 
     .access-panel {
-      position: sticky;
-      top: 1rem;
-      align-self: start;
       background: linear-gradient(180deg, #ffffff 0%, #f7fafc 100%);
       border: 1.5px solid #c9d6e8;
     }
@@ -105,7 +122,7 @@
       align-items: center;
       gap: 0.4rem;
       font-size: 0.72rem;
-      font-weight: 750;
+      font-weight: 700;
       letter-spacing: 0.08em;
       text-transform: uppercase;
       color: var(--navy);
@@ -132,13 +149,16 @@
       border: 1px solid #dde6f2;
     }
     .num {
-      width: 1.55rem; height: 1.55rem;
+      width: 1.55rem;
+      height: 1.55rem;
       border-radius: 50%;
       background: var(--navy);
       color: #fff;
       font-size: 0.8rem;
       font-weight: 700;
-      display: grid; place-items: center;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
     }
     .key-step strong { display: block; color: var(--navy); font-size: 0.9rem; }
     .key-step span { color: var(--muted); font-size: 0.82rem; line-height: 1.35; }
@@ -146,7 +166,7 @@
     label.field {
       display: block;
       font-size: 0.75rem;
-      font-weight: 750;
+      font-weight: 700;
       letter-spacing: 0.07em;
       text-transform: uppercase;
       color: var(--navy);
@@ -187,30 +207,6 @@
     .msg.ok { color: var(--ok); }
     .msg.bad { color: var(--bad); }
 
-    .who {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0.75rem;
-      margin-top: 0.35rem;
-    }
-    @media (max-width: 620px) { .who { grid-template-columns: 1fr; } }
-    .who-card {
-      border-radius: 14px;
-      padding: 0.9rem 0.95rem;
-      border: 1px solid var(--border);
-      background: #fbfcfe;
-    }
-    .who-card .tag {
-      font-size: 0.7rem;
-      font-weight: 750;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 0.3rem;
-    }
-    .who-card h3 { margin: 0 0 0.35rem; font-size: 1rem; color: var(--navy); }
-    .who-card p { margin: 0; font-size: 0.88rem; }
-
     .sections-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -225,13 +221,15 @@
       min-height: 118px;
     }
     .sec-card .n {
-      width: 1.45rem; height: 1.45rem;
+      width: 1.45rem;
+      height: 1.45rem;
       border-radius: 8px;
       background: var(--navy);
       color: #fff;
       font-size: 0.75rem;
       font-weight: 700;
-      display: grid; place-items: center;
+      display: grid;
+      place-items: center;
       margin-bottom: 0.45rem;
     }
     .sec-card h3 { margin: 0 0 0.3rem; font-size: 0.92rem; color: var(--navy); }
@@ -261,12 +259,12 @@
     <header class="hero">
       <div class="eyebrow">Queen’s · Business &amp; Corporate Strategy</div>
       <h1>Practice Round Recap</h1>
-      <p class="subtitle">Private coaching reviews for your Capsim team — written with Ali’s guidance, unlocked with your student number.</p>
+      <p class="subtitle">A quick coaching review for your Capsim team — unlock it with your student number.</p>
     </header>
 
     <div class="layout">
       <aside class="panel access-panel" id="access-panel">
-        <div class="access-badge">🔒 Student unlock</div>
+        <div class="access-badge">Student unlock</div>
         <h2>Get your team report</h2>
         <p>Enter your Queen’s student number. You’ll only unlock <strong>your own team’s</strong> Practice Round Recap.</p>
 
@@ -275,7 +273,7 @@
             <div class="num">1</div>
             <div>
               <strong>Use your student number</strong>
-              <span>The same OrgDefinedId / student number from your Queen’s course records.</span>
+              <span>The same student number from your Queen’s course records.</span>
             </div>
           </div>
           <div class="key-step">
@@ -314,7 +312,8 @@
           </div>
         </div>
       </aside>
-    <div class="stack">
+
+      <div class="stack">
         <section class="panel">
           <h2>What is this?</h2>
           <p>These are <strong>Practice Round Recap</strong> reports for your Capsim firm. They turn the industry results into a plain-language coaching review: what happened, why it happened, and what to focus on when the simulation restarts.</p>
@@ -322,20 +321,8 @@
         </section>
 
         <section class="panel">
-          <h2>Who wrote these?</h2>
-          <div class="who">
-            <div class="who-card">
-              <div class="tag">Your TA</div>
-              <h3>Ali</h3>
-              <p>Sets the coaching approach, what “good” looks like in Capsim, and how each report should be read — then reviews the direction George follows.</p>
-            </div>
-            <div class="who-card">
-              <div class="tag">AI Capsim tutor</div>
-              <h3>George</h3>
-              <p>Ali’s AI assistant. George drafts each team report and follows Ali’s playbook for reading the numbers, diagnosing decisions, and writing clear next steps.</p>
-            </div>
-          </div>
-          <p style="margin-top:0.9rem;">Think of George as the writer on Ali’s desk: fast and consistent, always working from Ali’s advice on how to analyze Capsim teams — not a replacement for your TA.</p>
+          <h2>Who developed these?</h2>
+          <p>These reports are developed by Ali’s AI agent “George,” who imitates his assessment of the Capsim reports. These reports are just a quick recap and cannot replace your actual in-depth analysis of the industry.</p>
         </section>
 
         <section class="panel">
@@ -385,10 +372,9 @@
           </div>
         </section>
       </div>
+    </div>
 
-      </div>
-
-    <footer>Practice Round Recap · written by George with Ali’s guidance · Queen’s Smith School of Business</footer>
+    <footer>Practice Round Recap · developed by George · Queen’s Smith School of Business</footer>
   </div>
 
   <script>

@@ -1,10 +1,9 @@
 # Practice Round Recap
 
-**Live site:** https://thealiahmadi.github.io/capsim-practice-reports/
+**Live:** https://thealiahmadi.github.io/capsim-practice-reports/
 
-Flow:
-1. Choose section
-2. Unlock with student number (OrgDefinedId)
-3. Open or download **only that student’s team report**
+Students enter their Queen’s student number to unlock **only their own team’s** HTML coaching report.
 
-`unlock.json` stores salted SHA-256 hashes mapped to one report path each (no names/emails). Soft gate on a public static site — direct GitHub file URLs can still bypass the page UI.
+Landing page explains what the reports are, who George and Ali are, and what each report section covers.
+
+`unlock.json` = salted SHA-256 of OrgDefinedId → one report path. Soft gate on a public static site.

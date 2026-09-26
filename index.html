@@ -60,11 +60,8 @@
       margin-bottom: 0.55rem;
     }
     h1 { margin: 0 0 0.4rem; font-size: clamp(1.55rem, 3vw, 2rem); font-weight: 700; letter-spacing: -0.02em; }
-    .subtitle { margin: 0; color: rgba(255,255,255,0.78); max-width: 38rem; line-height: 1.45; }
-    .progress {
-      display: flex; gap: 0.5rem; flex-wrap: wrap;
-      margin: 1.35rem 0 0;
-    }
+    .subtitle { margin: 0; color: rgba(255,255,255,0.78); max-width: 40rem; line-height: 1.45; }
+    .progress { display: flex; gap: 0.5rem; flex-wrap: wrap; margin: 1.35rem 0 0; }
     .pill {
       font-size: 0.78rem;
       padding: 0.35rem 0.7rem;
@@ -83,11 +80,7 @@
       padding: 1.35rem 1.25rem 1.45rem;
       box-shadow: var(--shadow);
     }
-    .step-title {
-      margin: 0 0 0.25rem;
-      font-size: 1.05rem;
-      font-weight: 700;
-    }
+    .step-title { margin: 0 0 0.25rem; font-size: 1.05rem; font-weight: 700; }
     .step-help { margin: 0 0 1rem; color: var(--muted); font-size: 0.92rem; }
     .grid {
       display: grid;
@@ -120,12 +113,7 @@
     }
     .choice .label { font-weight: 700; color: var(--navy); font-size: 1rem; }
     .choice .meta { color: var(--muted); font-size: 0.8rem; }
-    .choice.team { min-height: 72px; }
-    .gate {
-      display: grid;
-      gap: 0.75rem;
-      max-width: 420px;
-    }
+    .gate { display: grid; gap: 0.75rem; max-width: 420px; }
     .gate label {
       font-size: 0.78rem;
       font-weight: 700;
@@ -134,7 +122,7 @@
       color: var(--navy);
     }
     .gate-row { display: flex; gap: 0.6rem; flex-wrap: wrap; }
-    input[type="text"], input[type="password"] {
+    input[type="password"] {
       flex: 1;
       min-width: 180px;
       padding: 0.85rem 0.95rem;
@@ -165,19 +153,26 @@
       background: linear-gradient(180deg, #e0b45a 0%, #c8942f 100%);
       color: #1a1408;
     }
-    .btn-gold:disabled { filter: grayscale(0.4); opacity: 0.55; cursor: not-allowed; }
     .msg { min-height: 1.25rem; font-size: 0.9rem; margin-top: 0.35rem; }
     .msg.ok { color: var(--ok); }
     .msg.bad { color: var(--bad); }
     .actions { display: flex; flex-wrap: wrap; gap: 0.65rem; margin-top: 1.1rem; }
+    .report-card {
+      border: 1.5px solid var(--border);
+      border-radius: 16px;
+      padding: 1.15rem 1.1rem;
+      background: linear-gradient(180deg, #f8fbff 0%, #f2f6fc 100%);
+    }
+    .report-card h3 { margin: 0 0 0.35rem; color: var(--navy); font-size: 1.25rem; }
+    .report-card p { margin: 0.15rem 0; color: var(--muted); font-size: 0.92rem; }
     .summary {
-      margin-top: 1rem;
-      padding: 0.85rem 1rem;
+      margin-top: 0.85rem;
+      padding: 0.75rem 0.9rem;
       border-radius: 12px;
       background: var(--gold-soft);
       border: 1px solid #e6d3a2;
       color: #4a3a16;
-      font-size: 0.92rem;
+      font-size: 0.9rem;
     }
     .hidden { display: none !important; }
     footer {
@@ -193,12 +188,11 @@
     <header class="hero">
       <div class="eyebrow">Queen’s · Business &amp; Corporate Strategy</div>
       <h1>Practice Round Recap</h1>
-      <p class="subtitle">Pick your section, unlock with your student number, then choose the industry and team report you want to open.</p>
+      <p class="subtitle">Choose your section, unlock with your student number, then open your own team’s coaching report.</p>
       <div class="progress" id="progress">
         <span class="pill active" data-step="1">1 · Section</span>
         <span class="pill" data-step="2">2 · Unlock</span>
-        <span class="pill" data-step="3">3 · Industry</span>
-        <span class="pill" data-step="4">4 · Team</span>
+        <span class="pill" data-step="3">3 · Your report</span>
       </div>
     </header>
 
@@ -209,8 +203,8 @@
     </section>
 
     <section class="panel hidden" id="step-unlock">
-      <h2 class="step-title">Unlock your section</h2>
-      <p class="step-help">Enter your Queen’s student number (OrgDefinedId). This only unlocks reports for the section you selected.</p>
+      <h2 class="step-title">Unlock your team report</h2>
+      <p class="step-help">Enter your Queen’s student number. You will only be able to open your own team’s report.</p>
       <div class="gate">
         <label for="student-id">Student number</label>
         <div class="gate-row">
@@ -222,24 +216,14 @@
       </div>
     </section>
 
-    <section class="panel hidden" id="step-industry">
-      <h2 class="step-title">Choose an industry</h2>
-      <p class="step-help">Select the Capsim industry for the report you want.</p>
-      <div class="grid" id="industry-grid"></div>
+    <section class="panel hidden" id="step-report">
+      <h2 class="step-title">Your team report</h2>
+      <p class="step-help">This unlock only shows your team. Other teams stay locked.</p>
+      <div class="report-card" id="report-card"></div>
       <div class="actions">
         <button class="btn btn-secondary" id="back-to-unlock" type="button">Back</button>
-      </div>
-    </section>
-
-    <section class="panel hidden" id="step-team">
-      <h2 class="step-title">Choose a team report</h2>
-      <p class="step-help">Pick the company whose Practice Round Recap you want to view.</p>
-      <div class="grid" id="team-grid"></div>
-      <div class="summary hidden" id="pick-summary"></div>
-      <div class="actions">
-        <button class="btn btn-secondary" id="back-to-industry" type="button">Back</button>
-        <button class="btn btn-gold" id="open-btn" type="button" disabled>Open report</button>
-        <button class="btn btn-primary" id="download-btn" type="button" disabled>Download HTML</button>
+        <button class="btn btn-gold" id="open-btn" type="button">Open report</button>
+        <button class="btn btn-primary" id="download-btn" type="button">Download HTML</button>
       </div>
     </section>
 
@@ -250,36 +234,29 @@
     const SALT = "capsim-practice-round-recap-v1";
     const state = {
       sectionId: null,
-      unlocked: false,
-      industryId: null,
-      teamFile: null,
-      teamName: null,
+      record: null,
       manifest: null,
       unlock: null,
     };
 
     const els = {
       sectionGrid: document.getElementById("section-grid"),
-      industryGrid: document.getElementById("industry-grid"),
-      teamGrid: document.getElementById("team-grid"),
       stepSection: document.getElementById("step-section"),
       stepUnlock: document.getElementById("step-unlock"),
-      stepIndustry: document.getElementById("step-industry"),
-      stepTeam: document.getElementById("step-team"),
+      stepReport: document.getElementById("step-report"),
       studentId: document.getElementById("student-id"),
       unlockBtn: document.getElementById("unlock-btn"),
       unlockMsg: document.getElementById("unlock-msg"),
+      reportCard: document.getElementById("report-card"),
       openBtn: document.getElementById("open-btn"),
       downloadBtn: document.getElementById("download-btn"),
-      pickSummary: document.getElementById("pick-summary"),
       pills: [...document.querySelectorAll("#progress .pill")],
     };
 
     function showStep(n) {
       els.stepSection.classList.toggle("hidden", n !== 1);
       els.stepUnlock.classList.toggle("hidden", n !== 2);
-      els.stepIndustry.classList.toggle("hidden", n !== 3);
-      els.stepTeam.classList.toggle("hidden", n !== 4);
+      els.stepReport.classList.toggle("hidden", n !== 3);
       els.pills.forEach((p) => {
         const s = Number(p.dataset.step);
         p.classList.toggle("active", s === n);
@@ -293,12 +270,10 @@
       return [...new Uint8Array(buf)].map((b) => b.toString(16).padStart(2, "0")).join("");
     }
 
-    function clearGrid(el) { el.innerHTML = ""; }
-
-    function makeChoice({ label, meta, selected, onClick, team }) {
+    function makeChoice({ label, meta, selected, onClick }) {
       const btn = document.createElement("button");
       btn.type = "button";
-      btn.className = "choice" + (team ? " team" : "") + (selected ? " selected" : "");
+      btn.className = "choice" + (selected ? " selected" : "");
       btn.innerHTML = '<span class="label"></span><span class="meta"></span>';
       btn.querySelector(".label").textContent = label;
       btn.querySelector(".meta").textContent = meta || "";
@@ -307,19 +282,15 @@
     }
 
     function renderSections() {
-      clearGrid(els.sectionGrid);
+      els.sectionGrid.innerHTML = "";
       Object.values(state.manifest.sections).forEach((sec) => {
-        const count = Object.keys(sec.industries).length;
         els.sectionGrid.appendChild(makeChoice({
           label: sec.label,
-          meta: count + " industries",
+          meta: "Tap to continue",
           selected: state.sectionId === sec.id,
           onClick: () => {
             state.sectionId = sec.id;
-            state.unlocked = false;
-            state.industryId = null;
-            state.teamFile = null;
-            state.teamName = null;
+            state.record = null;
             els.studentId.value = "";
             els.unlockMsg.textContent = "";
             els.unlockMsg.className = "msg";
@@ -331,52 +302,14 @@
       });
     }
 
-    function renderIndustries() {
-      clearGrid(els.industryGrid);
-      const sec = state.manifest.sections[state.sectionId];
-      Object.values(sec.industries).forEach((ind) => {
-        els.industryGrid.appendChild(makeChoice({
-          label: ind.label,
-          meta: ind.code + " · " + ind.teams.length + " teams",
-          selected: state.industryId === ind.id,
-          onClick: () => {
-            state.industryId = ind.id;
-            state.teamFile = null;
-            state.teamName = null;
-            renderIndustries();
-            renderTeams();
-            showStep(4);
-          }
-        }));
-      });
-    }
-
-    function renderTeams() {
-      clearGrid(els.teamGrid);
-      const sec = state.manifest.sections[state.sectionId];
-      const ind = sec.industries[state.industryId];
-      ind.teams.forEach((t) => {
-        els.teamGrid.appendChild(makeChoice({
-          label: t.name,
-          meta: "Practice Round Recap",
-          team: true,
-          selected: state.teamFile === t.file,
-          onClick: () => {
-            state.teamFile = t.file;
-            state.teamName = t.name;
-            renderTeams();
-            els.openBtn.disabled = false;
-            els.downloadBtn.disabled = false;
-            els.pickSummary.classList.remove("hidden");
-            els.pickSummary.textContent =
-              sec.label + " · " + ind.label + " (" + ind.code + ") · Team " + t.name;
-          }
-        }));
-      });
-      const ready = Boolean(state.teamFile);
-      els.openBtn.disabled = !ready;
-      els.downloadBtn.disabled = !ready;
-      els.pickSummary.classList.toggle("hidden", !ready);
+    function showReport(rec) {
+      state.record = rec;
+      els.reportCard.innerHTML =
+        "<h3>Team " + rec.team + "</h3>" +
+        "<p>Section " + rec.section + " · " + rec.industryLabel + " (" + rec.industryCode + ")</p>" +
+        "<p>Course group: " + rec.groupName + "</p>" +
+        "<div class=\"summary\">Only your team report is unlocked with this student number.</div>";
+      showStep(3);
     }
 
     async function tryUnlock() {
@@ -387,39 +320,37 @@
         return;
       }
       const digest = await sha256Hex(SALT + ":" + raw);
-      const allowed = (state.unlock.sections[state.sectionId] || {}).hashes || [];
-      if (!allowed.includes(digest)) {
+      const rec = (state.unlock.entries || {})[digest];
+      if (!rec) {
         els.unlockMsg.className = "msg bad";
-        els.unlockMsg.textContent = "That student number is not enrolled in this section.";
-        state.unlocked = false;
+        els.unlockMsg.textContent = "That student number was not found.";
         return;
       }
-      state.unlocked = true;
+      if (String(rec.section) !== String(state.sectionId)) {
+        els.unlockMsg.className = "msg bad";
+        els.unlockMsg.textContent = "That student number is not enrolled in this section.";
+        return;
+      }
       els.unlockMsg.className = "msg ok";
-      els.unlockMsg.textContent = "Unlocked. Choose an industry.";
-      renderIndustries();
-      showStep(3);
+      els.unlockMsg.textContent = "Unlocked — showing your team only.";
+      showReport(rec);
     }
 
     els.unlockBtn.addEventListener("click", tryUnlock);
     els.studentId.addEventListener("keydown", (e) => {
       if (e.key === "Enter") tryUnlock();
     });
-    document.getElementById("back-to-section").addEventListener("click", () => {
-      state.unlocked = false;
-      showStep(1);
-    });
+    document.getElementById("back-to-section").addEventListener("click", () => showStep(1));
     document.getElementById("back-to-unlock").addEventListener("click", () => showStep(2));
-    document.getElementById("back-to-industry").addEventListener("click", () => showStep(3));
 
     els.openBtn.addEventListener("click", () => {
-      if (state.teamFile) window.open(state.teamFile, "_blank", "noopener");
+      if (state.record) window.open(state.record.file, "_blank", "noopener");
     });
     els.downloadBtn.addEventListener("click", () => {
-      if (!state.teamFile) return;
+      if (!state.record) return;
       const a = document.createElement("a");
-      a.href = state.teamFile;
-      a.download = state.teamFile.split("/").pop();
+      a.href = state.record.file;
+      a.download = state.record.file.split("/").pop();
       document.body.appendChild(a);
       a.click();
       a.remove();
@@ -434,7 +365,7 @@
       renderSections();
       showStep(1);
     }).catch((err) => {
-      els.sectionGrid.innerHTML = "<p class='msg bad'>Could not load the report list. Refresh and try again.</p>";
+      els.sectionGrid.innerHTML = "<p class='msg bad'>Could not load the unlock list. Refresh and try again.</p>";
       console.error(err);
     });
   </script>

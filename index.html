@@ -62,12 +62,20 @@
 
     .layout {
       display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
+      grid-template-columns: 1fr;
       gap: 1.1rem;
       margin-top: 1.15rem;
     }
-    @media (max-width: 820px) {
-      .layout { grid-template-columns: 1fr; }
+    /* Unlock first on phones; content first column on desktop */
+    .access-panel { order: -1; }
+    .stack { order: 0; }
+    @media (min-width: 821px) {
+      .layout {
+        grid-template-columns: 1.15fr 0.85fr;
+        align-items: start;
+      }
+      .stack { order: 0; grid-column: 1; }
+      .access-panel { order: 0; grid-column: 2; }
     }
 
     .panel {
@@ -257,7 +265,56 @@
     </header>
 
     <div class="layout">
-      <div class="stack">
+      <aside class="panel access-panel" id="access-panel">
+        <div class="access-badge">🔒 Student unlock</div>
+        <h2>Get your team report</h2>
+        <p>Enter your Queen’s student number. You’ll only unlock <strong>your own team’s</strong> Practice Round Recap.</p>
+
+        <div class="key-steps" id="howto">
+          <div class="key-step">
+            <div class="num">1</div>
+            <div>
+              <strong>Use your student number</strong>
+              <span>The same OrgDefinedId / student number from your Queen’s course records.</span>
+            </div>
+          </div>
+          <div class="key-step">
+            <div class="num">2</div>
+            <div>
+              <strong>Unlock your team only</strong>
+              <span>Other teams stay locked. This page shows just your firm’s report.</span>
+            </div>
+          </div>
+          <div class="key-step">
+            <div class="num">3</div>
+            <div>
+              <strong>Open or download</strong>
+              <span>Read it in the browser, or save the HTML file to share with teammates.</span>
+            </div>
+          </div>
+        </div>
+
+        <div id="unlock-form">
+          <label class="field" for="student-id">Student number</label>
+          <div class="gate-row">
+            <input id="student-id" type="password" inputmode="numeric" autocomplete="off" placeholder="Enter student number" />
+            <button class="btn btn-primary" id="unlock-btn" type="button">Unlock</button>
+          </div>
+          <div class="msg" id="unlock-msg"></div>
+        </div>
+
+        <div class="report-box hidden" id="report-box">
+          <h3 id="report-team">Your team</h3>
+          <p id="report-meta"></p>
+          <p class="msg ok">Unlocked — this is your team’s report only.</p>
+          <div class="actions">
+            <button class="btn btn-gold" id="open-btn" type="button">Open report</button>
+            <button class="btn btn-primary" id="download-btn" type="button">Download HTML</button>
+            <button class="btn btn-secondary" id="reset-btn" type="button">Use a different number</button>
+          </div>
+        </div>
+      </aside>
+    <div class="stack">
         <section class="panel">
           <h2>What is this?</h2>
           <p>These are <strong>Practice Round Recap</strong> reports for your Capsim firm. They turn the industry results into a plain-language coaching review: what happened, why it happened, and what to focus on when the simulation restarts.</p>
@@ -329,56 +386,7 @@
         </section>
       </div>
 
-      <aside class="panel access-panel" id="access-panel">
-        <div class="access-badge">🔒 Student unlock</div>
-        <h2>Get your team report</h2>
-        <p>Enter your Queen’s student number. You’ll only unlock <strong>your own team’s</strong> Practice Round Recap.</p>
-
-        <div class="key-steps" id="howto">
-          <div class="key-step">
-            <div class="num">1</div>
-            <div>
-              <strong>Use your student number</strong>
-              <span>The same OrgDefinedId / student number from your Queen’s course records.</span>
-            </div>
-          </div>
-          <div class="key-step">
-            <div class="num">2</div>
-            <div>
-              <strong>Unlock your team only</strong>
-              <span>Other teams stay locked. This page shows just your firm’s report.</span>
-            </div>
-          </div>
-          <div class="key-step">
-            <div class="num">3</div>
-            <div>
-              <strong>Open or download</strong>
-              <span>Read it in the browser, or save the HTML file to share with teammates.</span>
-            </div>
-          </div>
-        </div>
-
-        <div id="unlock-form">
-          <label class="field" for="student-id">Student number</label>
-          <div class="gate-row">
-            <input id="student-id" type="password" inputmode="numeric" autocomplete="off" placeholder="Enter student number" />
-            <button class="btn btn-primary" id="unlock-btn" type="button">Unlock</button>
-          </div>
-          <div class="msg" id="unlock-msg"></div>
-        </div>
-
-        <div class="report-box hidden" id="report-box">
-          <h3 id="report-team">Your team</h3>
-          <p id="report-meta"></p>
-          <p class="msg ok">Unlocked — this is your team’s report only.</p>
-          <div class="actions">
-            <button class="btn btn-gold" id="open-btn" type="button">Open report</button>
-            <button class="btn btn-primary" id="download-btn" type="button">Download HTML</button>
-            <button class="btn btn-secondary" id="reset-btn" type="button">Use a different number</button>
-          </div>
-        </div>
-      </aside>
-    </div>
+      </div>
 
     <footer>Practice Round Recap · written by George with Ali’s guidance · Queen’s Smith School of Business</footer>
   </div>

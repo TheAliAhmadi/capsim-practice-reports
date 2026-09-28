@@ -20,7 +20,15 @@
       "ros": 0.022000000000000002,
       "emergencyLoan": 0.0,
       "marketShare": 0.16399999999999998,
-      "id": "CP136220_1__Ferris"
+      "id": "CP136220_1__Ferris",
+      "members": [
+        "Thaila Adda",
+        "Ben Kaplan",
+        "Erik Macniel",
+        "Ainsley O'Hare",
+        "Ella Tran",
+        "Shuyi Xiong"
+      ]
     },
     {
       "rank": 2,
@@ -36,7 +44,14 @@
       "ros": 0.048,
       "emergencyLoan": 0.0,
       "marketShare": 0.11699999999999999,
-      "id": "CP136219_1__Garrett"
+      "id": "CP136219_1__Garrett",
+      "members": [
+        "Henry Burton",
+        "Amber Graham",
+        "Beau Leone",
+        "Zac Peter",
+        "Ben Steyaert"
+      ]
     },
     {
       "rank": 3,
@@ -52,7 +67,15 @@
       "ros": 0.026000000000000002,
       "emergencyLoan": 3515.0,
       "marketShare": 0.146,
-      "id": "CP136219_1__Erie"
+      "id": "CP136219_1__Erie",
+      "members": [
+        "Solaz Artalejo",
+        "Adam Fischer",
+        "Tatiana Kayrouz",
+        "Tanner Morrier",
+        "Tomas Serrano",
+        "Sydney Yen"
+      ]
     },
     {
       "rank": 4,
@@ -68,7 +91,15 @@
       "ros": 0.040999999999999995,
       "emergencyLoan": 0.0,
       "marketShare": 0.14300000000000002,
-      "id": "CP136220_2__Ferris"
+      "id": "CP136220_2__Ferris",
+      "members": [
+        "Brett Bachman",
+        "Jadon Chung",
+        "Abigail Guzzo",
+        "Aurelien Meyer",
+        "Sophia Pop",
+        "Abbey Yablonsky"
+      ]
     },
     {
       "rank": 5,
@@ -84,7 +115,15 @@
       "ros": -0.016,
       "emergencyLoan": 0.0,
       "marketShare": 0.152,
-      "id": "CP136222_1__Chester"
+      "id": "CP136222_1__Chester",
+      "members": [
+        "Mateo Borja",
+        "Nathan Grabke",
+        "Dahlia Kerbel",
+        "Justin Kupinsky",
+        "Rachel Lester",
+        "Sam Vossoughi"
+      ]
     },
     {
       "rank": 6,
@@ -100,7 +139,15 @@
       "ros": 0.02,
       "emergencyLoan": 0.0,
       "marketShare": 0.16,
-      "id": "CP136222_2__Ferris"
+      "id": "CP136222_2__Ferris",
+      "members": [
+        "Isabella Gao",
+        "Kareena Pathak",
+        "Cameron Tolnai",
+        "Ian Tsang",
+        "Sammi Wang",
+        "Qihang Wang"
+      ]
     },
     {
       "rank": 7,
@@ -116,7 +163,15 @@
       "ros": 0.031,
       "emergencyLoan": 0.0,
       "marketShare": 0.14800000000000002,
-      "id": "CP136221_1__Chester"
+      "id": "CP136221_1__Chester",
+      "members": [
+        "Sofia Anunciacao",
+        "Thomas Atis",
+        "Ellery Aziz",
+        "Anthony Oh",
+        "Cameron Pirie",
+        "Blake Ram"
+      ]
     },
     {
       "rank": 8,
@@ -132,7 +187,14 @@
       "ros": 0.006,
       "emergencyLoan": 0.0,
       "marketShare": 0.162,
-      "id": "CP136221_1__Baldwin"
+      "id": "CP136221_1__Baldwin",
+      "members": [
+        "Jordan Horwitz",
+        "Wilson Ly",
+        "Himanshu Mallik",
+        "Aaryn Russell",
+        "Dichyant Thapa"
+      ]
     },
     {
       "rank": 9,
@@ -148,7 +210,14 @@
       "ros": 0.031,
       "emergencyLoan": 0.0,
       "marketShare": 0.159,
-      "id": "CP136219_2__Chester"
+      "id": "CP136219_2__Chester",
+      "members": [
+        "Tatum Debogorski",
+        "Adrian Jendrzejczak",
+        "Reaghan Milne",
+        "Lily Reid",
+        "Marianne Williams"
+      ]
     },
     {
       "rank": 10,
@@ -164,7 +233,15 @@
       "ros": -0.024,
       "emergencyLoan": 0.0,
       "marketShare": 0.152,
-      "id": "CP136220_1__Garrett"
+      "id": "CP136220_1__Garrett",
+      "members": [
+        "Aaron Black",
+        "Lesley Cirillo",
+        "Jillian Dalton",
+        "Andy Krempulec",
+        "Andrew Sun",
+        "Daniel Zhong"
+      ]
     },
     {
       "rank": 11,
@@ -180,7 +257,15 @@
       "ros": -0.004,
       "emergencyLoan": 0.0,
       "marketShare": 0.17600000000000002,
-      "id": "CP136219_2__Andrews"
+      "id": "CP136219_2__Andrews",
+      "members": [
+        "Anna Rafaella Acosta Ramondelli",
+        "Moon Chiu",
+        "Sean Howlett",
+        "Udi Malhotra",
+        "Gabby Rafuse",
+        "Spenser Wang"
+      ]
     },
     {
       "rank": 12,
@@ -196,7 +281,15 @@
       "ros": 0.013999999999999999,
       "emergencyLoan": 0.0,
       "marketShare": 0.125,
-      "id": "CP136222_1__Erie"
+      "id": "CP136222_1__Erie",
+      "members": [
+        "Tegan Robinson",
+        "Michael Soares",
+        "Sahana Thangathurai",
+        "Cate Wakabayashi",
+        "Joanna Wang",
+        "Xiyan Zhang"
+      ]
     },
     {
       "rank": 13,
@@ -212,7 +305,14 @@
       "ros": 0.027000000000000003,
       "emergencyLoan": 0.0,
       "marketShare": 0.15,
-      "id": "CP136219_2__Digby"
+      "id": "CP136219_2__Digby",
+      "members": [
+        "Darshan Dhillon",
+        "Madeleine Katz",
+        "Emmett Moldaver",
+        "Oliver Segal",
+        "Chet Yemm"
+      ]
     },
     {
       "rank": 14,
@@ -228,7 +328,15 @@
       "ros": 0.004,
       "emergencyLoan": 0.0,
       "marketShare": 0.16399999999999998,
-      "id": "CP136220_1__Chester"
+      "id": "CP136220_1__Chester",
+      "members": [
+        "Halle Goldstein",
+        "Simon Ing",
+        "Judah Mausberg",
+        "Mackenzie Newell",
+        "Alexandra Smyth",
+        "Brian Yau Tam Sang"
+      ]
     },
     {
       "rank": 15,
@@ -244,7 +352,15 @@
       "ros": 0.025,
       "emergencyLoan": 0.0,
       "marketShare": 0.147,
-      "id": "CP136220_2__Erie"
+      "id": "CP136220_2__Erie",
+      "members": [
+        "Allie Book",
+        "Kaitlyn Dean",
+        "Saksham Mirchandani",
+        "Liam Nowak",
+        "Owen Rabinovich",
+        "Leila Tenekjian"
+      ]
     },
     {
       "rank": 16,
@@ -260,7 +376,15 @@
       "ros": 0.018000000000000002,
       "emergencyLoan": 1335.0,
       "marketShare": 0.131,
-      "id": "CP136222_1__Ferris"
+      "id": "CP136222_1__Ferris",
+      "members": [
+        "Eamon Charles",
+        "Carter Lam",
+        "Zachary Lechem",
+        "Bochen Liu",
+        "Noah Mcilveen",
+        "Zoravaar Sooch"
+      ]
     },
     {
       "rank": 17,
@@ -276,7 +400,15 @@
       "ros": 0.009000000000000001,
       "emergencyLoan": 0.0,
       "marketShare": 0.142,
-      "id": "CP136221_2__Garrett"
+      "id": "CP136221_2__Garrett",
+      "members": [
+        "Darren Alphonso",
+        "Adam Anderson",
+        "Mateus Bongiorno",
+        "Semilore Onakanmi",
+        "Kaelam Steiner",
+        "Kavan Wu"
+      ]
     },
     {
       "rank": 18,
@@ -292,7 +424,15 @@
       "ros": -0.047,
       "emergencyLoan": 4508.0,
       "marketShare": 0.146,
-      "id": "CP136221_2__Chester"
+      "id": "CP136221_2__Chester",
+      "members": [
+        "Jia En Chin",
+        "Antara Gandhi",
+        "Anne-Sophie Ouellet",
+        "Sehaj Vig",
+        "Han Yu",
+        "Emma Zhu"
+      ]
     },
     {
       "rank": 19,
@@ -308,7 +448,15 @@
       "ros": -0.005,
       "emergencyLoan": 0.0,
       "marketShare": 0.147,
-      "id": "CP136221_2__Ferris"
+      "id": "CP136221_2__Ferris",
+      "members": [
+        "Sam Dai",
+        "Jesse Fader",
+        "Suyash Jain",
+        "Gedana Mathirajan",
+        "Eliza Wadds",
+        "Allisha Zhou"
+      ]
     },
     {
       "rank": 20,
@@ -324,7 +472,14 @@
       "ros": -0.009000000000000001,
       "emergencyLoan": 0.0,
       "marketShare": 0.134,
-      "id": "CP136219_1__Digby"
+      "id": "CP136219_1__Digby",
+      "members": [
+        "Cyprien Deligny",
+        "Lauren Johnston",
+        "Archisha Mishra",
+        "Zoe Reppas",
+        "Caroline Wood"
+      ]
     },
     {
       "rank": 21,
@@ -340,7 +495,15 @@
       "ros": 0.004,
       "emergencyLoan": 0.0,
       "marketShare": 0.14400000000000002,
-      "id": "CP136222_1__Andrews"
+      "id": "CP136222_1__Andrews",
+      "members": [
+        "Rosanne Lai",
+        "Alex Liang",
+        "Skylar McEwen",
+        "Sophie Rich",
+        "Matteo Ruffolo",
+        "Gemma Trusler"
+      ]
     },
     {
       "rank": 22,
@@ -356,7 +519,15 @@
       "ros": 0.01,
       "emergencyLoan": 0.0,
       "marketShare": 0.141,
-      "id": "CP136222_2__Chester"
+      "id": "CP136222_2__Chester",
+      "members": [
+        "Simran Chhabra",
+        "Emily Robinson",
+        "Ty Trotman",
+        "Martin Vayalikunnel",
+        "Will White",
+        "Kelvin Wu"
+      ]
     },
     {
       "rank": 23,
@@ -372,7 +543,15 @@
       "ros": 0.009000000000000001,
       "emergencyLoan": 0.0,
       "marketShare": 0.158,
-      "id": "CP136222_2__Baldwin"
+      "id": "CP136222_2__Baldwin",
+      "members": [
+        "Hannah Assaf",
+        "Alexandra Azrilyant",
+        "Kieran Carlisle",
+        "L\u00e9o Cluzet-abreu",
+        "Jacob Lang",
+        "Nolan Legare"
+      ]
     },
     {
       "rank": 24,
@@ -388,7 +567,14 @@
       "ros": -0.02,
       "emergencyLoan": 0.0,
       "marketShare": 0.13,
-      "id": "CP136221_2__Digby"
+      "id": "CP136221_2__Digby",
+      "members": [
+        "Luke Bianco",
+        "Derek Foo",
+        "Emily Gunderson",
+        "John Lu",
+        "Leo Xie"
+      ]
     },
     {
       "rank": 25,
@@ -404,7 +590,15 @@
       "ros": 0.01,
       "emergencyLoan": 0.0,
       "marketShare": 0.141,
-      "id": "CP136221_1__Ferris"
+      "id": "CP136221_1__Ferris",
+      "members": [
+        "Alexa Canning",
+        "Yifu Hu",
+        "Elliot Kopko",
+        "Christina Qi",
+        "Gefen Shpil",
+        "Zin Mar Thu"
+      ]
     },
     {
       "rank": 26,
@@ -420,7 +614,14 @@
       "ros": -0.013999999999999999,
       "emergencyLoan": 0.0,
       "marketShare": 0.159,
-      "id": "CP136221_1__Erie"
+      "id": "CP136221_1__Erie",
+      "members": [
+        "Haydon Barta",
+        "Rafay Haque",
+        "Benjamin Simone",
+        "Christopher Adi Putra Jeffry Susanto",
+        "Bryce Tovich"
+      ]
     },
     {
       "rank": 27,
@@ -436,7 +637,15 @@
       "ros": 0.013000000000000001,
       "emergencyLoan": 0.0,
       "marketShare": 0.136,
-      "id": "CP136221_2__Baldwin"
+      "id": "CP136221_2__Baldwin",
+      "members": [
+        "Mason Carlson",
+        "Gabriel Codispoti",
+        "Hussain Hussain Zahidi",
+        "Josey Li",
+        "Kate O'Brien",
+        "Hana Terauchi"
+      ]
     },
     {
       "rank": 28,
@@ -452,7 +661,15 @@
       "ros": -0.027999999999999997,
       "emergencyLoan": 0.0,
       "marketShare": 0.141,
-      "id": "CP136220_1__Baldwin"
+      "id": "CP136220_1__Baldwin",
+      "members": [
+        "Ella Cassanova",
+        "Gabi Jermyn",
+        "Hailey Kay",
+        "Maxwell Kroll",
+        "Jacob Oulton",
+        "Serena Sanchez"
+      ]
     },
     {
       "rank": 29,
@@ -468,7 +685,15 @@
       "ros": -0.006999999999999999,
       "emergencyLoan": 0.0,
       "marketShare": 0.151,
-      "id": "CP136221_2__Andrews"
+      "id": "CP136221_2__Andrews",
+      "members": [
+        "Isaac Barclay",
+        "Rudy Bu",
+        "Monica Dhavale",
+        "Eathan Han",
+        "Jasmine Tang",
+        "Jawad Wyne"
+      ]
     },
     {
       "rank": 30,
@@ -484,7 +709,15 @@
       "ros": 0.011000000000000001,
       "emergencyLoan": 0.0,
       "marketShare": 0.132,
-      "id": "CP136219_1__Harper"
+      "id": "CP136219_1__Harper",
+      "members": [
+        "Damian Carruthers",
+        "Kyle Guan",
+        "Emma Linsley",
+        "Ben Plumley",
+        "Jacob Tissplat",
+        "Tristan Trier"
+      ]
     }
   ],
   "allTeams": [
@@ -502,7 +735,15 @@
       "ros": 0.022000000000000002,
       "emergencyLoan": 0.0,
       "marketShare": 0.16399999999999998,
-      "id": "CP136220_1__Ferris"
+      "id": "CP136220_1__Ferris",
+      "members": [
+        "Thaila Adda",
+        "Ben Kaplan",
+        "Erik Macniel",
+        "Ainsley O'Hare",
+        "Ella Tran",
+        "Shuyi Xiong"
+      ]
     },
     {
       "rank": 2,
@@ -518,7 +759,14 @@
       "ros": 0.048,
       "emergencyLoan": 0.0,
       "marketShare": 0.11699999999999999,
-      "id": "CP136219_1__Garrett"
+      "id": "CP136219_1__Garrett",
+      "members": [
+        "Henry Burton",
+        "Amber Graham",
+        "Beau Leone",
+        "Zac Peter",
+        "Ben Steyaert"
+      ]
     },
     {
       "rank": 3,
@@ -534,7 +782,15 @@
       "ros": 0.026000000000000002,
       "emergencyLoan": 3515.0,
       "marketShare": 0.146,
-      "id": "CP136219_1__Erie"
+      "id": "CP136219_1__Erie",
+      "members": [
+        "Solaz Artalejo",
+        "Adam Fischer",
+        "Tatiana Kayrouz",
+        "Tanner Morrier",
+        "Tomas Serrano",
+        "Sydney Yen"
+      ]
     },
     {
       "rank": 4,
@@ -550,7 +806,15 @@
       "ros": 0.040999999999999995,
       "emergencyLoan": 0.0,
       "marketShare": 0.14300000000000002,
-      "id": "CP136220_2__Ferris"
+      "id": "CP136220_2__Ferris",
+      "members": [
+        "Brett Bachman",
+        "Jadon Chung",
+        "Abigail Guzzo",
+        "Aurelien Meyer",
+        "Sophia Pop",
+        "Abbey Yablonsky"
+      ]
     },
     {
       "rank": 5,
@@ -566,7 +830,15 @@
       "ros": -0.016,
       "emergencyLoan": 0.0,
       "marketShare": 0.152,
-      "id": "CP136222_1__Chester"
+      "id": "CP136222_1__Chester",
+      "members": [
+        "Mateo Borja",
+        "Nathan Grabke",
+        "Dahlia Kerbel",
+        "Justin Kupinsky",
+        "Rachel Lester",
+        "Sam Vossoughi"
+      ]
     },
     {
       "rank": 6,
@@ -582,7 +854,15 @@
       "ros": 0.02,
       "emergencyLoan": 0.0,
       "marketShare": 0.16,
-      "id": "CP136222_2__Ferris"
+      "id": "CP136222_2__Ferris",
+      "members": [
+        "Isabella Gao",
+        "Kareena Pathak",
+        "Cameron Tolnai",
+        "Ian Tsang",
+        "Sammi Wang",
+        "Qihang Wang"
+      ]
     },
     {
       "rank": 7,
@@ -598,7 +878,15 @@
       "ros": 0.031,
       "emergencyLoan": 0.0,
       "marketShare": 0.14800000000000002,
-      "id": "CP136221_1__Chester"
+      "id": "CP136221_1__Chester",
+      "members": [
+        "Sofia Anunciacao",
+        "Thomas Atis",
+        "Ellery Aziz",
+        "Anthony Oh",
+        "Cameron Pirie",
+        "Blake Ram"
+      ]
     },
     {
       "rank": 8,
@@ -614,7 +902,14 @@
       "ros": 0.006,
       "emergencyLoan": 0.0,
       "marketShare": 0.162,
-      "id": "CP136221_1__Baldwin"
+      "id": "CP136221_1__Baldwin",
+      "members": [
+        "Jordan Horwitz",
+        "Wilson Ly",
+        "Himanshu Mallik",
+        "Aaryn Russell",
+        "Dichyant Thapa"
+      ]
     },
     {
       "rank": 9,
@@ -630,7 +925,14 @@
       "ros": 0.031,
       "emergencyLoan": 0.0,
       "marketShare": 0.159,
-      "id": "CP136219_2__Chester"
+      "id": "CP136219_2__Chester",
+      "members": [
+        "Tatum Debogorski",
+        "Adrian Jendrzejczak",
+        "Reaghan Milne",
+        "Lily Reid",
+        "Marianne Williams"
+      ]
     },
     {
       "rank": 10,
@@ -646,7 +948,15 @@
       "ros": -0.024,
       "emergencyLoan": 0.0,
       "marketShare": 0.152,
-      "id": "CP136220_1__Garrett"
+      "id": "CP136220_1__Garrett",
+      "members": [
+        "Aaron Black",
+        "Lesley Cirillo",
+        "Jillian Dalton",
+        "Andy Krempulec",
+        "Andrew Sun",
+        "Daniel Zhong"
+      ]
     },
     {
       "rank": 11,
@@ -662,7 +972,15 @@
       "ros": -0.004,
       "emergencyLoan": 0.0,
       "marketShare": 0.17600000000000002,
-      "id": "CP136219_2__Andrews"
+      "id": "CP136219_2__Andrews",
+      "members": [
+        "Anna Rafaella Acosta Ramondelli",
+        "Moon Chiu",
+        "Sean Howlett",
+        "Udi Malhotra",
+        "Gabby Rafuse",
+        "Spenser Wang"
+      ]
     },
     {
       "rank": 12,
@@ -678,7 +996,15 @@
       "ros": 0.013999999999999999,
       "emergencyLoan": 0.0,
       "marketShare": 0.125,
-      "id": "CP136222_1__Erie"
+      "id": "CP136222_1__Erie",
+      "members": [
+        "Tegan Robinson",
+        "Michael Soares",
+        "Sahana Thangathurai",
+        "Cate Wakabayashi",
+        "Joanna Wang",
+        "Xiyan Zhang"
+      ]
     },
     {
       "rank": 13,
@@ -694,7 +1020,14 @@
       "ros": 0.027000000000000003,
       "emergencyLoan": 0.0,
       "marketShare": 0.15,
-      "id": "CP136219_2__Digby"
+      "id": "CP136219_2__Digby",
+      "members": [
+        "Darshan Dhillon",
+        "Madeleine Katz",
+        "Emmett Moldaver",
+        "Oliver Segal",
+        "Chet Yemm"
+      ]
     },
     {
       "rank": 14,
@@ -710,7 +1043,15 @@
       "ros": 0.004,
       "emergencyLoan": 0.0,
       "marketShare": 0.16399999999999998,
-      "id": "CP136220_1__Chester"
+      "id": "CP136220_1__Chester",
+      "members": [
+        "Halle Goldstein",
+        "Simon Ing",
+        "Judah Mausberg",
+        "Mackenzie Newell",
+        "Alexandra Smyth",
+        "Brian Yau Tam Sang"
+      ]
     },
     {
       "rank": 15,
@@ -726,7 +1067,15 @@
       "ros": 0.025,
       "emergencyLoan": 0.0,
       "marketShare": 0.147,
-      "id": "CP136220_2__Erie"
+      "id": "CP136220_2__Erie",
+      "members": [
+        "Allie Book",
+        "Kaitlyn Dean",
+        "Saksham Mirchandani",
+        "Liam Nowak",
+        "Owen Rabinovich",
+        "Leila Tenekjian"
+      ]
     },
     {
       "rank": 16,
@@ -742,7 +1091,15 @@
       "ros": 0.018000000000000002,
       "emergencyLoan": 1335.0,
       "marketShare": 0.131,
-      "id": "CP136222_1__Ferris"
+      "id": "CP136222_1__Ferris",
+      "members": [
+        "Eamon Charles",
+        "Carter Lam",
+        "Zachary Lechem",
+        "Bochen Liu",
+        "Noah Mcilveen",
+        "Zoravaar Sooch"
+      ]
     },
     {
       "rank": 17,
@@ -758,7 +1115,15 @@
       "ros": 0.009000000000000001,
       "emergencyLoan": 0.0,
       "marketShare": 0.142,
-      "id": "CP136221_2__Garrett"
+      "id": "CP136221_2__Garrett",
+      "members": [
+        "Darren Alphonso",
+        "Adam Anderson",
+        "Mateus Bongiorno",
+        "Semilore Onakanmi",
+        "Kaelam Steiner",
+        "Kavan Wu"
+      ]
     },
     {
       "rank": 18,
@@ -774,7 +1139,15 @@
       "ros": -0.047,
       "emergencyLoan": 4508.0,
       "marketShare": 0.146,
-      "id": "CP136221_2__Chester"
+      "id": "CP136221_2__Chester",
+      "members": [
+        "Jia En Chin",
+        "Antara Gandhi",
+        "Anne-Sophie Ouellet",
+        "Sehaj Vig",
+        "Han Yu",
+        "Emma Zhu"
+      ]
     },
     {
       "rank": 19,
@@ -790,7 +1163,15 @@
       "ros": -0.005,
       "emergencyLoan": 0.0,
       "marketShare": 0.147,
-      "id": "CP136221_2__Ferris"
+      "id": "CP136221_2__Ferris",
+      "members": [
+        "Sam Dai",
+        "Jesse Fader",
+        "Suyash Jain",
+        "Gedana Mathirajan",
+        "Eliza Wadds",
+        "Allisha Zhou"
+      ]
     },
     {
       "rank": 20,
@@ -806,7 +1187,14 @@
       "ros": -0.009000000000000001,
       "emergencyLoan": 0.0,
       "marketShare": 0.134,
-      "id": "CP136219_1__Digby"
+      "id": "CP136219_1__Digby",
+      "members": [
+        "Cyprien Deligny",
+        "Lauren Johnston",
+        "Archisha Mishra",
+        "Zoe Reppas",
+        "Caroline Wood"
+      ]
     },
     {
       "rank": 21,
@@ -822,7 +1210,15 @@
       "ros": 0.004,
       "emergencyLoan": 0.0,
       "marketShare": 0.14400000000000002,
-      "id": "CP136222_1__Andrews"
+      "id": "CP136222_1__Andrews",
+      "members": [
+        "Rosanne Lai",
+        "Alex Liang",
+        "Skylar McEwen",
+        "Sophie Rich",
+        "Matteo Ruffolo",
+        "Gemma Trusler"
+      ]
     },
     {
       "rank": 22,
@@ -838,7 +1234,15 @@
       "ros": 0.01,
       "emergencyLoan": 0.0,
       "marketShare": 0.141,
-      "id": "CP136222_2__Chester"
+      "id": "CP136222_2__Chester",
+      "members": [
+        "Simran Chhabra",
+        "Emily Robinson",
+        "Ty Trotman",
+        "Martin Vayalikunnel",
+        "Will White",
+        "Kelvin Wu"
+      ]
     },
     {
       "rank": 23,
@@ -854,7 +1258,15 @@
       "ros": 0.009000000000000001,
       "emergencyLoan": 0.0,
       "marketShare": 0.158,
-      "id": "CP136222_2__Baldwin"
+      "id": "CP136222_2__Baldwin",
+      "members": [
+        "Hannah Assaf",
+        "Alexandra Azrilyant",
+        "Kieran Carlisle",
+        "L\u00e9o Cluzet-abreu",
+        "Jacob Lang",
+        "Nolan Legare"
+      ]
     },
     {
       "rank": 24,
@@ -870,7 +1282,14 @@
       "ros": -0.02,
       "emergencyLoan": 0.0,
       "marketShare": 0.13,
-      "id": "CP136221_2__Digby"
+      "id": "CP136221_2__Digby",
+      "members": [
+        "Luke Bianco",
+        "Derek Foo",
+        "Emily Gunderson",
+        "John Lu",
+        "Leo Xie"
+      ]
     },
     {
       "rank": 25,
@@ -886,7 +1305,15 @@
       "ros": 0.01,
       "emergencyLoan": 0.0,
       "marketShare": 0.141,
-      "id": "CP136221_1__Ferris"
+      "id": "CP136221_1__Ferris",
+      "members": [
+        "Alexa Canning",
+        "Yifu Hu",
+        "Elliot Kopko",
+        "Christina Qi",
+        "Gefen Shpil",
+        "Zin Mar Thu"
+      ]
     },
     {
       "rank": 26,
@@ -902,7 +1329,14 @@
       "ros": -0.013999999999999999,
       "emergencyLoan": 0.0,
       "marketShare": 0.159,
-      "id": "CP136221_1__Erie"
+      "id": "CP136221_1__Erie",
+      "members": [
+        "Haydon Barta",
+        "Rafay Haque",
+        "Benjamin Simone",
+        "Christopher Adi Putra Jeffry Susanto",
+        "Bryce Tovich"
+      ]
     },
     {
       "rank": 27,
@@ -918,7 +1352,15 @@
       "ros": 0.013000000000000001,
       "emergencyLoan": 0.0,
       "marketShare": 0.136,
-      "id": "CP136221_2__Baldwin"
+      "id": "CP136221_2__Baldwin",
+      "members": [
+        "Mason Carlson",
+        "Gabriel Codispoti",
+        "Hussain Hussain Zahidi",
+        "Josey Li",
+        "Kate O'Brien",
+        "Hana Terauchi"
+      ]
     },
     {
       "rank": 28,
@@ -934,7 +1376,15 @@
       "ros": -0.027999999999999997,
       "emergencyLoan": 0.0,
       "marketShare": 0.141,
-      "id": "CP136220_1__Baldwin"
+      "id": "CP136220_1__Baldwin",
+      "members": [
+        "Ella Cassanova",
+        "Gabi Jermyn",
+        "Hailey Kay",
+        "Maxwell Kroll",
+        "Jacob Oulton",
+        "Serena Sanchez"
+      ]
     },
     {
       "rank": 29,
@@ -950,7 +1400,15 @@
       "ros": -0.006999999999999999,
       "emergencyLoan": 0.0,
       "marketShare": 0.151,
-      "id": "CP136221_2__Andrews"
+      "id": "CP136221_2__Andrews",
+      "members": [
+        "Isaac Barclay",
+        "Rudy Bu",
+        "Monica Dhavale",
+        "Eathan Han",
+        "Jasmine Tang",
+        "Jawad Wyne"
+      ]
     },
     {
       "rank": 30,
@@ -966,7 +1424,15 @@
       "ros": 0.011000000000000001,
       "emergencyLoan": 0.0,
       "marketShare": 0.132,
-      "id": "CP136219_1__Harper"
+      "id": "CP136219_1__Harper",
+      "members": [
+        "Damian Carruthers",
+        "Kyle Guan",
+        "Emma Linsley",
+        "Ben Plumley",
+        "Jacob Tissplat",
+        "Tristan Trier"
+      ]
     },
     {
       "rank": 31,
@@ -982,7 +1448,15 @@
       "ros": -0.005,
       "emergencyLoan": 0.0,
       "marketShare": 0.14300000000000002,
-      "id": "CP136221_1__Andrews"
+      "id": "CP136221_1__Andrews",
+      "members": [
+        "Akash Anand",
+        "Gabrielle Calalang",
+        "Estelle Wai Yan Chan",
+        "Queenie Li",
+        "Libby Rollin",
+        "Xiaohui Shen"
+      ]
     },
     {
       "rank": 32,
@@ -998,7 +1472,15 @@
       "ros": 0.006,
       "emergencyLoan": 6046.0,
       "marketShare": 0.11900000000000001,
-      "id": "CP136222_1__Digby"
+      "id": "CP136222_1__Digby",
+      "members": [
+        "Alice Davril",
+        "Daniel Glover",
+        "Ben Menezes",
+        "Olivia Robinson",
+        "Mia Volpe",
+        "Bilal Zeineddine"
+      ]
     },
     {
       "rank": 33,
@@ -1014,7 +1496,15 @@
       "ros": -0.008,
       "emergencyLoan": 0.0,
       "marketShare": 0.121,
-      "id": "CP136220_1__Digby"
+      "id": "CP136220_1__Digby",
+      "members": [
+        "Chloe Heathcote",
+        "Daniel Mercer",
+        "Chloe Petteplace",
+        "Liam Robertson",
+        "Athan Saleh",
+        "Brianna Wright"
+      ]
     },
     {
       "rank": 34,
@@ -1030,7 +1520,15 @@
       "ros": 0.01,
       "emergencyLoan": 9227.0,
       "marketShare": 0.14800000000000002,
-      "id": "CP136219_2__Erie"
+      "id": "CP136219_2__Erie",
+      "members": [
+        "Rishabh Bandopadhaya",
+        "Tristan Byrne",
+        "Ishita Goel",
+        "Charlize Keens",
+        "Charlie Mosser",
+        "Aliza Shoaib"
+      ]
     },
     {
       "rank": 35,
@@ -1046,7 +1544,15 @@
       "ros": -0.017,
       "emergencyLoan": 0.0,
       "marketShare": 0.152,
-      "id": "CP136220_2__Andrews"
+      "id": "CP136220_2__Andrews",
+      "members": [
+        "Noah Bastin",
+        "Max Finkleman",
+        "Juhyeong Jin",
+        "Tyler O'Hearn",
+        "Samridh Saha",
+        "Sidharth Sudheesh"
+      ]
     },
     {
       "rank": 36,
@@ -1062,7 +1568,15 @@
       "ros": -0.032,
       "emergencyLoan": 4708.0,
       "marketShare": 0.154,
-      "id": "CP136222_2__Andrews"
+      "id": "CP136222_2__Andrews",
+      "members": [
+        "Alex Delves",
+        "Caleb Dickson",
+        "Jessica Hoang",
+        "Tatum Ladner",
+        "Daniel Pasternack",
+        "Hannah Wagner"
+      ]
     },
     {
       "rank": 37,
@@ -1078,7 +1592,15 @@
       "ros": 0.006999999999999999,
       "emergencyLoan": 0.0,
       "marketShare": 0.126,
-      "id": "CP136220_2__Chester"
+      "id": "CP136220_2__Chester",
+      "members": [
+        "Jenna Darling",
+        "Ethan Fiorelli",
+        "Gigi Juriansz",
+        "Cameron Kim",
+        "Raed Rahim",
+        "Peyton Verhoeven"
+      ]
     },
     {
       "rank": 38,
@@ -1094,7 +1616,15 @@
       "ros": -0.015,
       "emergencyLoan": 0.0,
       "marketShare": 0.134,
-      "id": "CP136220_1__Erie"
+      "id": "CP136220_1__Erie",
+      "members": [
+        "Odeya Leikin",
+        "Terris Li",
+        "Naman Mehra",
+        "Atharva Patel",
+        "Cole Shepard",
+        "Magdalena Stanula"
+      ]
     },
     {
       "rank": 39,
@@ -1110,7 +1640,15 @@
       "ros": -0.005,
       "emergencyLoan": 0.0,
       "marketShare": 0.14800000000000002,
-      "id": "CP136221_2__Erie"
+      "id": "CP136221_2__Erie",
+      "members": [
+        "Lauren Chung",
+        "Layla Dowlut",
+        "Yuqin Guo",
+        "Sean Oh",
+        "Spiro Saites",
+        "Rhea Singh"
+      ]
     },
     {
       "rank": 40,
@@ -1126,7 +1664,15 @@
       "ros": -0.026000000000000002,
       "emergencyLoan": 2627.0,
       "marketShare": 0.114,
-      "id": "CP136222_1__Harper"
+      "id": "CP136222_1__Harper",
+      "members": [
+        "Ari Altow",
+        "Taylor Eastwood",
+        "Riya Pathak",
+        "Hayden Rogers",
+        "Zoya Salass",
+        "Zachary Stevenson"
+      ]
     },
     {
       "rank": 41,
@@ -1142,7 +1688,15 @@
       "ros": 0.005,
       "emergencyLoan": 0.0,
       "marketShare": 0.127,
-      "id": "CP136219_1__Ferris"
+      "id": "CP136219_1__Ferris",
+      "members": [
+        "Ethan Buckland",
+        "Carlos Gonzalez Botas Dominguez",
+        "Nicholas Koukoulidis",
+        "Jennifer Li",
+        "Cyrus Ostrovsky-Ross",
+        "Abby Priemer"
+      ]
     },
     {
       "rank": 42,
@@ -1158,7 +1712,15 @@
       "ros": 0.0,
       "emergencyLoan": 3993.0,
       "marketShare": 0.152,
-      "id": "CP136222_2__Garrett"
+      "id": "CP136222_2__Garrett",
+      "members": [
+        "Kolton Cousins",
+        "Chase Dodek",
+        "Cole Luepann",
+        "Justin Reuben",
+        "Evelyn Schubert",
+        "Riley Switzer"
+      ]
     },
     {
       "rank": 43,
@@ -1174,7 +1736,14 @@
       "ros": 0.012,
       "emergencyLoan": 0.0,
       "marketShare": 0.12300000000000001,
-      "id": "CP136219_1__Andrews"
+      "id": "CP136219_1__Andrews",
+      "members": [
+        "Brayden Abrams",
+        "Flynn Casey",
+        "Charlie Guy",
+        "Abby Priemer",
+        "Sasha Van Leeuwen"
+      ]
     },
     {
       "rank": 44,
@@ -1190,7 +1759,14 @@
       "ros": -0.002,
       "emergencyLoan": 3458.0,
       "marketShare": 0.114,
-      "id": "CP136222_1__Garrett"
+      "id": "CP136222_1__Garrett",
+      "members": [
+        "Gavin Chapman",
+        "Katie Dickson",
+        "Krisztian Francis",
+        "Julia Oprea",
+        "David Zedi"
+      ]
     },
     {
       "rank": 45,
@@ -1206,7 +1782,15 @@
       "ros": -0.021,
       "emergencyLoan": 5749.0,
       "marketShare": 0.149,
-      "id": "CP136220_2__Baldwin"
+      "id": "CP136220_2__Baldwin",
+      "members": [
+        "Poyraz Gulcan",
+        "Chichi Onwuama",
+        "Hunter Renaud",
+        "Worameth Sakulkunatip",
+        "Jackey Tran",
+        "Sonya Yacynowych"
+      ]
     },
     {
       "rank": 46,
@@ -1222,7 +1806,15 @@
       "ros": 0.001,
       "emergencyLoan": 0.0,
       "marketShare": 0.121,
-      "id": "CP136222_2__Digby"
+      "id": "CP136222_2__Digby",
+      "members": [
+        "Kylla Bozek",
+        "Dhannya Chandra",
+        "Ashley Difazio",
+        "Andrea Forth",
+        "Alex Osborn",
+        "Haylie Popkey"
+      ]
     },
     {
       "rank": 47,
@@ -1238,7 +1830,15 @@
       "ros": -0.022000000000000002,
       "emergencyLoan": 1364.0,
       "marketShare": 0.14,
-      "id": "CP136219_2__Ferris"
+      "id": "CP136219_2__Ferris",
+      "members": [
+        "Divyansha Bhatia",
+        "Lakshya Goenka",
+        "Amanda Gu",
+        "Maria Khraishi",
+        "Nicolas Olalquiaga Galbis",
+        "Suteh Singh"
+      ]
     },
     {
       "rank": 48,
@@ -1254,7 +1854,15 @@
       "ros": -0.059000000000000004,
       "emergencyLoan": 18367.0,
       "marketShare": 0.154,
-      "id": "CP136220_2__Digby"
+      "id": "CP136220_2__Digby",
+      "members": [
+        "Ethan Grant",
+        "Yohann Le Bray",
+        "Krisha Shah",
+        "Sophie Sharp",
+        "Tong Shen",
+        "Zaneer Vadsaria"
+      ]
     },
     {
       "rank": 49,
@@ -1270,7 +1878,14 @@
       "ros": 0.012,
       "emergencyLoan": 5024.0,
       "marketShare": 0.125,
-      "id": "CP136219_2__Garrett"
+      "id": "CP136219_2__Garrett",
+      "members": [
+        "Linus Alexis Buergi",
+        "Keira Grad",
+        "Max Lanoue",
+        "Victoria Pan",
+        "Charlotte Smith"
+      ]
     },
     {
       "rank": 50,
@@ -1286,7 +1901,15 @@
       "ros": -0.062,
       "emergencyLoan": 0.0,
       "marketShare": 0.13,
-      "id": "CP136219_1__Chester"
+      "id": "CP136219_1__Chester",
+      "members": [
+        "Fatima Amir Hussain",
+        "Jackson Dawson-Scully",
+        "Antonia Jaramillo Vega",
+        "Miles Merkur",
+        "Daniel Rego",
+        "Jack White"
+      ]
     },
     {
       "rank": 51,
@@ -1302,7 +1925,15 @@
       "ros": 0.011000000000000001,
       "emergencyLoan": 0.0,
       "marketShare": 0.157,
-      "id": "CP136221_1__Garrett"
+      "id": "CP136221_1__Garrett",
+      "members": [
+        "Raisa Islam",
+        "Jake Liu",
+        "Yi Lin Puah",
+        "Pranav Tripathi",
+        "Helen Wang",
+        "Kayla Zuo"
+      ]
     },
     {
       "rank": 52,
@@ -1318,7 +1949,15 @@
       "ros": 0.006,
       "emergencyLoan": 10868.0,
       "marketShare": 0.102,
-      "id": "CP136219_2__Baldwin"
+      "id": "CP136219_2__Baldwin",
+      "members": [
+        "Harper Aiken",
+        "Jacob Cummings",
+        "Hailey Hyland",
+        "Alexa Melo",
+        "Ethan Rashid-Cocker",
+        "Jaeger Watson"
+      ]
     },
     {
       "rank": 53,
@@ -1334,7 +1973,15 @@
       "ros": -0.02,
       "emergencyLoan": 8048.0,
       "marketShare": 0.092,
-      "id": "CP136219_1__Baldwin"
+      "id": "CP136219_1__Baldwin",
+      "members": [
+        "Sarah Ahmed",
+        "Madeleine Clapp",
+        "Ethan Hykamp",
+        "Griffin Mbonda",
+        "Arvin Rahimi",
+        "Charlie Ward"
+      ]
     },
     {
       "rank": 54,
@@ -1350,7 +1997,15 @@
       "ros": -0.054000000000000006,
       "emergencyLoan": 16789.0,
       "marketShare": 0.1,
-      "id": "CP136222_1__Baldwin"
+      "id": "CP136222_1__Baldwin",
+      "members": [
+        "Maddy Boyd",
+        "Logan Cruickshank",
+        "Alexandra Currie",
+        "Ben Lewandowski",
+        "Hanna Stefik",
+        "Andy Wu"
+      ]
     },
     {
       "rank": 55,
@@ -1366,7 +2021,15 @@
       "ros": -0.10099999999999999,
       "emergencyLoan": 15855.0,
       "marketShare": 0.11599999999999999,
-      "id": "CP136222_2__Erie"
+      "id": "CP136222_2__Erie",
+      "members": [
+        "Ethan Cairns",
+        "Claire Carter",
+        "Sarah Galloway",
+        "Cole Jackson",
+        "Anneka Tracey",
+        "Alexia Zaprianov"
+      ]
     },
     {
       "rank": 56,
@@ -1382,7 +2045,14 @@
       "ros": -0.071,
       "emergencyLoan": 21908.0,
       "marketShare": 0.129,
-      "id": "CP136220_2__Garrett"
+      "id": "CP136220_2__Garrett",
+      "members": [
+        "Kieran Fitzpatrick",
+        "Kashvi Khare",
+        "Matthew Luik",
+        "Emilie Tran",
+        "Reka Williams"
+      ]
     },
     {
       "rank": 57,
@@ -1398,7 +2068,15 @@
       "ros": -0.077,
       "emergencyLoan": 18336.0,
       "marketShare": 0.12300000000000001,
-      "id": "CP136220_1__Andrews"
+      "id": "CP136220_1__Andrews",
+      "members": [
+        "Pollapat Akaradejruangsri",
+        "Charlotte Bruce",
+        "Alexandre D'epenoux",
+        "Meyer Eskin",
+        "Tessa Fleming",
+        "Pj Howard"
+      ]
     },
     {
       "rank": 58,
@@ -1414,7 +2092,15 @@
       "ros": -0.16699999999999998,
       "emergencyLoan": 32238.0,
       "marketShare": 0.091,
-      "id": "CP136221_1__Digby"
+      "id": "CP136221_1__Digby",
+      "members": [
+        "Arian Behnami",
+        "Kai Tung Chau",
+        "Amy Duan",
+        "Kritaansh Khera",
+        "Yufei Li",
+        "Kaitlyn Vanderpost"
+      ]
     }
   ],
   "specialAwards": {
@@ -1432,7 +2118,14 @@
       "ros": 0.048,
       "emergencyLoan": 0.0,
       "marketShare": 0.11699999999999999,
-      "id": "CP136219_1__Garrett"
+      "id": "CP136219_1__Garrett",
+      "members": [
+        "Henry Burton",
+        "Amber Graham",
+        "Beau Leone",
+        "Zac Peter",
+        "Ben Steyaert"
+      ]
     },
     "highestContributionMargin": {
       "rank": 2,
@@ -1448,7 +2141,14 @@
       "ros": 0.048,
       "emergencyLoan": 0.0,
       "marketShare": 0.11699999999999999,
-      "id": "CP136219_1__Garrett"
+      "id": "CP136219_1__Garrett",
+      "members": [
+        "Henry Burton",
+        "Amber Graham",
+        "Beau Leone",
+        "Zac Peter",
+        "Ben Steyaert"
+      ]
     },
     "highestSales": {
       "rank": 5,
@@ -1464,7 +2164,15 @@
       "ros": -0.016,
       "emergencyLoan": 0.0,
       "marketShare": 0.152,
-      "id": "CP136222_1__Chester"
+      "id": "CP136222_1__Chester",
+      "members": [
+        "Mateo Borja",
+        "Nathan Grabke",
+        "Dahlia Kerbel",
+        "Justin Kupinsky",
+        "Rachel Lester",
+        "Sam Vossoughi"
+      ]
     },
     "highestROE": {
       "rank": 2,
@@ -1480,7 +2188,14 @@
       "ros": 0.048,
       "emergencyLoan": 0.0,
       "marketShare": 0.11699999999999999,
-      "id": "CP136219_1__Garrett"
+      "id": "CP136219_1__Garrett",
+      "members": [
+        "Henry Burton",
+        "Amber Graham",
+        "Beau Leone",
+        "Zac Peter",
+        "Ben Steyaert"
+      ]
     },
     "lowestEmergencyLoanAmongBorrowers": {
       "rank": 16,
@@ -1496,7 +2211,15 @@
       "ros": 0.018000000000000002,
       "emergencyLoan": 1335.0,
       "marketShare": 0.131,
-      "id": "CP136222_1__Ferris"
+      "id": "CP136222_1__Ferris",
+      "members": [
+        "Eamon Charles",
+        "Carter Lam",
+        "Zachary Lechem",
+        "Bochen Liu",
+        "Noah Mcilveen",
+        "Zoravaar Sooch"
+      ]
     },
     "profitWithoutEmergencyLoan": {
       "rank": 2,
@@ -1512,7 +2235,15 @@
       "ros": 0.048,
       "emergencyLoan": 0.0,
       "marketShare": 0.11699999999999999,
-      "id": "CP136219_1__Garrett"
+      "id": "CP136219_1__Garrett",
+      "members": [
+        "Henry Burton",
+        "Amber Graham",
+        "Beau Leone",
+        "Zac Peter",
+        "Ben Steyaert"
+      ]
     }
-  }
+  },
+  "membersNote": "Team members are first and last display names only. No emails, usernames, or student IDs."
 }

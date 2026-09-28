@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Ferris | CP136222_2 | Competition Round 1 (2027) Review</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+  :root {
+    --ink: #1a2332; --muted: #5a6a7a; --card: #ffffff; --bg: #f4f6f9; --line: #d8e0ea;
+    --blue: #2563eb; --green: #059669; --amber: #d97706; --red: #dc2626;
+    --purple: #7c3aed; --teal: #0d9488;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; padding: 0; font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+    color: var(--ink); background: var(--bg); line-height: 1.55; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 28px 20px 60px; }
+  header.hero {
+    background: linear-gradient(135deg, #0f2744 0%, #1e4d7b 60%, #2563eb 100%);
+    color: #fff; border-radius: 16px; padding: 28px 32px; margin-bottom: 22px;
+    box-shadow: 0 8px 24px rgba(15,39,68,.25);
+  }
+  header.hero h1 { margin: 0 0 6px; font-size: 1.65rem; font-weight: 700; }
+  header.hero .meta { opacity: .9; font-size: .95rem; }
+  header.hero .tag {
+    display: inline-block; margin-top: 12px; background: rgba(255,255,255,.15);
+    border: 1px solid rgba(255,255,255,.25); padding: 4px 12px; border-radius: 999px;
+    font-size: .8rem; letter-spacing: .02em;
+  }
+  h2 { font-size: 1.2rem; margin: 32px 0 12px; padding-bottom: 8px;
+    border-bottom: 2px solid var(--line); color: #0f2744; }
+  h3 { font-size: 1.02rem; margin: 0 0 8px; color: #0f2744; }
+  p, li { font-size: .95rem; }
+  .muted { color: var(--muted); }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 12px;
+    padding: 18px 20px; margin-bottom: 14px; box-shadow: 0 1px 3px rgba(0,0,0,.04); }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media (max-width: 800px) { .grid2 { grid-template-columns: 1fr; } }
+  .stat-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; }
+  .stat { flex: 1 1 120px; background: #f8fafc; border: 1px solid var(--line);
+    border-radius: 10px; padding: 10px 12px; text-align: center; }
+  .stat .lbl { font-size: .72rem; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); }
+  .stat .val { font-size: 1.2rem; font-weight: 700; margin-top: 2px; }
+  .ok .val { color: var(--green); } .warn .val { color: var(--amber); } .bad .val { color: var(--red); }
+  .badge { display: inline-block; font-size: .72rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: .04em; padding: 3px 8px; border-radius: 6px; vertical-align: middle; }
+  .badge-low { background: #fee2e2; color: #991b1b; }
+  .badge-avg { background: #fef3c7; color: #92400e; }
+  .badge-high { background: #d1fae5; color: #065f46; }
+  .badge-none { background: #e2e8f0; color: #475569; }
+  .badge-close { background: #d1fae5; color: #065f46; }
+  .badge-mid { background: #fef3c7; color: #92400e; }
+  .badge-far { background: #fee2e2; color: #991b1b; }
+  .seg-box { border-left: 4px solid var(--blue); }
+  .seg-box.absent { border-left-color: #94a3b8; background: #f8fafc; }
+  .seg-box.highend { border-left-color: var(--purple); }
+  .seg-box.perf { border-left-color: var(--teal); }
+  .seg-box.lowend { border-left-color: var(--amber); }
+  .seg-box.size { border-left-color: #db2777; }
+  .why { margin: 8px 0 0; font-size: .9rem; }
+  .why ol { margin: 6px 0 0; padding-left: 18px; }
+  .why li { margin-bottom: 4px; }
+  .chart-box { position: relative; height: 280px; margin-top: 8px; }
+  .chart-box.tall { height: 340px; }
+  .gap-table { width: 100%; border-collapse: collapse; font-size: .88rem; margin: 10px 0; }
+  .gap-table th, .gap-table td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--line); }
+  .gap-table th { color: var(--muted); font-weight: 600; font-size: .75rem; text-transform: uppercase; }
+  .crit-row { display: grid; grid-template-columns: 110px 1fr 70px; gap: 8px; align-items: center;
+    margin-bottom: 7px; font-size: .85rem; }
+  .bar-track { background: #e2e8f0; border-radius: 4px; height: 14px; overflow: hidden; position: relative; }
+  .bar-fill { height: 100%; border-radius: 4px; }
+  .crit-legend { font-size: .78rem; color: var(--muted); margin-top: 6px; }
+  .priority { border-top: 4px solid var(--blue); }
+  .priority .num {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 26px; height: 26px; border-radius: 50%; background: var(--blue); color: #fff;
+    font-weight: 700; font-size: .85rem; margin-right: 8px;
+  }
+  .prio-grid { display: grid; grid-template-columns: 1fr; gap: 10px; }
+  .callout { background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 10px;
+    padding: 12px 14px; font-size: .9rem; margin: 10px 0; }
+  .callout.warn { background: #fffbeb; border-color: #fcd34d; }
+  .callout.danger { background: #fef2f2; border-color: #fca5a5; }
+  .callout.good { background: #ecfdf5; border-color: #6ee7b7; }
+  footer.note { margin-top: 36px; padding-top: 16px; border-top: 1px solid var(--line);
+    font-size: .82rem; color: var(--muted); }
+  .comp-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
+  .mistake-list { margin: 10px 0 0; padding-left: 0; list-style: none; }
+  .mistake-list li {
+    background: #fff; border: 1px solid var(--line); border-left: 4px solid var(--blue);
+    border-radius: 10px; padding: 12px 14px; margin-bottom: 10px;
+  }
+  .mistake-list li.issue { border-left-color: var(--amber); }
+  .mistake-list li.gooditem { border-left-color: var(--green); }
+  .mistake-list li strong.num { color: var(--blue); margin-right: 6px; }
+  .mistake-list li.issue strong.num { color: var(--amber); }
+  .mistake-list li.gooditem strong.num { color: var(--green); }
+  .glossary { font-size: .88rem; color: var(--muted); border-left: 3px solid #93c5fd;
+    padding-left: 12px; margin: 8px 0 14px; }
+
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="hero">
+  <h1>Ferris — Competition Round 1 Review</h1>
+  <div class="meta">CP136222_2 | Section 4 Industry 2 | Competition Round 1 / Year 2027 | Group 004 - 14</div>
+  <span class="tag">Competition Round 1 (graded) · written by George · supervised by Ali</span>
+</header>
+
+<div class="callout good" style="margin-bottom:18px">
+  <strong>This is Competition Round 1 — the real graded simulation.</strong>
+  Decisions from this round count. This coaching package explains
+  <em>why</em> the year unfolded the way it did, and what to focus on before Round 2 decisions are locked.
+  The tone is direct and practical — and firmly on your side.
+</div>
+
+<h2>What Happened This Round</h2>
+<div class="card">
+  <p>Ferris finished Competition Round 1 <strong>profitable</strong> at $2,555 on sales of $128,786 (rank 2 of 7 on sales; profit rank 1 of 7). Cash ended at $12,748 with <strong>no emergency loan</strong>. Below: what worked, where share lagged, and what to prioritize before Round 2 locks.</p>
+  <p class="glossary">
+    <strong>Quick glossary:</strong>
+    An <em>emergency loan</em> is automatic short-term borrowing Capsim forces when cash would otherwise go negative — expensive, and a signal that financing and cash planning did not match spending.
+    <em>Contribution margin</em> (CM) is the percent of each sales dollar left after variable production costs (material, labor, inventory carrying) — before SG&amp;A, depreciation, and interest.
+    <em>Awareness</em> is the share of customers who know your product exists (mainly promotion budget).
+    <em>Accessibility</em> is how easy it is to find and buy you in the channel (mainly sales budget / how many products share it).
+    A <em>fine cut</em> is the "sweet spot" circle on the perceptual map; customers strongly prefer products inside it.
+    <em>MTBF</em> (Mean Time Between Failure) is reliability in hours; each segment has a required band.
+  </p>
+  <ol class="mistake-list"><li class="gooditem"><strong class="num">1.</strong> <strong>Cash planning held — no emergency loan.</strong> You ended with cash $12,748 and <strong>no emergency loan</strong>. That means your financing and spending roughly matched. Keep that discipline in Round 2 — an <em>emergency loan</em> is Capsim's expensive automatic borrowing when cash would otherwise go negative.</li><li class="gooditem"><strong class="num">2.</strong> <strong>You finished in the black (profit $2,555).</strong> Net profit $2,555 (rank 1 of 7 on profit). Industry average profit was ($1,015). Sales were $128,786 vs industry average ~$113,195.</li><li class="issue"><strong class="num">3.</strong> <strong>Excess inventory tied up cash on several products.</strong> Balance-sheet inventory is $15,760. Largest unit piles: Feat (470 units), Foam (282 units). Unsold units mean cash spent on material and labor is sitting on the shelf instead of in the bank.</li><li class=""><strong class="num">4.</strong> <strong>Plant investment was $9,460 this round.</strong> Net plant improvements used about $9,460 of cash. You issued stock $8,000 and LTD $8,000. Financing roughly covered the investment — good pattern to keep.</li></ol>
+  <div class="callout"><strong>The through-line:</strong> Round 1 is graded, but it is still early. defend your strongest segments, fix the clearest product gaps, and match production to real demand. You do not need a miracle — you need a short list of disciplined Round 2 decisions.</div>
+</div>
+
+<h2>1. Financial Health / Emergency Loan</h2>
+<div class="card">
+  <h3>Liquidity held — no emergency loan</h3>
+  <p>
+    Ending cash <strong>$12,748</strong>.
+    No emergency loan this round — nice work on liquidity.
+    Net profit <strong>$2,555</strong>; ROS <strong>2.0%</strong>; ROE <strong>4.4%</strong>;
+    ROA <strong>2.2%</strong>. Stock price <strong>$36</strong>
+    (EPS $1); book value per share about <strong>$26</strong>;
+    cumulative profit <strong>$6,740</strong>.
+  </p>
+  <div class="stat-row">
+    <div class="stat ok"><div class="lbl">Emergency Loan</div><div class="val">$0</div></div>
+    <div class="stat ok"><div class="lbl">Ending Cash</div><div class="val">$12,748</div></div>
+    <div class="stat ok"><div class="lbl">Net Profit</div><div class="val">$2,555</div></div>
+    <div class="stat warn"><div class="lbl">Ending Inventory $</div><div class="val">$15,760</div></div>
+    <div class="stat ok"><div class="lbl">Sales</div><div class="val">$128,786</div></div>
+    <div class="stat ok"><div class="lbl">Stock Price</div><div class="val">$36</div></div>
+  </div>
+  <div class="stat-row">
+    <div class="stat"><div class="lbl">ROS</div><div class="val">2.0%</div></div>
+    <div class="stat"><div class="lbl">ROE</div><div class="val">4.4%</div></div>
+    <div class="stat"><div class="lbl">Company CM</div><div class="val">28.4%</div></div>
+    <div class="stat"><div class="lbl">SG&amp;A / Sales</div><div class="val">13.4%</div></div>
+    <div class="stat"><div class="lbl">Interest Expense</div><div class="val">$6,325</div></div>
+    <div class="stat"><div class="lbl">Long-Term Debt</div><div class="val">$49,700</div></div>
+  </div>
+  <div class="callout good" style="margin-top:14px">
+    <strong>Liquidity read:</strong>
+    Net cash from operations $2,778; plant investment $9,460; stock issued $8,000; LTD issued $8,000. Keep matching investments to financing.
+  </div>
+</div>
+
+<h2>2. Investment Profile</h2>
+<div class="card">
+  <h3>Where Round 1 cash went (plant · financing contrast)</h3>
+  <p>
+    Ferris's <strong>Net Plant Improvements were ($9,460)</strong>
+    (negative numbers on the cash-flow statement mean cash spent on plant).
+    Stock issued <strong>$8,000</strong>; long-term debt issued <strong>$8,000</strong>.
+    TQM/HR capability build is not yet visible as a productivity lift — productivity index remains
+    <strong>1.00</strong> industry-wide in the extract. Automation next round by product: Fast 4.2, Feat 5.3, Fist 3.0, Foam 3.0, Fume 3.0.
+  </p>
+  <div class="chart-box"><canvas id="investChart"></canvas></div>
+  <p class="muted" style="margin-top:10px;font-size:.85rem">
+    Grouped bars compare every company in CP136222_2. Plant = absolute value of Net Plant Improvements.
+    Stock issued and LTD issued show whether peers financed their investments.
+  </p>
+  <div class="callout warn">
+    <strong>Strategy fit:</strong>
+    You invested in plant — pair every major capacity/automation dollar with explicit financing.
+    Rivals who invest successfully usually <em>raise</em> equity or LTD in the same year.
+  </div>
+</div>
+
+<h2>3. Segment Performance — Why Share Is Where It Is</h2>
+<p class="muted">One box per Capsim segment. Labels are relative to a competitive presence in this industry (7 teams).</p>
+<div class="grid2">
+  <div class="card seg-box ">
+    <h3>Traditional — Fast <span class="badge badge-high">High</span> · team share ~19.2%</h3>
+    <p class="why">Segment size ~9,411 units. Fast sold <strong>1,683</strong> in-segment · <strong>Stockout</strong>. CS <strong>40</strong> · CM 30.6% · Automation next 4.2 · Utilization ~86.1% · Ending inventory 0 · Awareness 66.0% · Accessibility 66.0%.</p>
+    <div class="why"><strong>Ranked causes:</strong><ol><li><strong>Supply / stockout:</strong> Customers wanted more (sold 1,683, potential ~1,532). Schedule more production before adding random capacity everywhere.</li></ol></div>
+  </div>
+  <div class="card seg-box lowend">
+    <h3>Low End — Feat <span class="badge badge-avg">Average</span> · team share ~13.1%</h3>
+    <p class="why">Segment size ~11,677 units. Feat sold <strong>1,527</strong> in-segment. CS <strong>18</strong> · CM 21.2% · Automation next 5.3 · Utilization ~150.0% · Ending inventory 470 · Awareness 57.7% · Accessibility 43.0%.</p>
+    <div class="why"><strong>Ranked causes:</strong><ol><li><strong>Price:</strong> At $20 you are higher than aggressive Low End rivals (e.g. Acre at $18). Price is 53% of Low End buying criteria.</li><li><strong>Thin contribution margin:</strong> 21.2% at price $20. Automation next round is 5.3 — Low End usually needs cost help.</li><li><strong>Overtime / high utilization:</strong> plant utilization ~150.0% — second-shift and OT costs are elevated.</li><li><strong>Overproduction:</strong> 470 units left in inventory on 1,648 sold.</li></ol></div>
+  </div>
+  <div class="card seg-box highend">
+    <h3>High End — Fist <span class="badge badge-avg">Average</span> · team share ~15.2%</h3>
+    <p class="why">Segment size ~3,462 units. Fist sold <strong>496</strong> in-segment. CS <strong>23</strong> · CM 36.6% · Automation next 3.0 · Utilization ~56.7% · Ending inventory 50 · Awareness 52.4% · Accessibility 52.0%.</p>
+    <div class="why"><strong>Ranked causes:</strong><ol><li><strong>Positioning:</strong> Pfmn 8.9 / Size 11.0 vs ideal 9.8 / 10.2 (distance ~1.20). Being outside the fine cut hurts demand.</li><li><strong>Age:</strong> 1.5 years vs preferred ~0.0. Revising earlier in the year helps High End / Size / Performance.</li><li><strong>Accessibility:</strong> 52.0% vs Bid at 67.0%.</li><li><strong>Awareness:</strong> 52.4% — promotion budget is not reaching enough customers.</li></ol></div>
+  </div>
+  <div class="card seg-box perf">
+    <h3>Performance — Foam <span class="badge badge-avg">Average</span> · team share ~14.9%</h3>
+    <p class="why">Segment size ~2,677 units. Foam sold <strong>398</strong> in-segment. CS <strong>39</strong> · CM 20.7% · Automation next 3.0 · Utilization ~106.7% · Ending inventory 282 · Awareness 61.1% · Accessibility 44.0%.</p>
+    <div class="why"><strong>Ranked causes:</strong><ol><li><strong>Accessibility:</strong> 44.0% vs Bold at 56.0%.</li><li><strong>Overproduction:</strong> 282 units left in inventory on 429 sold.</li></ol></div>
+  </div>
+  <div class="card seg-box size">
+    <h3>Size — Fume <span class="badge badge-high">High</span> · team share ~18.7%</h3>
+    <p class="why">Segment size ~2,738 units. Fume sold <strong>482</strong> in-segment. CS <strong>28</strong> · CM 33.7% · Automation next 3.0 · Utilization ~75.0% · Ending inventory 25 · Awareness 45.6% · Accessibility 42.0%.</p>
+    <div class="why"><strong>Ranked causes:</strong><ol><li><strong>Positioning:</strong> Slightly off ideal (4.3/10.1 vs 4.7/9.6, gap ~0.64).</li><li><strong>Accessibility:</strong> 42.0% vs Buddy at 61.0%.</li><li><strong>Awareness:</strong> 45.6% — promotion budget is not reaching enough customers.</li></ol></div>
+  </div></div>
+
+<h2>4. Distance from What Wins <span class="muted" style="font-size:.85rem;font-weight:500">(segment-specific fit — not a Capstone Pfmn × Size map)</span></h2>
+<p>The Industry Report already shows the perceptual map. Below: on the criteria that decide winners in each segment, how far is Ferris from the winning profile?</p>
+
+<div class="card" style="border-left:4px solid #2563eb">
+  <h3>Fast | Traditional — winning criteria: Age 47% | Price 23% | Positioning 21% | Reliability 9%</h3>
+  <p class="muted" style="margin-top:0">Best rival benchmark: <strong>Able</strong>. Overall fit: <span class="badge badge-mid">Mid</span>.</p>
+  <table class="gap-table">
+    <thead><tr><th>Criterion</th><th>Ideal / band</th><th>Fast</th><th>Best rival</th><th>Gap</th><th>Fit</th></tr></thead>
+    <tbody><tr><td>Price</td><td>$20–$30</td><td>$27</td><td>$26</td><td>Inside band</td><td><span class="badge badge-close">Close</span></td></tr><tr><td>Age</td><td>~2.0</td><td>2.4</td><td>2.2</td><td>+0.4 vs ideal</td><td><span class="badge badge-close">Close</span></td></tr><tr><td>Performance</td><td>5.7</td><td>5.7</td><td>6.2</td><td>+0.0</td><td><span class="badge badge-close">Close</span></td></tr><tr><td>Size</td><td>14.3</td><td>14.3</td><td>13.8</td><td>+0.0</td><td><span class="badge badge-close">Close</span></td></tr><tr><td>Position distance*</td><td>0</td><td>~0.00</td><td>~0.71</td><td>vs ideal</td><td><span class="badge badge-close">Close</span></td></tr><tr><td>MTBF</td><td>14,000–19,000</td><td>16,000</td><td>15,050</td><td>In band</td><td><span class="badge badge-mid">Mid</span></td></tr><tr><td>Accessibility</td><td>Compete with leaders</td><td>66.0%</td><td>63.0%</td><td>+3 pts vs rival</td><td><span class="badge badge-close">Close</span></td></tr><tr><td>Availability</td><td>Meet demand</td><td>Stockout</td><td>—</td><td>Lost sales</td><td><span class="badge badge-far">Far</span></td></tr></tbody>
+  </table>
+  <p class="muted" style="font-size:.82rem">*Rough Euclidean gap vs segment ideal — teaching distance, not Capsim's internal scoring.</p>
+  <div class="callout warn"><strong>Fix next round:</strong> Keep age near 2, hold price inside the band, and push MTBF into the upper half of 14,000–19,000 while lifting accessibility.</div>
+</div>
+<div class="card" style="border-left:4px solid #d97706">
+  <h3>Feat | Low End — winning criteria: Price 53% | Age 24% | Positioning 16% | Reliability 7%</h3>
+  <p class="muted" style="margin-top:0">Best rival benchmark: <strong>Acre</strong>. Overall fit: <span class="badge badge-far">Far</span>.</p>
+  <table class="gap-table">
+    <thead><tr><th>Criterion</th><th>Ideal / band</th><th>Feat</th><th>Best rival</th><th>Gap</th><th>Fit</th></tr></thead>
+    <tbody><tr><td>Price</td><td>$14–$24 (lower wins)</td><td>$20</td><td>$18</td><td>Competitive check</td><td><span class="badge badge-mid">Mid</span></td></tr><tr><td>Age</td><td>~7.0</td><td>2.9</td><td>5.6</td><td>-4.1 vs ideal</td><td><span class="badge badge-mid">Mid</span></td></tr><tr><td>Performance</td><td>2.2</td><td>2.2</td><td>3.0</td><td>+0.0</td><td><span class="badge badge-close">Close</span></td></tr><tr><td>Size</td><td>17.8</td><td>17.8</td><td>17.0</td><td>+0.0</td><td><span class="badge badge-close">Close</span></td></tr><tr><td>Position distance*</td><td>0</td><td>~0.00</td><td>~1.13</td><td>vs ideal</td><td><span class="badge badge-close">Close</span></td></tr><tr><td>MTBF</td><td>12,000–17,000</td><td>14,000</td><td>12,000</td><td>In band</td><td><span class="badge badge-mid">Mid</span></td></tr><tr><td>Accessibility</td><td>Compete with leaders</td><td>43.0%</td><td>43.0%</td><td>+0 pts vs rival</td><td><span class="badge badge-mid">Mid</span></td></tr><tr><td>CM / cost</td><td>Sustain low price</td><td>21.2% · Auto 5.3</td><td>—</td><td>Cost structure</td><td><span class="badge badge-far">Far</span></td></tr><tr><td>Inventory</td><td>Lean</td><td>470</td><td>—</td><td>Overstock</td><td><span class="badge badge-far">Far</span></td></tr></tbody>
+  </table>
+  <p class="muted" style="font-size:.82rem">*Rough Euclidean gap vs segment ideal — teaching distance, not Capsim's internal scoring.</p>
+  <div class="callout warn"><strong>Fix next round:</strong> Defend a competitive low price with higher automation/cost discipline, raise accessibility, and schedule enough units to avoid stockouts.</div>
+</div>
+<div class="card" style="border-left:4px solid #7c3aed">
+  <h3>Fist | High End — winning criteria: Positioning 43% | Age 29% | MTBF 19% | Price 9%</h3>
+  <p class="muted" style="margin-top:0">Best rival benchmark: <strong>Bid</strong>. Overall fit: <span class="badge badge-far">Far</span>.</p>
+  <table class="gap-table">
+    <thead><tr><th>Criterion</th><th>Ideal / band</th><th>Fist</th><th>Best rival</th><th>Gap</th><th>Fit</th></tr></thead>
+    <tbody><tr><td>Price</td><td>$30–$40</td><td>$39</td><td>$40</td><td>Inside band</td><td><span class="badge badge-close">Close</span></td></tr><tr><td>Age</td><td>~0.0</td><td>1.5</td><td>1.4</td><td>+1.5 vs ideal</td><td><span class="badge badge-mid">Mid</span></td></tr><tr><td>Performance</td><td>9.8</td><td>8.9</td><td>8.7</td><td>-0.9</td><td><span class="badge badge-far">Far</span></td></tr><tr><td>Size</td><td>10.2</td><td>11.0</td><td>10.6</td><td>+0.8</td><td><span class="badge badge-far">Far</span></td></tr><tr><td>Position distance*</td><td>0</td><td>~1.20</td><td>~1.17</td><td>vs ideal</td><td><span class="badge badge-far">Far</span></td></tr><tr><td>MTBF</td><td>20,000–25,000</td><td>22,500</td><td>23,000</td><td>In band</td><td><span class="badge badge-close">Close</span></td></tr><tr><td>Accessibility</td><td>Compete with leaders</td><td>52.0%</td><td>67.0%</td><td>-15 pts vs rival</td><td><span class="badge badge-mid">Mid</span></td></tr></tbody>
+  </table>
+  <p class="muted" style="font-size:.82rem">*Rough Euclidean gap vs segment ideal — teaching distance, not Capsim's internal scoring.</p>
+  <div class="callout warn"><strong>Fix next round:</strong> Chase the drifting ideal (higher Performance / smaller Size), revise for younger age, and do not overbuild inventory.</div>
+</div>
+<div class="card" style="border-left:4px solid #0d9488">
+  <h3>Foam | Performance — winning criteria: MTBF 43% | Positioning 29% | Price 19% | Age 9%</h3>
+  <p class="muted" style="margin-top:0">Best rival benchmark: <strong>Bold</strong>. Overall fit: <span class="badge badge-mid">Mid</span>.</p>
+  <table class="gap-table">
+    <thead><tr><th>Criterion</th><th>Ideal / band</th><th>Foam</th><th>Best rival</th><th>Gap</th><th>Fit</th></tr></thead>
+    <tbody><tr><td>Price</td><td>$24–$34</td><td>$34</td><td>$33</td><td>Inside band</td><td><span class="badge badge-close">Close</span></td></tr><tr><td>Age</td><td>~1.0</td><td>1.8</td><td>1.9</td><td>+0.8 vs ideal</td><td><span class="badge badge-close">Close</span></td></tr><tr><td>Performance</td><td>10.4</td><td>10.6</td><td>10.4</td><td>+0.2</td><td><span class="badge badge-close">Close</span></td></tr><tr><td>Size</td><td>15.3</td><td>15.1</td><td>14.9</td><td>-0.2</td><td><span class="badge badge-close">Close</span></td></tr><tr><td>Position distance*</td><td>0</td><td>~0.28</td><td>~0.40</td><td>vs ideal</td><td><span class="badge badge-close">Close</span></td></tr><tr><td>MTBF</td><td>22,000–27,000</td><td>27,000</td><td>27,000</td><td>In band</td><td><span class="badge badge-close">Close</span></td></tr><tr><td>Accessibility</td><td>Compete with leaders</td><td>44.0%</td><td>56.0%</td><td>-12 pts vs rival</td><td><span class="badge badge-mid">Mid</span></td></tr><tr><td>Inventory</td><td>Lean</td><td>282</td><td>—</td><td>Overstock</td><td><span class="badge badge-far">Far</span></td></tr></tbody>
+  </table>
+  <p class="muted" style="font-size:.82rem">*Rough Euclidean gap vs segment ideal — teaching distance, not Capsim's internal scoring.</p>
+  <div class="callout warn"><strong>Fix next round:</strong> Max MTBF toward 27,000, sit on the ideal spot, keep price inside $24.50–$34.50, and fund enough sales reach.</div>
+</div>
+<div class="card" style="border-left:4px solid #db2777">
+  <h3>Fume | Size — winning criteria: Positioning 43% | Age 29% | MTBF 19% | Price 9%</h3>
+  <p class="muted" style="margin-top:0">Best rival benchmark: <strong>Buddy</strong>. Overall fit: <span class="badge badge-mid">Mid</span>.</p>
+  <table class="gap-table">
+    <thead><tr><th>Criterion</th><th>Ideal / band</th><th>Fume</th><th>Best rival</th><th>Gap</th><th>Fit</th></tr></thead>
+    <tbody><tr><td>Price</td><td>$24–$34</td><td>$34</td><td>$34</td><td>Inside band</td><td><span class="badge badge-close">Close</span></td></tr><tr><td>Age</td><td>~1.0</td><td>2.0</td><td>1.8</td><td>+1.0 vs ideal</td><td><span class="badge badge-mid">Mid</span></td></tr><tr><td>Performance</td><td>4.7</td><td>4.3</td><td>4.9</td><td>-0.4</td><td><span class="badge badge-mid">Mid</span></td></tr><tr><td>Size</td><td>9.6</td><td>10.1</td><td>9.6</td><td>+0.5</td><td><span class="badge badge-mid">Mid</span></td></tr><tr><td>Position distance*</td><td>0</td><td>~0.64</td><td>~0.20</td><td>vs ideal</td><td><span class="badge badge-mid">Mid</span></td></tr><tr><td>MTBF</td><td>16,000–21,000</td><td>18,500</td><td>18,000</td><td>In band</td><td><span class="badge badge-close">Close</span></td></tr><tr><td>Accessibility</td><td>Compete with leaders</td><td>42.0%</td><td>61.0%</td><td>-19 pts vs rival</td><td><span class="badge badge-mid">Mid</span></td></tr></tbody>
+  </table>
+  <p class="muted" style="font-size:.82rem">*Rough Euclidean gap vs segment ideal — teaching distance, not Capsim's internal scoring.</p>
+  <div class="callout warn"><strong>Fix next round:</strong> Move toward ideal 4.7 / 9.6, lift MTBF, and close accessibility gaps — CS follows positioning in Size.</div>
+</div>
+
+<h2>5. Customer Criteria Comparison</h2>
+<p class="muted">Compact view for products where coaching attention helps most. Horizontal bars — not radar charts.</p>
+<div class="grid2">
+
+  <div class="card">
+    <h3>Feat vs Low End expectations | rival Acre</h3>
+    <div class="crit-row"><div>Price</div><div class="bar-track"><div class="bar-fill" style="width:50%;background:#2563eb"></div></div><div>$20</div></div>
+    <div class="crit-row"><div>Age</div><div class="bar-track"><div class="bar-fill" style="width:5%;background:#7c3aed"></div></div><div>2.9</div></div>
+    <div class="crit-row"><div>MTBF</div><div class="bar-track"><div class="bar-fill" style="width:40%;background:#0d9488"></div></div><div>14,000</div></div>
+    <div class="crit-row"><div>Pos. gap</div><div class="bar-track"><div class="bar-fill" style="width:0%;background:#059669"></div></div><div>~0.00</div></div>
+    <div class="crit-row"><div>Awareness</div><div class="bar-track"><div class="bar-fill" style="width:58%;background:#0d9488"></div></div><div>57.7%</div></div>
+    <div class="crit-row"><div>Accessibility</div><div class="bar-track"><div class="bar-fill" style="width:43%;background:#dc2626"></div></div><div>43.0%</div></div>
+    <p class="crit-legend">Bars ≈ Feat. Rival Acre: price $18, age 5.6, MTBF 12,000, aware 69.4%, access 43.0%, CS 29.</p>
+  </div>
+  <div class="card">
+    <h3>Fist vs High End expectations | rival Bid</h3>
+    <div class="crit-row"><div>Price</div><div class="bar-track"><div class="bar-fill" style="width:95%;background:#2563eb"></div></div><div>$39</div></div>
+    <div class="crit-row"><div>Age</div><div class="bar-track"><div class="bar-fill" style="width:50%;background:#7c3aed"></div></div><div>1.5</div></div>
+    <div class="crit-row"><div>MTBF</div><div class="bar-track"><div class="bar-fill" style="width:50%;background:#0d9488"></div></div><div>22,500</div></div>
+    <div class="crit-row"><div>Pos. gap</div><div class="bar-track"><div class="bar-fill" style="width:80%;background:#d97706"></div></div><div>~1.20</div></div>
+    <div class="crit-row"><div>Awareness</div><div class="bar-track"><div class="bar-fill" style="width:52%;background:#0d9488"></div></div><div>52.4%</div></div>
+    <div class="crit-row"><div>Accessibility</div><div class="bar-track"><div class="bar-fill" style="width:52%;background:#2563eb"></div></div><div>52.0%</div></div>
+    <p class="crit-legend">Bars ≈ Fist. Rival Bid: price $40, age 1.4, MTBF 23,000, aware 77.4%, access 67.0%, CS 36.</p>
+  </div>
+  <div class="card">
+    <h3>Foam vs Performance expectations | rival Bold</h3>
+    <div class="crit-row"><div>Price</div><div class="bar-track"><div class="bar-fill" style="width:92%;background:#2563eb"></div></div><div>$34</div></div>
+    <div class="crit-row"><div>Age</div><div class="bar-track"><div class="bar-fill" style="width:73%;background:#7c3aed"></div></div><div>1.8</div></div>
+    <div class="crit-row"><div>MTBF</div><div class="bar-track"><div class="bar-fill" style="width:100%;background:#0d9488"></div></div><div>27,000</div></div>
+    <div class="crit-row"><div>Pos. gap</div><div class="bar-track"><div class="bar-fill" style="width:19%;background:#059669"></div></div><div>~0.28</div></div>
+    <div class="crit-row"><div>Awareness</div><div class="bar-track"><div class="bar-fill" style="width:61%;background:#0d9488"></div></div><div>61.1%</div></div>
+    <div class="crit-row"><div>Accessibility</div><div class="bar-track"><div class="bar-fill" style="width:44%;background:#dc2626"></div></div><div>44.0%</div></div>
+    <p class="crit-legend">Bars ≈ Foam. Rival Bold: price $33, age 1.9, MTBF 27,000, aware 75.4%, access 56.0%, CS 53.</p>
+  </div>
+</div>
+
+<h2>6. Production and Inventory</h2>
+<div class="card">
+  <h3>Units sold vs produced vs ending inventory</h3>
+  <p>
+    Compare sold vs produced to separate <strong>demand problems</strong> (customers did not want enough)
+    from <strong>supply problems</strong> (customers wanted more than you made).
+    Stockouts are supply problems; huge ending inventory with weak sales is usually a demand (or price/position) problem.
+  </p>
+  <div class="chart-box tall"><canvas id="prodChart"></canvas></div>
+  <table class="gap-table" style="margin-top:12px">
+    <thead><tr><th>Product</th><th>Segment</th><th>Sold</th><th>Prod~</th><th>End Inv</th><th>Stockout</th><th>Util</th><th>Next Cap</th><th>CM</th></tr></thead>
+    <tbody><tr><td>Fast</td><td>Traditional</td><td>1,724</td><td>~1,724</td><td>0</td><td><strong>Yes</strong></td><td>86.1%</td><td>1,800</td><td>30.6%</td></tr><tr><td>Feat</td><td>Low End</td><td>1,648</td><td>~2,118</td><td>470</td><td>No</td><td>150.0%</td><td>1,600</td><td>21.2%</td></tr><tr><td>Fist</td><td>High End</td><td>496</td><td>~546</td><td>50</td><td>No</td><td>56.7%</td><td>900</td><td>36.6%</td></tr><tr><td>Foam</td><td>Performance</td><td>429</td><td>~711</td><td>282</td><td>No</td><td>106.7%</td><td>650</td><td>20.7%</td></tr><tr><td>Fume</td><td>Size</td><td>483</td><td>~508</td><td>25</td><td>No</td><td>75.0%</td><td>600</td><td>33.7%</td></tr></tbody>
+  </table>
+  <p class="muted" style="font-size:.82rem">Production ≈ sold + ending inventory (beginning inventory not itemized separately in the extract). Balance-sheet inventory for Ferris: <strong>$15,760</strong>.</p>
+  <div class="callout warn">
+    <strong>Reading the chart:</strong> An empty inventory bar with a stockout flag means you under-produced a product customers wanted.
+    A huge inventory bar with weak sales means you over-produced a product customers resisted. Those are opposite mistakes — do not "add capacity everywhere."
+  </div>
+</div>
+
+<h2>7. Competencies</h2>
+<div class="comp-grid">
+  <div class="card"><h3>R&amp;D cycle time / repositioning</h3>
+    <p>Automation next round: Fast 4.2, Feat 5.3, Fist 3.0, Foam 3.0, Fume 3.0. Higher automation slows R&amp;D repositioning. That tradeoff is often acceptable on Low End (cost matters more than frequent moves) and riskier if you plan aggressive High End / Size / Performance repositioning while also pushing automation up. No material TQM R&amp;D-cycle benefit is visible yet.</p></div>
+  <div class="card"><h3>Variable cost position</h3>
+    <p>Fast: mat $10, labor $8 · Feat: mat $6, labor $8 · Fist: mat $16, labor $9 · Foam: mat $16, labor $9 · Fume: mat $13, labor $9. Company CM <strong>28.4%</strong> (industry avg 27.9%). Low End products usually need lower labor via automation to protect margin at low prices.</p></div>
+  <div class="card"><h3>Automation fit</h3>
+    <p>Read automation against segment intent: Low End often wants 6–8 over time; Traditional mid; High End / Performance / Size often keep more flexibility early so you can chase the ideal spot. Raise automation with a cash plan, not by surprise.</p></div>
+  <div class="card"><h3>Contribution margins &amp; SG&amp;A</h3>
+    <p>Product CMs: Fast 30.6%, Feat 21.2%, Fist 36.6%, Foam 20.7%, Fume 33.7%. Company CM 28.4%; SG&amp;A/Sales 13.4%. If SG&amp;A is high on soft sales, trim budgets on products that are not converting awareness into volume.</p></div>
+  <div class="card"><h3>TQM / HR / capacity headroom</h3>
+    <p>Plant improvements this round: <strong>($9,460)</strong>. Productivity index <strong>1.00</strong>. Turnover ~10.0%. Watch utilization above 100% — that is second-shift/OT cost pressure. Headroom on under-used lines is an opportunity to avoid buying capacity too early.</p></div>
+  <div class="card"><h3>What this means for next round</h3>
+    <p>Capability building (automation, possible TQM cost initiatives, targeted R&amp;D) only sticks if cash planning comes first and products sit in the right price/position/MTBF box for their segment. Round 2 is where disciplined teams separate.</p></div>
+</div>
+
+<h2>What to Focus on Next Round</h2>
+<p class="muted">Five priorities — serious problems first. These are focus areas, not a full decision set.</p>
+<div class="prio-grid"><div class="card priority"><h3><span class="num">1</span> Protect liquidity while you invest</h3><p>You avoided an emergency loan (cash $12,748). Keep that standard. Any capacity/automation spend needs matching financing up front — do not assume operations will refill the account in time.</p></div><div class="card priority"><h3><span class="num">2</span> Capture demand you already earned (Fast)</h3><p>Those products stocked out. Raise the production schedule (and evaluate capacity only if growth looks durable), and make sure sales budgets support accessibility so the extra units can actually sell.</p></div><div class="card priority"><h3><span class="num">3</span> Clear excess inventory on slow movers</h3><p>Cut or carefully right-size production on Feat (470 left), Foam (282 left) until shelves normalize — that frees cash faster than most other moves.</p></div><div class="card priority"><h3><span class="num">4</span> Low End cost: raise automation on Feat thoughtfully</h3><p>Automation next round is 5.3. Low End is a price/cost game — higher automation lowers labor and supports a competitive price with a healthier contribution margin. Finance the upgrade; do not sneak it in without cash.</p></div><div class="card priority"><h3><span class="num">5</span> Competitors to watch</h3><p><strong>Baldwin</strong> led industry sales ($133,451); in Low End, study <strong>Acre</strong> (Andrews) — CS 29, sold 2,099; in Traditional, study <strong>Able</strong> (Andrews) — CS 45, sold 1,410; in Performance, study <strong>Bold</strong> (Baldwin) — CS 53, sold 571. Copy their financing discipline and segment criteria fit — not their logo.</p></div></div>
+
+<footer class="note">
+  Competition Round 1 coaching review for Ferris (CP136222_2, Group 004 - 14). Figures from the Industry Report extract for Round 1 / Year 2027.
+  Written by George — Ali's AI Capsim tutor (supervised and guided by Ali). This round counts toward the graded competition.
+</footer>
+</div>
+
+<script>
+new Chart(document.getElementById('investChart'), {
+  type: 'bar',
+  data: {
+    labels: ["Andrews", "Baldwin", "Chester", "Digby", "Erie", "Ferris", "Garrett"],
+    datasets: [
+      { label: 'Plant $ (abs.)', data: [11700.0, 0.0, 13240.0, 11200.0, 31420.0, 9460.0, 15280.0], backgroundColor: '#2563eb' },
+      { label: 'Stock issued $', data: [0.0, 12000.0, 0.0, 0.0, 13600.0, 8000.0, 0.0], backgroundColor: '#7c3aed' },
+      { label: 'LTD issued $', data: [9100.0, 4000.0, 2000.0, 5500.0, 18900.0, 8000.0, 5000.0], backgroundColor: '#0d9488' }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { position: 'bottom' } },
+    scales: { y: { beginAtZero: true } }
+  }
+});
+new Chart(document.getElementById('prodChart'), {
+  type: 'bar',
+  data: {
+    labels: ["Fast \u2605", "Feat", "Fist", "Foam", "Fume"],
+    datasets: [
+      { label: 'Units sold', data: [1724.0, 1648.0, 496.0, 429.0, 483.0], backgroundColor: '#2563eb' },
+      { label: 'Units produced~', data: [1724.0, 2118.0, 546.0, 711.0, 508.0], backgroundColor: '#94a3b8' },
+      { label: 'Ending inventory', data: [0.0, 470.0, 50.0, 282.0, 25.0], backgroundColor: '#d97706' }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { position: 'bottom' },
+      title: { display: true, text: '★ = stockout flagged in segment report' }
+    },
+    scales: { y: { beginAtZero: true } }
+  }
+});
+</script>
+</body>
+</html>

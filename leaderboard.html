@@ -1617,7 +1617,7 @@
       const particles = [];
       const rockets = [];
       const colors = ["#f0d48a", "#d4a84b", "#fff8e8", "#ffffff", "#e07a3d", "#b9d4ff", "#f6ecd3"];
-      const launchAt = [60, 380, 760, 1180, 1680, 2140, 2680];
+      const launchAt = [40, 280, 560, 900, 1280, 1680, 2100, 2500];
       let launchIndex = 0;
 
       function resize() {
@@ -1630,19 +1630,19 @@
       }
 
       function burst(x, y, color) {
-        const count = 58;
+        const count = 78;
         for (let i = 0; i < count; i++) {
-          const angle = (Math.PI * 2 * i) / count + Math.random() * 0.12;
-          const speed = 1.15 + Math.random() * 3.3;
+          const angle = (Math.PI * 2 * i) / count + Math.random() * 0.15;
+          const speed = 1.5 + Math.random() * 4.1;
           particles.push({
             x, y,
             vx: Math.cos(angle) * speed,
             vy: Math.sin(angle) * speed,
             life: 1,
-            decay: 0.008 + Math.random() * 0.009,
-            size: 1.6 + Math.random() * 1.8,
-            color: Math.random() < 0.2 ? "#ffffff" : color,
-            gravity: 0.016 + Math.random() * 0.018
+            decay: 0.0065 + Math.random() * 0.007,
+            size: 2.4 + Math.random() * 2.6,
+            color: Math.random() < 0.22 ? "#ffffff" : color,
+            gravity: 0.02 + Math.random() * 0.02
           });
         }
         if (soundOn) Soundboard.unlock().then(() => Soundboard.boom());
@@ -1650,11 +1650,11 @@
 
       function launch() {
         rockets.push({
-          x: width * (0.14 + Math.random() * 0.72),
+          x: width * (0.16 + Math.random() * 0.68),
           y: height + 4,
-          vx: (Math.random() - 0.5) * 0.55,
-          vy: -(6.4 + Math.random() * 2.2),
-          targetY: height * (0.14 + Math.random() * 0.38),
+          vx: (Math.random() - 0.5) * 0.8,
+          vy: -(11 + Math.random() * 3),
+          targetY: height * (0.16 + Math.random() * 0.34),
           color: colors[Math.floor(Math.random() * colors.length)],
           trail: 0
         });
@@ -1679,6 +1679,8 @@
       skip.onclick = () => finish();
       resize();
       window.addEventListener("resize", resize);
+      burst(width * 0.3, height * 0.3, "#f0d48a");
+      burst(width * 0.72, height * 0.24, "#fff8e8");
       if (soundOn) Soundboard.unlock();
       window.addEventListener("pointerdown", () => { if (soundOn) Soundboard.unlock(); }, { once: true });
 

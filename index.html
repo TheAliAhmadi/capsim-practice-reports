@@ -70,6 +70,37 @@
       line-height: 1.5;
     }
 
+    .tabs {
+      display: flex;
+      gap: 0.45rem;
+      margin-top: 1.1rem;
+      flex-wrap: wrap;
+      background: #e7eef7;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 0.35rem;
+    }
+    .tab {
+      appearance: none;
+      border: none;
+      background: transparent;
+      color: var(--navy);
+      font-weight: 700;
+      font-size: 0.92rem;
+      padding: 0.7rem 1rem;
+      border-radius: 10px;
+      cursor: pointer;
+      flex: 1 1 auto;
+      min-width: 160px;
+    }
+    .tab[aria-selected="true"] {
+      background: #fff;
+      box-shadow: 0 1px 4px rgba(10,31,61,0.12);
+      color: var(--navy);
+    }
+    .tab:hover { background: rgba(255,255,255,0.55); }
+    .tab[aria-selected="true"]:hover { background: #fff; }
+
     .layout {
       display: grid;
       gap: 1.1rem;
@@ -87,10 +118,7 @@
         grid-template-areas: "content access";
         align-items: start;
       }
-      .access-panel {
-        position: sticky;
-        top: 1rem;
-      }
+      .access-panel { position: sticky; top: 1rem; }
     }
 
     .panel {
@@ -133,11 +161,7 @@
       margin-bottom: 0.7rem;
     }
     .access-panel h2 { font-size: 1.2rem; margin-bottom: 0.35rem; }
-    .key-steps {
-      display: grid;
-      gap: 0.55rem;
-      margin: 0.9rem 0 1rem;
-    }
+    .key-steps { display: grid; gap: 0.55rem; margin: 0.9rem 0 1rem; }
     .key-step {
       display: grid;
       grid-template-columns: auto 1fr;
@@ -149,16 +173,10 @@
       border: 1px solid #dde6f2;
     }
     .num {
-      width: 1.55rem;
-      height: 1.55rem;
-      border-radius: 50%;
-      background: var(--navy);
-      color: #fff;
-      font-size: 0.8rem;
-      font-weight: 700;
-      display: grid;
-      place-items: center;
-      flex-shrink: 0;
+      width: 1.55rem; height: 1.55rem; border-radius: 50%;
+      background: var(--navy); color: #fff;
+      font-size: 0.8rem; font-weight: 700;
+      display: grid; place-items: center;
     }
     .key-step strong { display: block; color: var(--navy); font-size: 0.9rem; }
     .key-step span { color: var(--muted); font-size: 0.82rem; line-height: 1.35; }
@@ -184,13 +202,8 @@
     }
     input:focus { outline: 2px solid #2b5f9e; outline-offset: 1px; }
     .btn {
-      appearance: none;
-      border: none;
-      border-radius: 12px;
-      padding: 0.85rem 1.1rem;
-      font-weight: 700;
-      font-size: 0.95rem;
-      cursor: pointer;
+      appearance: none; border: none; border-radius: 12px;
+      padding: 0.85rem 1.1rem; font-weight: 700; font-size: 0.95rem; cursor: pointer;
     }
     .btn-primary { background: var(--navy); color: #fff; }
     .btn-primary:hover { background: #123058; }
@@ -199,9 +212,7 @@
       color: #1a1408;
     }
     .btn-secondary {
-      background: #fff;
-      color: var(--navy);
-      border: 1.5px solid var(--border);
+      background: #fff; color: var(--navy); border: 1.5px solid var(--border);
     }
     .msg { min-height: 1.2rem; font-size: 0.88rem; margin-top: 0.45rem; }
     .msg.ok { color: var(--ok); }
@@ -221,16 +232,10 @@
       min-height: 118px;
     }
     .sec-card .n {
-      width: 1.45rem;
-      height: 1.45rem;
-      border-radius: 8px;
-      background: var(--navy);
-      color: #fff;
-      font-size: 0.75rem;
-      font-weight: 700;
-      display: grid;
-      place-items: center;
-      margin-bottom: 0.45rem;
+      width: 1.45rem; height: 1.45rem; border-radius: 8px;
+      background: var(--navy); color: #fff;
+      font-size: 0.75rem; font-weight: 700;
+      display: grid; place-items: center; margin-bottom: 0.45rem;
     }
     .sec-card h3 { margin: 0 0 0.3rem; font-size: 0.92rem; color: var(--navy); }
     .sec-card p { margin: 0; font-size: 0.82rem; color: var(--muted); line-height: 1.4; }
@@ -244,6 +249,18 @@
     }
     .report-box h3 { margin: 0 0 0.35rem; color: var(--navy); font-size: 1.2rem; }
     .report-box p { margin: 0.2rem 0; }
+    .pill {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.55rem;
+      border-radius: 999px;
+      background: #e8f0fb;
+      color: var(--navy);
+      margin-bottom: 0.45rem;
+    }
     .actions { display: flex; flex-wrap: wrap; gap: 0.55rem; margin-top: 0.9rem; }
     .hidden { display: none !important; }
     footer {
@@ -262,25 +279,30 @@
       <p class="subtitle">Coaching reviews for your Capsim team — unlock yours with your student number.</p>
     </header>
 
+    <div class="tabs" role="tablist" aria-label="Report type">
+      <button class="tab" role="tab" id="tab-competition" aria-selected="true" data-tab="competition" type="button">Competition Round 1</button>
+      <button class="tab" role="tab" id="tab-practice" aria-selected="false" data-tab="practice" type="button">Practice Round Recap</button>
+    </div>
+
     <div class="layout">
       <aside class="panel access-panel" id="access-panel">
         <div class="access-badge">Student unlock</div>
         <h2>Get your team report</h2>
-        <p>Enter your Queen’s student number. You’ll only unlock <strong>your own team’s</strong> Capsim report.</p>
+        <p>Enter your Queen’s student number. You’ll only unlock <strong>your own team’s</strong> Capsim report for the tab you selected.</p>
 
         <div class="key-steps" id="howto">
           <div class="key-step">
             <div class="num">1</div>
             <div>
-              <strong>Use your student number</strong>
-              <span>The same student number from your Queen’s course records.</span>
+              <strong>Pick a tab</strong>
+              <span>Competition Round 1 is the default. Practice Round Recap is available on the other tab.</span>
             </div>
           </div>
           <div class="key-step">
             <div class="num">2</div>
             <div>
-              <strong>Unlock your team only</strong>
-              <span>Other teams stay locked. This page shows just your firm’s report.</span>
+              <strong>Use your student number</strong>
+              <span>The same student number from your Queen’s course records.</span>
             </div>
           </div>
           <div class="key-step">
@@ -302,9 +324,10 @@
         </div>
 
         <div class="report-box hidden" id="report-box">
+          <div class="pill" id="report-tab-pill">Competition Round 1</div>
           <h3 id="report-team">Your team</h3>
           <p id="report-meta"></p>
-          <p class="msg ok">Unlocked — this is your team’s report only.</p>
+          <p class="msg ok" id="report-status">Unlocked — this is your team’s report only.</p>
           <div class="actions">
             <button class="btn btn-gold" id="open-btn" type="button">Open report</button>
             <button class="btn btn-primary" id="download-btn" type="button">Download HTML</button>
@@ -314,61 +337,35 @@
       </aside>
 
       <div class="stack">
-        <section class="panel">
-          <h2>What is this?</h2>
-          <p>These are <strong>Capsim Reports</strong> for your Capsim firm. They turn the industry results into a plain-language coaching review: what happened, why it happened, and what to focus on when the simulation restarts.</p>
-          <p>Each report is a coaching recap of your firm’s latest round — a quick read that supports, but does not replace, your own industry analysis.</p>
+        <section class="panel" id="blurb-competition">
+          <h2>Competition Round 1</h2>
+          <p>These are coaching reviews of your firm’s <strong>first graded competition round</strong>. They explain what happened in plain language, connect decisions to outcomes, and suggest what to focus on before Round 2.</p>
+          <p>Each report supports — but does not replace — your own industry analysis.</p>
+        </section>
+
+        <section class="panel hidden" id="blurb-practice">
+          <h2>Practice Round Recap</h2>
+          <p>These are coaching reviews from the earlier <strong>practice rounds</strong>. Use them if you want to revisit what you learned before the competition started.</p>
+          <p>Practice results do not carry into the graded game; Competition Round 1 is on the other tab.</p>
         </section>
 
         <section class="panel">
           <h2>Who developed these?</h2>
-          <p>These reports are developed by Ali’s AI agent “George,” who imitates his assessment of the Capsim reports. These reports are just a quick recap and cannot replace your actual in-depth analysis of the industry.</p>
+          <p>These reports are developed by Ali’s AI agent “George,” who imitates his assessment of the Capsim reports. They are a quick recap and cannot replace your actual in-depth analysis of the industry.</p>
         </section>
 
         <section class="panel">
           <h2>What’s inside each report</h2>
-          <p>Every HTML report walks through the same coaching sections so you can scan quickly, then dig in where it hurts.</p>
+          <p>Every HTML report walks through the same coaching sections so you can scan quickly, then dig in where it helps most.</p>
           <div class="sections-grid">
-            <article class="sec-card">
-              <div class="n">1</div>
-              <h3>Financial Health</h3>
-              <p>Cash, profit, inventory, and emergency loans — the “are we in trouble?” snapshot.</p>
-            </article>
-            <article class="sec-card">
-              <div class="n">2</div>
-              <h3>Investment Profile</h3>
-              <p>Where the team spent: capacity, automation, TQM, and HR.</p>
-            </article>
-            <article class="sec-card">
-              <div class="n">3</div>
-              <h3>Segment Performance</h3>
-              <p>For each market segment: your share and a plain-language why it’s high, average, or low.</p>
-            </article>
-            <article class="sec-card">
-              <div class="n">4</div>
-              <h3>Distance from What Wins</h3>
-              <p>How far each product is from what that segment actually rewards (not a reprint of Capsim’s map).</p>
-            </article>
-            <article class="sec-card">
-              <div class="n">5</div>
-              <h3>Customer Criteria</h3>
-              <p>Price, age, MTBF, positioning, awareness, and accessibility side by side.</p>
-            </article>
-            <article class="sec-card">
-              <div class="n">6</div>
-              <h3>Production &amp; Inventory</h3>
-              <p>Stockouts, leftover inventory, and production misses that quietly kill results.</p>
-            </article>
-            <article class="sec-card">
-              <div class="n">7</div>
-              <h3>Competencies</h3>
-              <p>R&amp;D speed, costs, automation fit, margins, and capability signals.</p>
-            </article>
-            <article class="sec-card">
-              <div class="n">8</div>
-              <h3>Focus Going Forward</h3>
-              <p>A short priority list for what to improve next.</p>
-            </article>
+            <article class="sec-card"><div class="n">1</div><h3>Financial Health</h3><p>Cash, profit, inventory, and emergency loans — the “are we okay?” snapshot.</p></article>
+            <article class="sec-card"><div class="n">2</div><h3>Investment Profile</h3><p>Where the team spent: capacity, automation, TQM, and HR.</p></article>
+            <article class="sec-card"><div class="n">3</div><h3>Segment Performance</h3><p>For each market segment: your share and a plain-language why.</p></article>
+            <article class="sec-card"><div class="n">4</div><h3>Distance from What Wins</h3><p>How far each product is from what that segment rewards.</p></article>
+            <article class="sec-card"><div class="n">5</div><h3>Customer Criteria</h3><p>Price, age, MTBF, positioning, awareness, and accessibility.</p></article>
+            <article class="sec-card"><div class="n">6</div><h3>Production &amp; Inventory</h3><p>Stockouts, leftover inventory, and production misses.</p></article>
+            <article class="sec-card"><div class="n">7</div><h3>Competencies</h3><p>R&amp;D speed, costs, automation fit, margins, and capability signals.</p></article>
+            <article class="sec-card"><div class="n">8</div><h3>Focus Going Forward</h3><p>A short priority list for what to improve next.</p></article>
           </div>
         </section>
       </div>
@@ -381,6 +378,7 @@
     const SALT = "capsim-practice-round-recap-v1";
     let unlock = null;
     let record = null;
+    let activeTab = "competition";
 
     const studentId = document.getElementById("student-id");
     const unlockBtn = document.getElementById("unlock-btn");
@@ -395,6 +393,44 @@
       return [...new Uint8Array(buf)].map((b) => b.toString(16).padStart(2, "0")).join("");
     }
 
+    function fileForTab(rec) {
+      if (!rec) return null;
+      if (activeTab === "practice") {
+        return rec.practiceFile || null;
+      }
+      return rec.competitionFile || rec.file || null;
+    }
+
+    function setTab(tab) {
+      activeTab = tab === "practice" ? "practice" : "competition";
+      document.querySelectorAll(".tab").forEach((btn) => {
+        btn.setAttribute("aria-selected", btn.dataset.tab === activeTab ? "true" : "false");
+      });
+      document.getElementById("blurb-competition").classList.toggle("hidden", activeTab !== "competition");
+      document.getElementById("blurb-practice").classList.toggle("hidden", activeTab !== "practice");
+      document.getElementById("report-tab-pill").textContent =
+        activeTab === "practice" ? "Practice Round Recap" : "Competition Round 1";
+      if (record) refreshUnlockedView();
+    }
+
+    function refreshUnlockedView() {
+      const path = fileForTab(record);
+      const status = document.getElementById("report-status");
+      if (!path) {
+        status.className = "msg bad";
+        status.textContent = activeTab === "practice"
+          ? "No Practice Round report is available for your team on this site yet. Try the Competition Round 1 tab."
+          : "No Competition Round 1 report is available for your team yet.";
+        document.getElementById("open-btn").disabled = true;
+        document.getElementById("download-btn").disabled = true;
+        return;
+      }
+      status.className = "msg ok";
+      status.textContent = "Unlocked — this is your team’s report only.";
+      document.getElementById("open-btn").disabled = false;
+      document.getElementById("download-btn").disabled = false;
+    }
+
     function showReport(rec) {
       record = rec;
       document.getElementById("report-team").textContent = "Team " + rec.team;
@@ -404,6 +440,7 @@
       howto.classList.add("hidden");
       reportBox.classList.remove("hidden");
       unlockMsg.textContent = "";
+      refreshUnlockedView();
     }
 
     function resetUnlock() {
@@ -439,17 +476,22 @@
       showReport(rec);
     }
 
+    document.querySelectorAll(".tab").forEach((btn) => {
+      btn.addEventListener("click", () => setTab(btn.dataset.tab));
+    });
     unlockBtn.addEventListener("click", tryUnlock);
     studentId.addEventListener("keydown", (e) => { if (e.key === "Enter") tryUnlock(); });
     document.getElementById("reset-btn").addEventListener("click", resetUnlock);
     document.getElementById("open-btn").addEventListener("click", () => {
-      if (record) window.open(record.file, "_blank", "noopener");
+      const path = fileForTab(record);
+      if (path) window.open(path, "_blank", "noopener");
     });
     document.getElementById("download-btn").addEventListener("click", () => {
-      if (!record) return;
+      const path = fileForTab(record);
+      if (!path) return;
       const a = document.createElement("a");
-      a.href = record.file;
-      a.download = record.file.split("/").pop();
+      a.href = path;
+      a.download = path.split("/").pop();
       document.body.appendChild(a);
       a.click();
       a.remove();
@@ -457,7 +499,10 @@
 
     fetch("unlock.json")
       .then((r) => r.json())
-      .then((data) => { unlock = data; })
+      .then((data) => {
+        unlock = data;
+        if (data.defaultTab) setTab(data.defaultTab);
+      })
       .catch((err) => {
         unlockMsg.className = "msg bad";
         unlockMsg.textContent = "Could not load unlock data. Refresh the page.";

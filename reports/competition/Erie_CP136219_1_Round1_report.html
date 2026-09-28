@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Erie | CP136219_1 | Competition Round 1 (2027) Review</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+
+  :root { --ink:#1a2332; --muted:#5a6a7a; --card:#ffffff; --bg:#f4f6f9; --line:#d8e0ea; --blue:#2563eb; --green:#059669; --amber:#d97706; --red:#dc2626; --purple:#7c3aed; --teal:#0d9488; }
+  * { box-sizing: border-box; }
+  body { margin:0; padding:0; font-family:"Segoe UI",system-ui,-apple-system,sans-serif; color:var(--ink); background:var(--bg); line-height:1.55; }
+  .wrap { max-width:1080px; margin:0 auto; padding:28px 20px 60px; }
+  header.hero { background:linear-gradient(135deg,#0f2744 0%,#1e4d7b 60%,#2563eb 100%); color:#fff; border-radius:16px; padding:28px 32px; margin-bottom:22px; box-shadow:0 8px 24px rgba(15,39,68,.25); }
+  header.hero h1 { margin:0 0 6px; font-size:1.65rem; font-weight:700; }
+  header.hero .meta { opacity:.9; font-size:.95rem; }
+  header.hero .tag { display:inline-block; margin-top:12px; background:rgba(255,255,255,.15); border:1px solid rgba(255,255,255,.25); padding:4px 12px; border-radius:999px; font-size:.8rem; letter-spacing:.02em; }
+  h2 { font-size:1.2rem; margin:32px 0 12px; padding-bottom:8px; border-bottom:2px solid var(--line); color:#0f2744; }
+  h3 { font-size:1.02rem; margin:0 0 8px; color:#0f2744; }
+  p, li { font-size:.95rem; }
+  .muted { color:var(--muted); }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:18px 20px; margin-bottom:14px; box-shadow:0 1px 3px rgba(0,0,0,.04); }
+  .grid2 { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  @media (max-width:800px) { .grid2 { grid-template-columns:1fr; } }
+  .stat-row { display:flex; flex-wrap:wrap; gap:10px; margin-top:10px; }
+  .stat { flex:1 1 120px; background:#f8fafc; border:1px solid var(--line); border-radius:10px; padding:10px 12px; text-align:center; }
+  .stat .lbl { font-size:.72rem; text-transform:uppercase; letter-spacing:.04em; color:var(--muted); }
+  .stat .val { font-size:1.25rem; font-weight:700; margin-top:2px; }
+  .ok .val { color:var(--green); } .warn .val { color:var(--amber); } .bad .val { color:var(--red); }
+  .badge { display:inline-block; font-size:.72rem; font-weight:700; text-transform:uppercase; letter-spacing:.04em; padding:3px 8px; border-radius:6px; vertical-align:middle; }
+  .badge-low { background:#fee2e2; color:#991b1b; } .badge-avg { background:#fef3c7; color:#92400e; } .badge-high { background:#d1fae5; color:#065f46; } .badge-none { background:#e2e8f0; color:#475569; }
+  .badge-close { background:#d1fae5; color:#065f46; } .badge-mid { background:#fef3c7; color:#92400e; } .badge-far { background:#fee2e2; color:#991b1b; }
+  .seg-box { border-left:4px solid var(--blue); } .seg-box.absent { border-left-color:#94a3b8; background:#f8fafc; } .seg-box.highend { border-left-color:var(--purple); } .seg-box.perf { border-left-color:var(--teal); } .seg-box.lowend { border-left-color:var(--amber); } .seg-box.size { border-left-color:#db2777; }
+  .why { margin:8px 0 0; font-size:.9rem; } .why ol { margin:6px 0 0; padding-left:18px; } .why li { margin-bottom:4px; }
+  .chart-box { position:relative; height:280px; margin-top:8px; } .chart-box.tall { height:340px; }
+  .gap-table { width:100%; border-collapse:collapse; font-size:.88rem; margin:10px 0; }
+  .gap-table th, .gap-table td { text-align:left; padding:7px 8px; border-bottom:1px solid var(--line); }
+  .gap-table th { color:var(--muted); font-weight:600; font-size:.75rem; text-transform:uppercase; }
+  .crit-row { display:grid; grid-template-columns:110px 1fr 70px; gap:8px; align-items:center; margin-bottom:7px; font-size:.85rem; }
+  .bar-track { background:#e2e8f0; border-radius:4px; height:14px; overflow:hidden; position:relative; } .bar-fill { height:100%; border-radius:4px; }
+  .crit-legend { font-size:.78rem; color:var(--muted); margin-top:6px; }
+  .priority { border-top:4px solid var(--blue); }
+  .priority .num { display:inline-flex; align-items:center; justify-content:center; width:26px; height:26px; border-radius:50%; background:var(--blue); color:#fff; font-weight:700; font-size:.85rem; margin-right:8px; }
+  .prio-grid { display:grid; grid-template-columns:1fr; gap:10px; }
+  .callout { background:#eff6ff; border:1px solid #bfdbfe; border-radius:10px; padding:12px 14px; font-size:.9rem; margin:10px 0; }
+  .callout.warn { background:#fffbeb; border-color:#fcd34d; } .callout.danger { background:#fef2f2; border-color:#fca5a5; } .callout.good { background:#ecfdf5; border-color:#6ee7b7; }
+  footer.note { margin-top:36px; padding-top:16px; border-top:1px solid var(--line); font-size:.82rem; color:var(--muted); }
+  .comp-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:12px; }
+  .mistake-list { margin:10px 0 0; padding-left:0; list-style:none; }
+  .mistake-list li { background:#fff; border:1px solid var(--line); border-left:4px solid var(--blue); border-radius:10px; padding:12px 14px; margin-bottom:10px; }
+  .mistake-list li.rough { border-left-color:var(--amber); } .mistake-list li.celebrate { border-left-color:var(--green); }
+  .mistake-list li strong.num { color:var(--blue); margin-right:6px; } .mistake-list li.rough strong.num { color:var(--amber); } .mistake-list li.celebrate strong.num { color:var(--green); }
+  .glossary { font-size:.88rem; color:var(--muted); border-left:3px solid #93c5fd; padding-left:12px; margin:8px 0 14px; }
+
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="hero">
+  <h1>Erie — Competition Round 1 Review</h1>
+  <div class="meta">CP136219_1 | Section 1 Industry 1 | Competition Round 1 / Year 2027 | Erie</div>
+  <span class="tag">Competition Round 1 (graded) · written by George · supervised by Ali</span>
+</header>
+
+<div class="callout" style="margin-bottom:18px;background:#eff6ff;border-color:#bfdbfe">
+  <strong>This is Competition Round 1 — the real graded simulation.</strong>
+  Decisions from this round count. The goal of this coaching package is to help you understand
+  <em>why</em> the year unfolded the way it did, and what to focus on before Round 2 decisions are locked —
+  with clarity, kindness, and a path forward.
+</div>
+
+<h2>What Happened This Round</h2>
+<div class="card">
+  <p>Erie finished Competition Round 1 with an <strong>emergency loan of $3,515</strong> and ending cash of <strong>$0</strong>. That sounds scary — and it is a clear cash-planning signal — but it is also a <em>very recoverable</em> Round 1 lesson. An emergency loan is automatic short-term borrowing Capsim forces when cash would otherwise go negative; it is expensive, and Round 2 is your chance to replace it with intentional financing.  Your company contribution margin (CM — the percent of each sales dollar left after variable production costs) was <strong>28.0%</strong>, and SG&amp;A-to-sales was <strong>13.0%</strong>.  Your stock closed at <strong>$34</strong> (change -0.68) with EPS of <strong>+1.72</strong>.</p>
+  <p>
+    Below is a beginner-friendly walkthrough of the main decision→outcome links, with Capsim terms explained the first time they appear.
+    We will name specific mistakes clearly when they matter — always with the goal of helping you recover, not discouraging you.
+  </p>
+  <p class="glossary">
+    <strong>Quick glossary used below:</strong>
+    An <em>emergency loan</em> is automatic short-term borrowing Capsim forces on you when cash would otherwise go negative — it is expensive and a signal that financing and cash planning did not match spending.
+    <em>Contribution margin</em> (CM) is the percent of each sales dollar left after variable production costs (material, labor, inventory carrying) — before SG&amp;A, depreciation, and interest.
+    <em>Awareness</em> is the share of customers who know your product exists (driven mainly by promotion budget).
+    <em>Accessibility</em> is how easy it is for customers to find and buy your product in the sales channel (driven mainly by sales budget and how many products share that budget).
+    A <em>fine cut</em> is the “sweet spot” circle on the perceptual map for a segment; customers strongly prefer products inside it.
+    <em>MTBF</em> (Mean Time Between Failure) is reliability in hours; each segment has a required band.
+  </p>
+  <ol class="mistake-list">
+    <li class="rough"><strong class="num">1.</strong> <strong>Cash ran short — Capsim stepped in with an emergency loan.</strong> You ended with cash <strong>$0</strong> and an emergency loan of <strong>$3,515</strong>. Net cash from operations was <strong>$3,174</strong>; plant spending was <strong>$11,920</strong>; you issued stock <strong>$1,800</strong> and long-term debt <strong>$0</strong>. Inventory also rose (cash-flow inventory change about ($7,871) — a cash outflow). Compare with Baldwin (stock $7,500, LTD $7,500); Chester (stock $13,500, LTD $5,000); Digby (stock $0, LTD $16,800). This round was rough on liquidity — and Round 2 is recoverable if you publish a simple cash plan and arrange financing <em>before</em> cash hits zero.</li>
+<li class="rough"><strong class="num">2.</strong> <strong>Eat tied up cash in excess inventory.</strong> Sold <strong>1,517</strong> with ending inventory <strong>454</strong> units. When products do not sell through, the money you spent to make them sits on the shelf instead of in the bank. Next round: cut the production schedule until inventory clears, while you improve the offer.</li>
+<li class="rough"><strong class="num">3.</strong> <strong>Eat tied up cash in excess inventory.</strong> Sold <strong>1,517</strong> with ending inventory <strong>454</strong> units. When products do not sell through, the money you spent to make them sits on the shelf instead of in the bank. Next round: cut the production schedule until inventory clears, while you improve the offer.</li>
+<li class="rough"><strong class="num">4.</strong> <strong>Eat tied up cash in excess inventory.</strong> Sold <strong>1,517</strong> with ending inventory <strong>454</strong> units. When products do not sell through, the money you spent to make them sits on the shelf instead of in the bank. Next round: cut the production schedule until inventory clears, while you improve the offer.</li>
+<li class="rough"><strong class="num">5.</strong> <strong>Eat tied up cash in excess inventory.</strong> Sold <strong>1,517</strong> with ending inventory <strong>454</strong> units. When products do not sell through, the money you spent to make them sits on the shelf instead of in the bank. Next round: cut the production schedule until inventory clears, while you improve the offer.</li>
+<li class="rough"><strong class="num">6.</strong> <strong>Echo (High End): positioning ~1.34 from ideal 9.8/10.2.</strong> Customer survey score was <strong>23</strong>. Customers notice reliability and fine-cut positioning (the “sweet spot” circle on the perceptual map). A focused R&amp;D revision next round can close this gap without needing a dramatic strategy change.</li>
+<li class="celebrate"><strong class="num">7.</strong> <strong>Edge showed real traction in Performance.</strong> Roughly <strong>16.4%</strong> segment share on about <strong>501</strong> units sold. Protect what is working — keep the offer inside the fine cut, fund awareness/accessibility enough to hold shelf presence, and make sure production can meet demand so a good product does not stock out.</li>
+  </ol>
+  <div class="callout"><strong>The through-line for Erie:</strong> cash planning and the emergency loan, and cash trapped in excess inventory. None of this is permanent. Round 2 is recoverable with clearer cash planning, production matched to real demand, and focused R&amp;D/marketing on the products closest to what customers want.</div>
+</div>
+
+
+<h2>1. Financial Health / Emergency Loan</h2>
+<div class="card">
+  <h3>Emergency loan — a hard lesson, not a final grade</h3>
+  <p>Ending cash is <strong>$0</strong>. Capsim advanced an <strong>emergency loan of $3,515</strong> (shown in current debt). Net profit <strong>$3,533</strong>; ROS <strong>2.6%</strong>; ROE <strong>6.6%</strong>; ROA <strong>3.3%</strong>. Stock price <strong>$34</strong>; cumulative profit <strong>$7,718</strong>.</p>
+  <div class="stat-row">
+    <div class="stat bad"><div class="lbl">Emergency Loan</div><div class="val">$3,515</div></div>
+    <div class="stat bad"><div class="lbl">Ending Cash</div><div class="val">$0</div></div>
+    <div class="stat ok"><div class="lbl">Net Profit</div><div class="val">$3,533</div></div>
+    <div class="stat warn"><div class="lbl">Est. Inventory $</div><div class="val">$16,260</div></div>
+    <div class="stat ok"><div class="lbl">Sales</div><div class="val">$133,861</div></div>
+    <div class="stat"><div class="lbl">Stock Price</div><div class="val">$34</div></div>
+  </div>
+  <div class="stat-row">
+    <div class="stat ok"><div class="lbl">ROS</div><div class="val">2.6%</div></div>
+    <div class="stat ok"><div class="lbl">ROE</div><div class="val">6.6%</div></div>
+    <div class="stat warn"><div class="lbl">Company CM</div><div class="val">28.0%</div></div>
+    <div class="stat "><div class="lbl">SG&amp;A / Sales</div><div class="val">13.0%</div></div>
+    <div class="stat"><div class="lbl">Interest Expense</div><div class="val">$5,972</div></div>
+    <div class="stat"><div class="lbl">Long-Term Debt</div><div class="val">$41,700</div></div>
+  </div>
+  <div class="callout danger" style="margin-top:14px"><strong>Likely cause of the emergency loan:</strong> Net cash from operations was <strong>$3,174</strong>. Plant improvements used about <strong>$11,920</strong>. Stock issued <strong>$1,800</strong>; LTD issued <strong>$0</strong>. Inventory build absorbed cash (CF inventory change ($7,871)). The emergency loan was Capsim’s expensive way of plugging a financing gap you can plan for deliberately next round. You are not stuck — Round 2 cash plans fix this.</div>
+</div>
+
+
+<h2>2. Investment Profile</h2>
+<div class="card">
+  <h3>Where Round 1 cash went (plant · financing contrast)</h3>
+  <p>
+    Erie’s <strong>Net Plant Improvements were $11,920</strong> this round
+    (cash-flow plant line; peers shown in the chart).
+    Average automation next round across your products: Eat 4.1, Ebb 7.0, Echo 3.0, Edge 3.0, Egg 3.0.
+    Productivity index remains <strong>1.00</strong> industry-wide in the custom report extract — TQM/HR capability building is still ahead of you.
+  </p>
+  <div class="chart-box"><canvas id="investChart"></canvas></div>
+  <p class="muted" style="margin-top:10px;font-size:.85rem">
+    Grouped bars compare every company in CP136219_1. Plant = absolute value of Net Plant Improvements from the Cash Flow statement.
+    Stock issued and LTD issued sit beside investment so you can see whether spending was funded.
+  </p>
+  <div class="callout warn"><strong>Strategy fit:</strong> Plant improvements about <strong>$11,920</strong>; stock issued $1,800; LTD issued $0. Check that investment, inventory, and financing still leave ending cash positive without relying on an emergency loan.</div>
+</div>
+<script>
+window.__invest = { labels: ["Andrews", "Baldwin", "Chester", "Digby", "Erie", "Ferris", "Garrett", "Harper"], plant: [0.0, 0.0, 26305.0, 16800.0, 11920.0, 11400.0, 10985.0, 14800.0], stock: [0.0, 7500.0, 13500.0, 0.0, 1800.0, 3300.0, 0.0, 6000.0], ltd: [0.0, 7500.0, 5000.0, 16800.0, 0.0, 3400.0, 0.0, 10100.0] };
+</script>
+
+
+<h2>3. Segment Performance — Why Share Is Where It Is</h2>
+<p class="muted">One box per Capsim segment. Labels are relative to a competitive presence in this industry — not a shame ranking.</p>
+<div class="grid2">
+
+  <div class="card seg-box ">
+    <h3>Traditional — Eat <span class="badge badge-avg">~14.7% / Average</span></h3>
+    <p class="why">
+      Team Traditional share about <strong>14.7%</strong> (Eat primary).
+      Segment size ~10,756 units. Eat sold <strong>1,517</strong>.
+      CM <strong>24.4%</strong> · Automation next <strong>4.1</strong> · Utilization ~<strong>100.0%</strong>
+      · Ending inventory <strong>454</strong>
+      · CS <strong>42</strong>
+      · Awareness 66.0% · Accessibility 62.0%.
+    </p>
+    <div class="why"><strong>Ranked causes:</strong>
+      <ol>
+        <li><strong>Overall offer is competitive:</strong> price $26, MTBF 17,500, position ~5.6/14.4. Keep funding awareness/accessibility and match production to demand.</li><li><strong>Benchmark:</strong> watch Cake (CS 46, price $28).</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="card seg-box lowend">
+    <h3>Low End — Ebb <span class="badge badge-avg">~14.1% / Average</span></h3>
+    <p class="why">
+      Team Low End share about <strong>14.1%</strong> (Ebb primary).
+      Segment size ~13,345 units. Ebb sold <strong>1,978</strong>.
+      CM <strong>27.8%</strong> · Automation next <strong>7.0</strong> · Utilization ~<strong>146.4%</strong>
+      · Ending inventory <strong>90</strong>
+      · CS <strong>21</strong>
+      · Awareness 76.7% · Accessibility 50.0%.
+    </p>
+    <div class="why"><strong>Ranked causes:</strong>
+      <ol>
+        <li><strong>Overall offer is competitive:</strong> price $21, MTBF 14,000, position ~3.0/17.0. Keep funding awareness/accessibility and match production to demand.</li><li><strong>Benchmark:</strong> watch Dell (CS 23, price $20).</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="card seg-box highend">
+    <h3>High End — Echo <span class="badge badge-avg">~13.1% / Average</span></h3>
+    <p class="why">
+      Team High End share about <strong>13.1%</strong> (Echo primary).
+      Segment size ~3,956 units. Echo sold <strong>489</strong>.
+      CM <strong>35.7%</strong> · Automation next <strong>3.0</strong> · Utilization ~<strong>63.3%</strong>
+      · Ending inventory <strong>116</strong>
+      · CS <strong>23</strong>
+      · Awareness 60.3% · Accessibility 49.0%.
+    </p>
+    <div class="why"><strong>Ranked causes:</strong>
+      <ol>
+        <li><strong>Positioning:</strong> Pfmn 9.2 / Size 11.4 vs ideal 9.8/10.2 (distance ~1.34).</li><li><strong>Marketing reach:</strong> awareness 60.3%, accessibility 49.0% — leaders often run higher on both.</li><li><strong>Age:</strong> 1.5 vs preferred ~0.0. Revising earlier keeps year-end age younger.</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="card seg-box perf">
+    <h3>Performance — Edge <span class="badge badge-avg">~16.4% / Average</span></h3>
+    <p class="why">
+      Team Performance share about <strong>16.4%</strong> (Edge primary).
+      Segment size ~3,059 units. Edge sold <strong>529</strong>.
+      CM <strong>23.4%</strong> · Automation next <strong>3.0</strong> · Utilization ~<strong>91.7%</strong>
+      · Ending inventory <strong>93</strong>
+      · CS <strong>31</strong>
+      · Awareness 55.1% · Accessibility 46.0%.
+    </p>
+    <div class="why"><strong>Ranked causes:</strong>
+      <ol>
+        <li><strong>Positioning:</strong> Pfmn 9.4 / Size 15.5 vs ideal 10.4/15.3 (distance ~1.02).</li><li><strong>Marketing reach:</strong> awareness 55.1%, accessibility 46.0% — leaders often run higher on both.</li><li><strong>Age:</strong> 3.5 vs preferred ~1.0. Revising earlier keeps year-end age younger.</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="card seg-box size">
+    <h3>Size — Egg <span class="badge badge-avg">~16.1% / Average</span></h3>
+    <p class="why">
+      Team Size share about <strong>16.1%</strong> (Egg primary).
+      Segment size ~3,129 units. Egg sold <strong>477</strong>.
+      CM <strong>32.9%</strong> · Automation next <strong>3.0</strong> · Utilization ~<strong>80.0%</strong>
+      · Ending inventory <strong>60</strong>
+      · CS <strong>34</strong>
+      · Awareness 69.7% · Accessibility 43.0%.
+    </p>
+    <div class="why"><strong>Ranked causes:</strong>
+      <ol>
+        <li><strong>Positioning:</strong> Pfmn 4.2 / Size 10.2 vs ideal 4.7/9.6 (distance ~0.78).</li><li><strong>Marketing reach:</strong> awareness 69.7%, accessibility 43.0% — leaders often run higher on both.</li><li><strong>Age:</strong> 2.1 vs preferred ~1.0. Revising earlier keeps year-end age younger.</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<h2>4. Distance from What Wins <span class="muted" style="font-size:.85rem;font-weight:500">(segment-specific fit — not a Capstone Pfmn × Size map)</span></h2>
+<p>The Industry Report already shows the perceptual map. Below: on the criteria that decide winners in each segment, how far is Erie from the winning profile?</p>
+
+<div class="card" style="border-left:4px solid #2563eb">
+  <h3>Eat | Traditional — winning criteria: Age 47% | Price 23% | Positioning 21% | Reliability 9%</h3>
+  <p class="muted" style="margin-top:0">Best rival benchmark: <strong>Cake</strong>. Overall fit: <span class="badge badge-close">Close</span>.</p>
+  <table class="gap-table">
+    <thead><tr><th>Criterion</th><th>Ideal / band</th><th>Eat</th><th>Best rival (Cake)</th><th>Gap</th><th>Fit</th></tr></thead>
+    <tbody>
+      <tr><td>Age</td><td>~2.0</td><td>2.5</td><td>2.4</td><td>+0.5</td><td><span class="badge badge-close">Close</span></td></tr>
+      <tr><td>Price</td><td>$20–$30</td><td>$26</td><td>$28</td><td>In band</td><td><span class="badge badge-close">Close</span></td></tr>
+      <tr><td>Performance</td><td>5.7</td><td>5.6</td><td>5.7</td><td>-0.1</td><td><span class="badge badge-close">Close</span></td></tr>
+      <tr><td>Size</td><td>14.3</td><td>14.4</td><td>14.3</td><td>+0.1</td><td><span class="badge badge-close">Close</span></td></tr>
+      <tr><td>Position distance*</td><td>0</td><td>~0.14</td><td>~0.00</td><td>vs ideal</td><td><span class="badge badge-close">Close</span></td></tr>
+      <tr><td>MTBF</td><td>14,000–19,000</td><td>17,500</td><td>15,650</td><td>Band</td><td><span class="badge badge-close">Close</span></td></tr>
+<tr><td>Accessibility</td><td>Compete with leaders</td><td>62.0%</td><td>69.0%</td><td>—</td><td><span class="badge badge-close">Close</span></td></tr><tr><td>Customer Survey</td><td>Leaders higher</td><td>42</td><td>46</td><td>—</td><td><span class="badge badge-close">Close</span></td></tr></tbody>
+  </table>
+  <p class="muted" style="font-size:.82rem">*Rough Euclidean gap vs segment ideal — teaching distance, not Capsim’s internal scoring.</p>
+  <div class="callout warn"><strong>Fix next round:</strong> Protect the offer and keep funding awareness/accessibility while matching production to demand.</div>
+</div>
+
+
+<div class="card" style="border-left:4px solid #d97706">
+  <h3>Ebb | Low End — winning criteria: Price 53% | Age 24% | Positioning 16% | Reliability 7%</h3>
+  <p class="muted" style="margin-top:0">Best rival benchmark: <strong>Dell</strong>. Overall fit: <span class="badge badge-far">Far</span>.</p>
+  <table class="gap-table">
+    <thead><tr><th>Criterion</th><th>Ideal / band</th><th>Ebb</th><th>Best rival (Dell)</th><th>Gap</th><th>Fit</th></tr></thead>
+    <tbody>
+      <tr><td>Age</td><td>~7.0</td><td>5.6</td><td>5.6</td><td>-1.4</td><td><span class="badge badge-far">Far</span></td></tr>
+      <tr><td>Price</td><td>$14–$24</td><td>$21</td><td>$20</td><td>In band</td><td><span class="badge badge-mid">Mid</span></td></tr>
+      <tr><td>Performance</td><td>2.2</td><td>3.0</td><td>3.0</td><td>+0.8</td><td><span class="badge badge-far">Far</span></td></tr>
+      <tr><td>Size</td><td>17.8</td><td>17.0</td><td>17.0</td><td>-0.8</td><td><span class="badge badge-far">Far</span></td></tr>
+      <tr><td>Position distance*</td><td>0</td><td>~1.13</td><td>~1.13</td><td>vs ideal</td><td><span class="badge badge-far">Far</span></td></tr>
+      <tr><td>MTBF</td><td>12,000–17,000</td><td>14,000</td><td>12,000</td><td>Band</td><td><span class="badge badge-close">Close</span></td></tr>
+<tr><td>Accessibility</td><td>Compete with leaders</td><td>50.0%</td><td>52.0%</td><td>—</td><td><span class="badge badge-mid">Mid</span></td></tr><tr><td>Customer Survey</td><td>Leaders higher</td><td>21</td><td>23</td><td>—</td><td><span class="badge badge-far">Far</span></td></tr></tbody>
+  </table>
+  <p class="muted" style="font-size:.82rem">*Rough Euclidean gap vs segment ideal — teaching distance, not Capsim’s internal scoring.</p>
+  <div class="callout warn"><strong>Fix next round:</strong> Reposition toward 2.2/17.8; lift sales budget to improve accessibility.</div>
+</div>
+
+
+<div class="card" style="border-left:4px solid #7c3aed">
+  <h3>Echo | High End — winning criteria: Positioning 43% | Age 29% | MTBF 19% | Price 9%</h3>
+  <p class="muted" style="margin-top:0">Best rival benchmark: <strong>Bid</strong>. Overall fit: <span class="badge badge-far">Far</span>.</p>
+  <table class="gap-table">
+    <thead><tr><th>Criterion</th><th>Ideal / band</th><th>Echo</th><th>Best rival (Bid)</th><th>Gap</th><th>Fit</th></tr></thead>
+    <tbody>
+      <tr><td>Age</td><td>~0.0</td><td>1.5</td><td>1.4</td><td>+1.5</td><td><span class="badge badge-far">Far</span></td></tr>
+      <tr><td>Price</td><td>$30–$40</td><td>$39</td><td>$40</td><td>In band</td><td><span class="badge badge-close">Close</span></td></tr>
+      <tr><td>Performance</td><td>9.8</td><td>9.2</td><td>9.0</td><td>-0.6</td><td><span class="badge badge-far">Far</span></td></tr>
+      <tr><td>Size</td><td>10.2</td><td>11.4</td><td>10.6</td><td>+1.2</td><td><span class="badge badge-far">Far</span></td></tr>
+      <tr><td>Position distance*</td><td>0</td><td>~1.34</td><td>~0.89</td><td>vs ideal</td><td><span class="badge badge-far">Far</span></td></tr>
+      <tr><td>MTBF</td><td>20,000–25,000</td><td>23,000</td><td>23,000</td><td>Band</td><td><span class="badge badge-close">Close</span></td></tr>
+<tr><td>Accessibility</td><td>Compete with leaders</td><td>49.0%</td><td>52.0%</td><td>—</td><td><span class="badge badge-mid">Mid</span></td></tr><tr><td>Customer Survey</td><td>Leaders higher</td><td>23</td><td>31</td><td>—</td><td><span class="badge badge-far">Far</span></td></tr></tbody>
+  </table>
+  <p class="muted" style="font-size:.82rem">*Rough Euclidean gap vs segment ideal — teaching distance, not Capsim’s internal scoring.</p>
+  <div class="callout warn"><strong>Fix next round:</strong> Reposition toward 9.8/10.2; lift sales budget to improve accessibility.</div>
+</div>
+
+
+<div class="card" style="border-left:4px solid #0d9488">
+  <h3>Edge | Performance — winning criteria: MTBF 43% | Positioning 29% | Price 19% | Age 9%</h3>
+  <p class="muted" style="margin-top:0">Best rival benchmark: <strong>Dot</strong>. Overall fit: <span class="badge badge-far">Far</span>.</p>
+  <table class="gap-table">
+    <thead><tr><th>Criterion</th><th>Ideal / band</th><th>Edge</th><th>Best rival (Dot)</th><th>Gap</th><th>Fit</th></tr></thead>
+    <tbody>
+      <tr><td>Age</td><td>~1.0</td><td>3.5</td><td>2.0</td><td>+2.5</td><td><span class="badge badge-far">Far</span></td></tr>
+      <tr><td>Price</td><td>$24–$34</td><td>$33</td><td>$33</td><td>In band</td><td><span class="badge badge-close">Close</span></td></tr>
+      <tr><td>Performance</td><td>10.4</td><td>9.4</td><td>10.0</td><td>-1.0</td><td><span class="badge badge-far">Far</span></td></tr>
+      <tr><td>Size</td><td>15.3</td><td>15.5</td><td>15.3</td><td>+0.2</td><td><span class="badge badge-far">Far</span></td></tr>
+      <tr><td>Position distance*</td><td>0</td><td>~1.02</td><td>~0.40</td><td>vs ideal</td><td><span class="badge badge-far">Far</span></td></tr>
+      <tr><td>MTBF</td><td>22,000–27,000</td><td>27,000</td><td>27,000</td><td>Band</td><td><span class="badge badge-close">Close</span></td></tr>
+<tr><td>Accessibility</td><td>Compete with leaders</td><td>46.0%</td><td>38.0%</td><td>—</td><td><span class="badge badge-mid">Mid</span></td></tr><tr><td>Customer Survey</td><td>Leaders higher</td><td>31</td><td>35</td><td>—</td><td><span class="badge badge-mid">Mid</span></td></tr></tbody>
+  </table>
+  <p class="muted" style="font-size:.82rem">*Rough Euclidean gap vs segment ideal — teaching distance, not Capsim’s internal scoring.</p>
+  <div class="callout warn"><strong>Fix next round:</strong> Reposition toward 10.4/15.3; lift sales budget to improve accessibility.</div>
+</div>
+
+
+<div class="card" style="border-left:4px solid #db2777">
+  <h3>Egg | Size — winning criteria: Positioning 43% | Age 29% | MTBF 19% | Price 9%</h3>
+  <p class="muted" style="margin-top:0">Best rival benchmark: <strong>Dune</strong>. Overall fit: <span class="badge badge-mid">Mid</span>.</p>
+  <table class="gap-table">
+    <thead><tr><th>Criterion</th><th>Ideal / band</th><th>Egg</th><th>Best rival (Dune)</th><th>Gap</th><th>Fit</th></tr></thead>
+    <tbody>
+      <tr><td>Age</td><td>~1.0</td><td>2.1</td><td>1.8</td><td>+1.1</td><td><span class="badge badge-mid">Mid</span></td></tr>
+      <tr><td>Price</td><td>$24–$34</td><td>$34</td><td>$34</td><td>In band</td><td><span class="badge badge-close">Close</span></td></tr>
+      <tr><td>Performance</td><td>4.7</td><td>4.2</td><td>4.7</td><td>-0.5</td><td><span class="badge badge-mid">Mid</span></td></tr>
+      <tr><td>Size</td><td>9.6</td><td>10.2</td><td>9.7</td><td>+0.6</td><td><span class="badge badge-mid">Mid</span></td></tr>
+      <tr><td>Position distance*</td><td>0</td><td>~0.78</td><td>~0.10</td><td>vs ideal</td><td><span class="badge badge-mid">Mid</span></td></tr>
+      <tr><td>MTBF</td><td>16,000–21,000</td><td>20,000</td><td>20,500</td><td>Band</td><td><span class="badge badge-close">Close</span></td></tr>
+<tr><td>Accessibility</td><td>Compete with leaders</td><td>43.0%</td><td>50.0%</td><td>—</td><td><span class="badge badge-far">Far</span></td></tr><tr><td>Customer Survey</td><td>Leaders higher</td><td>34</td><td>50</td><td>—</td><td><span class="badge badge-mid">Mid</span></td></tr></tbody>
+  </table>
+  <p class="muted" style="font-size:.82rem">*Rough Euclidean gap vs segment ideal — teaching distance, not Capsim’s internal scoring.</p>
+  <div class="callout warn"><strong>Fix next round:</strong> Reposition toward 4.7/9.6; lift sales budget to improve accessibility.</div>
+</div>
+
+
+<h2>5. Customer Criteria Comparison</h2>
+<p class="muted">Compact view for the products with the clearest learning opportunities. Horizontal bars — not radar charts.</p>
+<div class="grid2">
+
+  <div class="card">
+    <h3>Eat vs Traditional expectations | rival Cake</h3>
+    <div class="crit-row"><div>Price</div><div class="bar-track"><div class="bar-fill" style="width:65%;background:#059669"></div></div><div>$26</div></div>
+    <div class="crit-row"><div>Age</div><div class="bar-track"><div class="bar-fill" style="width:62%;background:#7c3aed"></div></div><div>2.5</div></div>
+    <div class="crit-row"><div>MTBF</div><div class="bar-track"><div class="bar-fill" style="width:70%;background:#0d9488"></div></div><div>17,500</div></div>
+    <div class="crit-row"><div>Pos. gap</div><div class="bar-track"><div class="bar-fill" style="width:9%;background:#059669"></div></div><div>~0.14</div></div>
+    <div class="crit-row"><div>Awareness</div><div class="bar-track"><div class="bar-fill" style="width:66%;background:#0d9488"></div></div><div>66.0%</div></div>
+    <div class="crit-row"><div>Accessibility</div><div class="bar-track"><div class="bar-fill" style="width:62%;background:#2563eb"></div></div><div>62.0%</div></div>
+    <p class="crit-legend">Bars ≈ Eat. Rival Cake: price $28, age 2.4, MTBF 15,650, aware 86.8%, access 69.0%, CS 46.</p>
+  </div>
+
+  <div class="card">
+    <h3>Ebb vs Low End expectations | rival Dell</h3>
+    <div class="crit-row"><div>Price</div><div class="bar-track"><div class="bar-fill" style="width:65%;background:#059669"></div></div><div>$21</div></div>
+    <div class="crit-row"><div>Age</div><div class="bar-track"><div class="bar-fill" style="width:40%;background:#7c3aed"></div></div><div>5.6</div></div>
+    <div class="crit-row"><div>MTBF</div><div class="bar-track"><div class="bar-fill" style="width:40%;background:#0d9488"></div></div><div>14,000</div></div>
+    <div class="crit-row"><div>Pos. gap</div><div class="bar-track"><div class="bar-fill" style="width:75%;background:#dc2626"></div></div><div>~1.13</div></div>
+    <div class="crit-row"><div>Awareness</div><div class="bar-track"><div class="bar-fill" style="width:77%;background:#0d9488"></div></div><div>76.7%</div></div>
+    <div class="crit-row"><div>Accessibility</div><div class="bar-track"><div class="bar-fill" style="width:50%;background:#dc2626"></div></div><div>50.0%</div></div>
+    <p class="crit-legend">Bars ≈ Ebb. Rival Dell: price $20, age 5.6, MTBF 12,000, aware 76.7%, access 52.0%, CS 23.</p>
+  </div>
+
+  <div class="card">
+    <h3>Echo vs High End expectations | rival Bid</h3>
+    <div class="crit-row"><div>Price</div><div class="bar-track"><div class="bar-fill" style="width:98%;background:#059669"></div></div><div>$39</div></div>
+    <div class="crit-row"><div>Age</div><div class="bar-track"><div class="bar-fill" style="width:100%;background:#7c3aed"></div></div><div>1.5</div></div>
+    <div class="crit-row"><div>MTBF</div><div class="bar-track"><div class="bar-fill" style="width:60%;background:#0d9488"></div></div><div>23,000</div></div>
+    <div class="crit-row"><div>Pos. gap</div><div class="bar-track"><div class="bar-fill" style="width:89%;background:#dc2626"></div></div><div>~1.34</div></div>
+    <div class="crit-row"><div>Awareness</div><div class="bar-track"><div class="bar-fill" style="width:60%;background:#0d9488"></div></div><div>60.3%</div></div>
+    <div class="crit-row"><div>Accessibility</div><div class="bar-track"><div class="bar-fill" style="width:49%;background:#dc2626"></div></div><div>49.0%</div></div>
+    <p class="crit-legend">Bars ≈ Echo. Rival Bid: price $40, age 1.4, MTBF 23,000, aware 74.6%, access 52.0%, CS 31.</p>
+  </div>
+</div>
+
+
+<h2>6. Production and Inventory</h2>
+<div class="card">
+  <h3>Units sold vs produced vs ending inventory</h3>
+  <p>Compare sold vs produced to separate <strong>demand problems</strong> from <strong>supply problems</strong>.</p>
+  <div class="chart-box tall"><canvas id="prodChart"></canvas></div>
+  <table class="gap-table" style="margin-top:12px">
+    <thead><tr><th>Product</th><th>Segment</th><th>Sold</th><th>Prod~</th><th>End Inv</th><th>Stockout</th><th>Util</th><th>Next Cap</th><th>CM</th></tr></thead>
+    <tbody><tr><td>Eat</td><td>Traditional</td><td>1,517</td><td>~1,971</td><td>454</td><td>No</td><td>100.0%</td><td>1,800</td><td>24.4%</td></tr><tr><td>Ebb</td><td>Low End</td><td>1,978</td><td>~2,068</td><td>90</td><td>No</td><td>146.4%</td><td>1,400</td><td>27.8%</td></tr><tr><td>Echo</td><td>High End</td><td>489</td><td>~605</td><td>116</td><td>No</td><td>63.3%</td><td>900</td><td>35.7%</td></tr><tr><td>Edge</td><td>Performance</td><td>529</td><td>~622</td><td>93</td><td>No</td><td>91.7%</td><td>600</td><td>23.4%</td></tr><tr><td>Egg</td><td>Size</td><td>477</td><td>~537</td><td>60</td><td>No</td><td>80.0%</td><td>600</td><td>32.9%</td></tr></tbody>
+  </table>
+  <p class="muted" style="font-size:.82rem">Production ≈ sold + ending inventory. Estimated finished-goods inventory value for Erie: <strong>$16,260</strong>.</p>
+  <div class="callout warn"><strong>Reading the chart:</strong>  ★ marks a stockout. Empty inventory with a stockout = supply problem. Huge inventory with weak sales = demand/offer problem. Those are opposite mistakes — do not add capacity everywhere.</div>
+</div>
+<script>
+window.__prod = { labels: ["Eat", "Ebb", "Echo", "Edge", "Egg"], sold: [1517.0, 1978.0, 489.0, 529.0, 477.0], produced: [1971.0, 2068.0, 605.0, 622.0, 537.0], inv: [454.0, 90.0, 116.0, 93.0, 60.0] };
+</script>
+
+
+<h2>7. Competencies</h2>
+<div class="comp-grid">
+  <div class="card"><h3>R&amp;D cycle time / repositioning</h3>
+    <p>Automation next round: Eat <strong>4.1</strong>, Ebb <strong>7.0</strong>, Echo <strong>3.0</strong>, Edge <strong>3.0</strong>, Egg <strong>3.0</strong>. Higher automation slows R&amp;D repositioning — acceptable on Low End; riskier if you need fast High End / Size / Performance moves. No material TQM R&amp;D-cycle benefit is visible yet for Erie.</p></div>
+  <div class="card"><h3>Variable cost position</h3>
+    <p>Eat: mat $11, labor $8 · Ebb: mat $7, labor $8 · Echo: mat $16, labor $9 · Edge: mat $15, labor $9 · Egg: mat $13, labor $9. Company CM <strong>28.0%</strong>. Watch labor on low-priced products — automation is how Low End stays profitable.</p></div>
+  <div class="card"><h3>Automation fit</h3>
+    <p>Match automation to segment economics: higher on Low End (cost), moderate on Traditional, lower on High End / Performance / Size if you still need fast R&amp;D moves. Your current mix: Eat <strong>4.1</strong>, Ebb <strong>7.0</strong>, Echo <strong>3.0</strong>, Edge <strong>3.0</strong>, Egg <strong>3.0</strong>.</p></div>
+  <div class="card"><h3>Contribution margins &amp; SG&amp;A</h3>
+    <p>Product CMs: Eat 24.4%, Ebb 27.8%, Echo 35.7%, Edge 23.4%, Egg 32.9%. Company CM 28.0%; SG&amp;A/Sales 13.0%. EBIT was <strong>$11,517</strong> before interest of <strong>$5,972</strong>.</p></div>
+  <div class="card"><h3>TQM / HR / capacity headroom</h3>
+    <p>Plant improvements this round: <strong>$11,920</strong>. Productivity index <strong>1.00</strong>. Turnover ~10.0%. Ebb ~146.4% util (overtime/second-shift pressure).</p></div>
+  <div class="card"><h3>What this means for next round</h3>
+    <p>Capability building only works if the commercial offer and cash plan are coherent. For Erie: cash planning comes first so capability spends do not trigger another emergency loan; push Low End automation and clean up weak offers to lift company CM. You have time — Round 2 is where disciplined teams separate from hopeful ones.</p></div>
+</div>
+
+
+<h2>What to Focus on Next Round</h2>
+<p class="muted">Priorities tailored to Erie — concrete problems first, then stretch. These are focus areas, not a full decision set.</p>
+<div class="prio-grid">
+  <div class="card priority">
+    <h3><span class="num">1</span> Cash &amp; the emergency loan</h3>
+    <p>Treat the $3,515 emergency loan as a hard lesson, not a verdict. Before Round 2, build a simple cash plan — starting cash, collections, production, SG&amp;A, plant/automation, debt service — and arrange current debt, long-term debt, and/or equity deliberately. Goal: end Round 2 with positive cash and $0 new emergency loan.</p>
+  </div>
+  <div class="card priority">
+    <h3><span class="num">2</span> Clear excess inventory (Eat, Eat)</h3>
+    <p>Cut production schedules on overstocked products while you improve positioning, MTBF, or marketing. Cash trapped on the shelf cannot pay for R&amp;D or promotion.</p>
+  </div>
+  <div class="card priority">
+    <h3><span class="num">3</span> Competitors to watch</h3>
+    <p>Study <strong>Garrett, Harper, Digby</strong> — not to copy blindly, but to see how they paired financing with investment, and which segments they defended on price vs positioning.</p>
+  </div></div>
+
+<div class="callout good">
+  <strong>You can do this.</strong> Competition Round 1 is graded, and it is also the first real data point in a multi-round story.
+  Teams that read their numbers carefully, fix one or two concrete offer mistakes, and plan cash deliberately often rebound hard in Round 2.
+  Erie: take the priorities above one at a time — progress beats perfection.
+</div>
+
+
+
+<footer class="note">
+  Competition Round 1 coaching review for Erie (CP136219_1, Section 1). Figures from the Industry Report extract for Round 1 / Year 2027.
+  Written by George — Ali’s AI Capsim tutor (supervised and guided by Ali). This round counts toward the graded competition.
+</footer>
+</div>
+
+<script>
+(function(){
+  if (window.__invest) {
+    new Chart(document.getElementById('investChart'), {
+      type: 'bar',
+      data: {
+        labels: window.__invest.labels,
+        datasets: [
+          { label: 'Plant $ (abs.)', data: window.__invest.plant, backgroundColor: '#2563eb' },
+          { label: 'Stock issued $', data: window.__invest.stock, backgroundColor: '#7c3aed' },
+          { label: 'LTD issued $', data: window.__invest.ltd, backgroundColor: '#0d9488' }
+        ]
+      },
+      options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom' } }, scales: { y: { beginAtZero: true } } }
+    });
+  }
+  if (window.__prod) {
+    new Chart(document.getElementById('prodChart'), {
+      type: 'bar',
+      data: {
+        labels: window.__prod.labels,
+        datasets: [
+          { label: 'Units sold', data: window.__prod.sold, backgroundColor: '#2563eb' },
+          { label: 'Units produced~', data: window.__prod.produced, backgroundColor: '#94a3b8' },
+          { label: 'Ending inventory', data: window.__prod.inv, backgroundColor: '#d97706' }
+        ]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { position: 'bottom' }, title: { display: true, text: '★ = stockout on that product' } },
+        scales: { y: { beginAtZero: true } }
+      }
+    });
+  }
+})();
+</script>
+</body>
+</html>

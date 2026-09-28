@@ -80,18 +80,33 @@
       border-radius: 14px;
       padding: 0.35rem;
     }
+    .tablist {
+      display: flex;
+      gap: 0.45rem;
+      flex: 2 1 280px;
+    }
     .tab {
       appearance: none;
       border: none;
       background: transparent;
       color: var(--navy);
+      font-family: inherit;
       font-weight: 700;
       font-size: 0.92rem;
       padding: 0.7rem 1rem;
       border-radius: 10px;
       cursor: pointer;
       flex: 1 1 auto;
-      min-width: 160px;
+      min-width: 120px;
+      text-align: center;
+    }
+    a.tab {
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      flex: 1 1 150px;
     }
     .tab[aria-selected="true"] {
       background: #fff;
@@ -100,6 +115,33 @@
     }
     .tab:hover { background: rgba(255,255,255,0.55); }
     .tab[aria-selected="true"]:hover { background: #fff; }
+    .tab-link::before {
+      content: "";
+      width: 0.45rem;
+      height: 0.45rem;
+      border-radius: 50%;
+      background: var(--gold);
+      box-shadow: 0 0 0 3px rgba(212, 168, 75, 0.28);
+    }
+    .hero-cta {
+      position: relative;
+      z-index: 1;
+      display: inline-flex;
+      align-items: center;
+      margin-top: 1rem;
+      text-decoration: none;
+      background: linear-gradient(180deg, #e0b45a 0%, #c8942f 100%);
+      color: #1a1408;
+      font-weight: 700;
+      border-radius: 12px;
+      padding: 0.7rem 1rem;
+      font-size: 0.92rem;
+    }
+    .hero-cta:hover { filter: brightness(1.06); }
+    .panel a { color: #14325f; font-weight: 700; }
+    @media (max-width: 640px) {
+      .tablist, a.tab { flex: 1 1 100%; }
+    }
 
     .layout {
       display: grid;
@@ -277,12 +319,16 @@
       <div class="eyebrow">Queen’s · Business &amp; Corporate Strategy</div>
       <h1>Capsim Reports</h1>
       <p class="subtitle">Coaching reviews for your Capsim team — unlock yours with your student number.</p>
+      <a class="hero-cta" href="leaderboard.html">Round 1 Leaderboard</a>
     </header>
 
-    <div class="tabs" role="tablist" aria-label="Report type">
-      <button class="tab" role="tab" id="tab-competition" aria-selected="true" data-tab="competition" type="button">Competition Round 1</button>
-      <button class="tab" role="tab" id="tab-practice" aria-selected="false" data-tab="practice" type="button">Practice Round Recap</button>
-    </div>
+    <nav class="tabs" aria-label="Reports and leaderboard">
+      <div class="tablist" role="tablist" aria-label="Report type">
+        <button class="tab" role="tab" id="tab-competition" aria-selected="true" data-tab="competition" type="button">Competition Round 1</button>
+        <button class="tab" role="tab" id="tab-practice" aria-selected="false" data-tab="practice" type="button">Practice Round Recap</button>
+      </div>
+      <a class="tab tab-link" href="leaderboard.html">Leaderboard</a>
+    </nav>
 
     <div class="layout">
       <aside class="panel access-panel" id="access-panel">
@@ -341,6 +387,7 @@
           <h2>Competition Round 1</h2>
           <p>These are coaching reviews of your firm’s <strong>first graded competition round</strong>. They explain what happened in plain language, connect decisions to outcomes, and suggest what to focus on before Round 2.</p>
           <p>Each report supports — but does not replace — your own industry analysis.</p>
+          <p>The public <a href="leaderboard.html">Round 1 leaderboard</a> ranks every firm by Balanced Scorecard. No student number needed.</p>
         </section>
 
         <section class="panel hidden" id="blurb-practice">
@@ -403,9 +450,15 @@
 
     function setTab(tab) {
       activeTab = tab === "practice" ? "practice" : "competition";
-      document.querySelectorAll(".tab").forEach((btn) => {
+      document.querySelectorAll(".tab[data-tab]").forEach((btn) => {
         btn.setAttribute("aria-selected", btn.dataset.tab === activeTab ? "true" : "false");
       });
+      const url = new URL(location.href);
+      if (activeTab === "practice") url.searchParams.set("tab", "practice");
+      else url.searchParams.delete("tab");
+      const next = url.pathname + url.search + url.hash;
+      const current = location.pathname + location.search + location.hash;
+      if (next !== current) history.replaceState(null, "", next);
       document.getElementById("blurb-competition").classList.toggle("hidden", activeTab !== "competition");
       document.getElementById("blurb-practice").classList.toggle("hidden", activeTab !== "practice");
       document.getElementById("report-tab-pill").textContent =
@@ -476,7 +529,7 @@
       showReport(rec);
     }
 
-    document.querySelectorAll(".tab").forEach((btn) => {
+    document.querySelectorAll(".tab[data-tab]").forEach((btn) => {
       btn.addEventListener("click", () => setTab(btn.dataset.tab));
     });
     unlockBtn.addEventListener("click", tryUnlock);
@@ -501,7 +554,9 @@
       .then((r) => r.json())
       .then((data) => {
         unlock = data;
-        if (data.defaultTab) setTab(data.defaultTab);
+        const requested = new URLSearchParams(location.search).get("tab");
+        if (requested === "practice" || requested === "competition") setTab(requested);
+        else if (data.defaultTab) setTab(data.defaultTab);
       })
       .catch((err) => {
         unlockMsg.className = "msg bad";
